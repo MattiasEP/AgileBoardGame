@@ -21,7 +21,17 @@ body {
 }
 
 .weekday {
-    height: 80px;
+    text-align: center;
+    /*height: 80px;*/
+}
+
+.day-content {
+    margin: auto;
+    width: 90%;
+    height: 30px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #dddddd;
 }
 
 .col {
