@@ -16,10 +16,6 @@ body {
     /*background-color: white;*/
 }
 
-.week {
-    margin-top: 4px;
-}
-
 .weekday {
     text-align: center;
     /*height: 80px;*/
@@ -41,10 +37,32 @@ body {
     border: 1px solid #dddddd;
     box-shadow: inset #dddddd 0 5px 20px;
     padding: 5px;
-    /*height: 500px;*/
     margin: 5px;
     box-sizing: border-box;
     width: 250px;
+}
+
+.calendar {
+    height: 80px;
+}
+
+.calendar-container {
+    height: 90vh;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.dudes {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.saldo {
+    position: absolute;
+    bottom: 10px;
 }
 
 .us {
