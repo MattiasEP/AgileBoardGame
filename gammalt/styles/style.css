@@ -1,0 +1,114 @@
+body {
+    margin: 0;
+    padding-top: 10px;
+    font-family: 'Raleway', sans-serif;
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: white;
+    box-shadow: inset 0px 0px 80px -10px rgba(0,0,0,0.75);
+}
+
+.container {
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    /*border: 1px solid #dddddd;*/
+    /*background-color: white;*/
+}
+
+.weekday {
+    text-align: center;
+    /*height: 80px;*/
+}
+
+.day-content {
+    margin: auto;
+    width: 90%;
+    height: 30px;
+    background-color: white;
+    border-radius: 3px;
+    border: 1px solid #dddddd;
+}
+
+.col {
+    flex-grow: 1;
+    border-radius: 5px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    box-shadow: inset #dddddd 0 5px 20px;
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    width: 250px;
+}
+
+.calendar {
+    height: 70px;
+}
+
+.calendar-container {
+    height: 90vh;
+}
+
+.position-relative {
+    position: relative;
+}
+
+.dudes {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.saldo {
+    position: absolute;
+    bottom: 10px;
+}
+
+.us {
+    box-shadow: inset #dddddd 0 5px 20px;
+    margin: 0 0 15px 0;
+    border-radius: 3px;
+    background-color: white;
+    width: 100%;
+    /*padding: 10px;*/
+    box-sizing: border-box;
+    border: 1px solid #dddddd;
+}
+
+.value {
+    float: right;
+}
+
+.title-us {
+    background-color: #51A35F;
+    color: black;
+    border-radius: 3px 3px 0 0;
+    padding: 3px;
+}
+
+.title-d {
+    background-color: #D46A6A;
+    color: black;
+    border-radius: 3px 3px 0 0;
+    padding: 3px;
+}
+
+.title-m {
+    background-color: #FFFF00;
+    color: black;
+    border-radius: 3px 3px 0 0;
+    padding: 3px;
+}
+
+.values {
+    padding: 5px;
+}
+
+.head {
+    text-align: center;
+    padding: 10px;
+    font-size: 1.5em;
+    margin: 0;
+    padding: 0;
+}
