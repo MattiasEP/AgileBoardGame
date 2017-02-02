@@ -17,11 +17,22 @@ class App extends React.Component {
     }
 
     render() {
-        var json = [{title: 'US01', val: '$350', analysis: '5', development: '5', testing: '5' }];
-        var rows = [];
-        json.forEach(o => {
-            rows.push(<Card title={o.title} val={o.val} analysis={o.analysis} development={o.development} testing={o.testing} />)
-        });
+        // var xmlhttp = new XMLHttpRequest();
+        // xmlhttp.onreadystatechange = function() {
+        //     if (this.readyState == 4 && this.status == 200) {
+        //         myArr = JSON.parse(this.responseText);
+        //         document.getElementById("demo").innerHTML = myArr[0];
+        //     }
+        // };
+        // xmlhttp.open("GET", "json_demo_array.txt", true);
+        // xmlhttp.send();
+
+
+        // var json = [{title: 'US01', val: '$350', analysis: '5', development: '5', testing: '5' }];
+        // var rows = [];
+        // json.forEach(o => {
+        //     rows.push(<Card title={o.title} val={o.val} analysis={o.analysis} development={o.development} testing={o.testing} />)
+        // });
         rows.push(<Card title='US01' val='$350' analysis='5' development='5' testing='5' type='us' Click={this.handleCardClick} />)
         rows.push(<Card title='M02' val='$150' analysis='3' development='6' testing='2' type='m' Click={this.handleCardClick} />)
         rows.push(<Card title='D03' val='$250' analysis='5' development='4' testing='6' type='d' Click={this.handleCardClick} />)
