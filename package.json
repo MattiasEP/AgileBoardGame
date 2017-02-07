@@ -1,7 +1,7 @@
 {
-  "name": "reactapp",
+  "name": "3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Projekt mapp för websida \"glada geten\".",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot"

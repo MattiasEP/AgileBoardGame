@@ -1,63 +1,154 @@
 import React from 'react';
-import Card from './Card.jsx';
-import Column from './Column.jsx';
+import Card from './components/Card';
+import Column from './components/Column';
+import AddCard from './components/AddCard';
+import DebugCard from './components/DebugCard';
+import MaintainanceCard from './components/MaintainanceCard';
 
 class App extends React.Component {
 
     constructor() {
         super();
         this.state = {
-            analysisCards: []
+            cardStack: [],
+            debugCards: [],
+            maintainanceCards: [],
+            backlogCards: [],
+            analysisCards: [],
+            developCards: [],
+            testingCards: [],
+            doneCards: [],
+            test: 1,
         }
-        this.handleCardClick = this.handleCardClick.bind(this);
     }
 
-    handleCardClick(card) {
-        this.setState({analysisCards: [<Card title='US01' val='$350' analysis='5' development='5' testing='5' type='us' Click={this.handleCardClick} />]});
+    getCards() {
+        if(this.state.test === 1) {
+            const that = this;
+            var xmlhttp = new XMLHttpRequest();
+            var cards = [];
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cards = JSON.parse(this.responseText);
+                    that.createCards(cards);
+                }
+            };
+
+            xmlhttp.open("GET", "./api/cards.txt", true);
+            xmlhttp.send();
+        }
+
+        if(this.state.test === 1) {
+            const that = this;
+            var xmlhttp = new XMLHttpRequest();
+            var cards = [];
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cards = JSON.parse(this.responseText);
+                    that.createDebug(cards);
+                }
+            };
+
+            xmlhttp.open("GET", "./api/debugCards.txt", true);
+            xmlhttp.send();
+        }
+
+        if(this.state.test === 1) {
+            const that = this;
+            var xmlhttp = new XMLHttpRequest();
+            var cards = [];
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    cards = JSON.parse(this.responseText);
+                    that.createMaintainance(cards);
+                }
+            };
+
+            xmlhttp.open("GET", "./api/maintainanceCards.txt", true);
+            xmlhttp.send();
+        }
+        this.setState({test: 0});
+    }
+
+    createCards(cards) {
+        var cardz = cards.map(x => (
+            <Card key={'key' + x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+        ));
+        this.setState({cardStack: cardz});
+    }
+
+    createDebug(cards) {
+        var cardz = cards.map(x => (
+            <Card key={'key' + x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+        ));
+        this.setState({debugCards: cardz});
+    }
+
+    createMaintainance(cards) {
+        var cardz = cards.map(x => (
+            <Card key={'key' + x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+        ));
+        this.setState({maintainanceCards: cardz});
+    }
+
+    addCard() {
+        if (this.state.cardStack.length != 0 ) {
+            let firstCard = this.state.cardStack.shift();
+            this.state.backlogCards.push(firstCard);
+            // console.log(this.state.cardStack);
+            // console.log(this.state.backlogCards);
+            this.setState({backlogCards: this.state.backlogCards});
+            this.setState({cardStack: this.state.cardStack});
+            firstCard = [];
+            console.log(this.state.backlogCards[0].props);
+        }
+    }
+
+    addDebugCard() {
+        let firstCard = this.state.debugCards.shift();
+        this.state.backlogCards.push(firstCard);
+        // console.log(this.state.cardStack);
+        // console.log(this.state.backlogCards);
+        this.setState({backlogCards: this.state.backlogCards});
+        this.setState({debugCards: this.state.debugCards});
+        firstCard = [];
+    }
+
+    addMaintainanceCard() {
+        let firstCard = this.state.maintainanceCards.shift();
+        this.state.backlogCards.push(firstCard);
+        // console.log(this.state.cardStack);
+        // console.log(this.state.backlogCards);
+        this.setState({backlogCards: this.state.backlogCards});
+        this.setState({maintainanceCards: this.state.maintainanceCards});
+        firstCard = [];
     }
 
     render() {
-        // var xmlhttp = new XMLHttpRequest();
-        // xmlhttp.onreadystatechange = function() {
-        //     if (this.readyState == 4 && this.status == 200) {
-        //         myArr = JSON.parse(this.responseText);
-        //         document.getElementById("demo").innerHTML = myArr[0];
-        //     }
-        // };
-        // xmlhttp.open("GET", "json_demo_array.txt", true);
-        // xmlhttp.send();
 
-
-        // var json = [{title: 'US01', val: '$350', analysis: '5', development: '5', testing: '5' }];
-        // var rows = [];
-        // json.forEach(o => {
-        //     rows.push(<Card title={o.title} val={o.val} analysis={o.analysis} development={o.development} testing={o.testing} />)
-        // });
-        rows.push(<Card title='US01' val='$350' analysis='5' development='5' testing='5' type='us' Click={this.handleCardClick} />)
-        rows.push(<Card title='M02' val='$150' analysis='3' development='6' testing='2' type='m' Click={this.handleCardClick} />)
-        rows.push(<Card title='D03' val='$250' analysis='5' development='4' testing='6' type='d' Click={this.handleCardClick} />)
-        rows.push(<Card title='US04' val='$400' analysis='2' development='5' testing='3' type='us' Click={this.handleCardClick} />)
+        // console.log('hej');
         return (
             <div>
+                <AddCard onClick={this.addCard.bind(this)} getCards={this.getCards.bind(this)} />
+                <DebugCard onClick={this.addDebugCard.bind(this)} />
+                <MaintainanceCard onClick={this.addMaintainanceCard.bind(this)} />
                 <div className='head'>
-                    Agile Board Game
+                Agile Board Game
                 </div>
                 <div className='container'>
-                    <Column title='Backlog' cards={rows} />
-                    <Column title='Analysis' cards={this.state.analysisCards} />
-                    <Column title='Dev.' />
-                    <Column title='Testing' />
-                    <div className='col position-relative'><div className='head'>Done</div>
-                        <div className='saldo'>
-                            <div className='weekday'>Total money earned</div>
-                            <div className='day-content'></div>
-                        </div>
-                    </div>
+                    <Column title='Backlog' cards={this.state.backlogCards}/>
+                    <Column title='Analysis' cards={this.state.analysisCards}/>
+                    <Column title='Dev.' cards={this.state.developCards} />
+                    <Column title='Testing' cards={this.state.testingCards} />
+                    <div className='col position-relative'><div className='head'>Done</div></div>
+                    {/* <div className='saldo'>
+                        <div className='weekday'>Total money earned</div>
+                        <div className='day-content'></div>
+                    </div> */}
                 </div>
             </div>
-
-        );
-    }
+      );
+   }
 }
 
 export default App;
