@@ -8,7 +8,7 @@ class MaintainanceCards extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>Add Maintainancecard</button>
+            <button onClick={this.handleClick.bind(this)}>Add Maintenance Card</button>
         );
     }
 }

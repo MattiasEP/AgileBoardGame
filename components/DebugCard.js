@@ -8,7 +8,7 @@ class DebugCard extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>Add Debugcard</button>
+            <button onClick={this.handleClick.bind(this)}>Add Debug Card</button>
         );
     }
 }

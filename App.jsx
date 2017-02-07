@@ -1,9 +1,11 @@
 import React from 'react';
 import Card from './components/Card';
 import Column from './components/Column';
+import Start from './components/Start';
 import AddCard from './components/AddCard';
 import DebugCard from './components/DebugCard';
 import MaintainanceCard from './components/MaintainanceCard';
+import Calc from './components/Calc';
 
 class App extends React.Component {
 
@@ -95,20 +97,15 @@ class App extends React.Component {
         if (this.state.cardStack.length != 0 ) {
             let firstCard = this.state.cardStack.shift();
             this.state.backlogCards.push(firstCard);
-            // console.log(this.state.cardStack);
-            // console.log(this.state.backlogCards);
             this.setState({backlogCards: this.state.backlogCards});
             this.setState({cardStack: this.state.cardStack});
             firstCard = [];
-            console.log(this.state.backlogCards[0].props);
         }
     }
 
     addDebugCard() {
         let firstCard = this.state.debugCards.shift();
         this.state.backlogCards.push(firstCard);
-        // console.log(this.state.cardStack);
-        // console.log(this.state.backlogCards);
         this.setState({backlogCards: this.state.backlogCards});
         this.setState({debugCards: this.state.debugCards});
         firstCard = [];
@@ -117,21 +114,29 @@ class App extends React.Component {
     addMaintainanceCard() {
         let firstCard = this.state.maintainanceCards.shift();
         this.state.backlogCards.push(firstCard);
-        // console.log(this.state.cardStack);
-        // console.log(this.state.backlogCards);
         this.setState({backlogCards: this.state.backlogCards});
         this.setState({maintainanceCards: this.state.maintainanceCards});
         firstCard = [];
     }
 
-    render() {
+    calcSum() {
+        let sum = 0;
+        this.state.backlogCards.map(x => {
+            if(x.props.type == "userstory") {
+                sum += parseInt(x.props.val);
+            }
+        })
+        console.log(sum);
+    }
 
-        // console.log('hej');
+    render() {
         return (
             <div>
-                <AddCard onClick={this.addCard.bind(this)} getCards={this.getCards.bind(this)} />
+                <Start getCards={this.getCards.bind(this)} />
+                <AddCard onClick={this.addCard.bind(this)} />
                 <DebugCard onClick={this.addDebugCard.bind(this)} />
                 <MaintainanceCard onClick={this.addMaintainanceCard.bind(this)} />
+                <Calc onClick={this.calcSum.bind(this)} />
                 <div className='head'>
                 Agile Board Game
                 </div>

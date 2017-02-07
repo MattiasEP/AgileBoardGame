@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AddCard extends React.Component {
+class Calc extends React.Component {
 
     handleClick() {
         this.props.onClick();
@@ -8,9 +8,9 @@ class AddCard extends React.Component {
 
     render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>Add Card</button>
+            <button onClick={this.handleClick.bind(this)}>Summa</button>
         );
     }
 }
 
-export default AddCard;
+export default Calc;
