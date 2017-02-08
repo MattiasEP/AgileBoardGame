@@ -74,7 +74,7 @@ class App extends React.Component {
 
     createCards(cards) {
         var cardz = cards.map(x => (
-            <Card key={'key' + x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+            <Card key={'key' + x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} />
         ));
         this.setState({cardStack: cardz});
     }
@@ -93,13 +93,14 @@ class App extends React.Component {
         this.setState({maintainanceCards: cardz});
     }
 
+    /* Lägger till översta kortet från kortleken till backlogkolumnen */
     addCard() {
         if (this.state.cardStack.length != 0 ) {
             let firstCard = this.state.cardStack.shift();
             this.state.backlogCards.push(firstCard);
             this.setState({backlogCards: this.state.backlogCards});
             this.setState({cardStack: this.state.cardStack});
-            firstCard = [];
+            // firstCard = [];
         }
     }
 
@@ -119,11 +120,13 @@ class App extends React.Component {
         firstCard = [];
     }
 
+    /* Räknar ihop värdet på alla US som ligger i backlogkolumnen */
     calcSum() {
         let sum = 0;
         this.state.backlogCards.map(x => {
             if(x.props.type == "userstory") {
                 sum += parseInt(x.props.val);
+                console.log(x);
             }
         })
         console.log(sum);
