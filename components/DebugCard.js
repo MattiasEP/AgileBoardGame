@@ -2,13 +2,9 @@ import React from 'react';
 
 class DebugCard extends React.Component {
 
-    handleClick() {
-        this.props.onClick();
-    }
-
-    render() {
+    render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>Add Debug Card</button>
+            <div className='us-btn' onClick={this.props.addD}><p className='us-btn-txt'>Add Debug</p></div>
         );
     }
 }

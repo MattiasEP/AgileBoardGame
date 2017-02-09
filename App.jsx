@@ -1,10 +1,8 @@
 import React from 'react';
 import Card from './components/Card';
+import Backlog from './components/Backlog';
 import Column from './components/Column';
 import Start from './components/Start';
-import AddCard from './components/AddCard';
-import DebugCard from './components/DebugCard';
-import MaintainanceCard from './components/MaintainanceCard';
 import Calc from './components/Calc';
 
 class App extends React.Component {
@@ -74,21 +72,21 @@ class App extends React.Component {
 
     createCards(cards) {
         var cardz = cards.map(x => (
-            <Card key={'key' + x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} />
+            <Card key={x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} />
         ));
         this.setState({cardStack: cardz});
     }
 
     createDebug(cards) {
         var cardz = cards.map(x => (
-            <Card key={'key' + x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+            <Card key={x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
         ));
         this.setState({debugCards: cardz});
     }
 
     createMaintainance(cards) {
         var cardz = cards.map(x => (
-            <Card key={'key' + x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
+            <Card key={x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
         ));
         this.setState({maintainanceCards: cardz});
     }
@@ -97,25 +95,26 @@ class App extends React.Component {
     addCard() {
         if (this.state.cardStack.length != 0 ) {
             let firstCard = this.state.cardStack.shift();
-            this.state.backlogCards.push(firstCard);
-            this.setState({backlogCards: this.state.backlogCards});
+            this.state.analysisCards.push(firstCard);
+            this.setState({analysisCards: this.state.analysisCards});
             this.setState({cardStack: this.state.cardStack});
-            // firstCard = [];
+            firstCard = [];
         }
+        // console.log(this);
     }
 
     addDebugCard() {
         let firstCard = this.state.debugCards.shift();
-        this.state.backlogCards.push(firstCard);
-        this.setState({backlogCards: this.state.backlogCards});
+        this.state.analysisCards.push(firstCard);
+        this.setState({analysisCards: this.state.analysisCards});
         this.setState({debugCards: this.state.debugCards});
         firstCard = [];
     }
 
     addMaintainanceCard() {
         let firstCard = this.state.maintainanceCards.shift();
-        this.state.backlogCards.push(firstCard);
-        this.setState({backlogCards: this.state.backlogCards});
+        this.state.analysisCards.push(firstCard);
+        this.setState({analysisCards: this.state.analysisCards});
         this.setState({maintainanceCards: this.state.maintainanceCards});
         firstCard = [];
     }
@@ -123,10 +122,9 @@ class App extends React.Component {
     /* Räknar ihop värdet på alla US som ligger i backlogkolumnen */
     calcSum() {
         let sum = 0;
-        this.state.backlogCards.map(x => {
+        this.state.analysisCards.map(x => {
             if(x.props.type == "userstory") {
                 sum += parseInt(x.props.val);
-                console.log(x);
             }
         })
         console.log(sum);
@@ -136,16 +134,13 @@ class App extends React.Component {
         return (
             <div>
                 <Start getCards={this.getCards.bind(this)} />
-                <AddCard onClick={this.addCard.bind(this)} />
-                <DebugCard onClick={this.addDebugCard.bind(this)} />
-                <MaintainanceCard onClick={this.addMaintainanceCard.bind(this)} />
                 <Calc onClick={this.calcSum.bind(this)} />
                 <div className='head'>
                 Agile Board Game
                 </div>
                 <div className='container'>
-                    <Column title='Backlog' cards={this.state.backlogCards}/>
-                    <Column title='Analysis' cards={this.state.analysisCards}/>
+                    <Backlog title='Backlog' addUs={this.addCard.bind(this)} addD={this.addDebugCard.bind(this)} addM={this.addMaintainanceCard.bind(this)} />
+                    <Column title='Analysis' cards={this.state.analysisCards} />
                     <Column title='Dev.' cards={this.state.developCards} />
                     <Column title='Testing' cards={this.state.testingCards} />
                     <div className='col position-relative'><div className='head'>Done</div></div>

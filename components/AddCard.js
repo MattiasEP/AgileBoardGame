@@ -2,13 +2,9 @@ import React from 'react';
 
 class AddCard extends React.Component {
 
-    handleClick() {
-        this.props.onClick();
-    }
-
-    render() {
+    render() {
         return (
-            <button onClick={this.handleClick.bind(this)}>Add Card</button>
+            <div className='us-btn' onClick={this.props.addUs}><p className='us-btn-txt'>Add Userstory</p></div>
         );
     }
 }
