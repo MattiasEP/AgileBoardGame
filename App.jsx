@@ -1,8 +1,8 @@
 import React from 'react';
+import axios from 'axios';
 import Card from './components/Card';
 import Backlog from './components/Backlog';
 import Column from './components/Column';
-import Start from './components/Start';
 import Calc from './components/Calc';
 
 class App extends React.Component {
@@ -10,113 +10,64 @@ class App extends React.Component {
     constructor() {
         super();
         this.state = {
-            cardStack: [],
-            debugCards: [],
-            maintainanceCards: [],
+            usCards: [],
+            defectCards: [],
+            maintenanceCards: [],
             backlogCards: [],
             analysisCards: [],
             developCards: [],
             testingCards: [],
             doneCards: [],
+            dice: null,
             test: 1,
         }
     }
 
-    getCards() {
-        if(this.state.test === 1) {
-            const that = this;
-            var xmlhttp = new XMLHttpRequest();
-            var cards = [];
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    cards = JSON.parse(this.responseText);
-                    that.createCards(cards);
-                }
-            };
-
-            xmlhttp.open("GET", "./api/cards.txt", true);
-            xmlhttp.send();
-        }
-
-        if(this.state.test === 1) {
-            const that = this;
-            var xmlhttp = new XMLHttpRequest();
-            var cards = [];
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    cards = JSON.parse(this.responseText);
-                    that.createDebug(cards);
-                }
-            };
-
-            xmlhttp.open("GET", "./api/debugCards.txt", true);
-            xmlhttp.send();
-        }
-
-        if(this.state.test === 1) {
-            const that = this;
-            var xmlhttp = new XMLHttpRequest();
-            var cards = [];
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    cards = JSON.parse(this.responseText);
-                    that.createMaintainance(cards);
-                }
-            };
-
-            xmlhttp.open("GET", "./api/maintainanceCards.txt", true);
-            xmlhttp.send();
-        }
-        this.setState({test: 0});
+    componentDidMount() {
+        axios.get('http://localhost/AgileBoardGame/api/api.php').then(
+            (response) => {
+                response.data.map(card => {
+                    if(card.type === 'userstory')   { this.state.usCards.push(card); }
+                    else if(card.type === 'defect') { this.state.defectCards.push(card); }
+                    else                            { this.state.maintenanceCards.push(card); }
+                })
+                this.setState({usCards: this.state.usCards, defectCards: this.state.defectCards, maintenanceCards: this.state.maintenanceCards});
+            }
+        );
     }
 
-    createCards(cards) {
-        var cardz = cards.map(x => (
-            <Card key={x.id} title={x.name} val={x.value} analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} />
-        ));
-        this.setState({cardStack: cardz});
-    }
-
-    createDebug(cards) {
-        var cardz = cards.map(x => (
-            <Card key={x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
-        ));
-        this.setState({debugCards: cardz});
-    }
-
-    createMaintainance(cards) {
-        var cardz = cards.map(x => (
-            <Card key={x.id} title={x.name} val='' analysis={x.analysis} development={x.develop} testing={x.test} type={x.type} Click={this.handleCardClick} />
-        ));
-        this.setState({maintainanceCards: cardz});
-    }
-
-    /* Lägger till översta kortet från kortleken till backlogkolumnen */
-    addCard() {
-        if (this.state.cardStack.length != 0 ) {
-            let firstCard = this.state.cardStack.shift();
+    /* Lägger till översta kortet från kortleken till analysiskolumnen */
+    addUs() {
+        if (this.state.usCards.length != 0 ) {
+            let firstCard = this.state.usCards.shift();
             this.state.analysisCards.push(firstCard);
             this.setState({analysisCards: this.state.analysisCards});
-            this.setState({cardStack: this.state.cardStack});
+            this.setState({usCards: this.state.usCards});
             firstCard = [];
         }
         // console.log(this);
     }
 
-    addDebugCard() {
-        let firstCard = this.state.debugCards.shift();
+    addDefectCard() {
+        let firstCard = this.state.defectCards.shift();
         this.state.analysisCards.push(firstCard);
         this.setState({analysisCards: this.state.analysisCards});
-        this.setState({debugCards: this.state.debugCards});
+        this.setState({defectCards: this.state.defectCards});
         firstCard = [];
     }
 
-    addMaintainanceCard() {
-        let firstCard = this.state.maintainanceCards.shift();
+    addMaintenanceCard() {
+        let firstCard = this.state.maintenanceCards.shift();
         this.state.analysisCards.push(firstCard);
         this.setState({analysisCards: this.state.analysisCards});
-        this.setState({maintainanceCards: this.state.maintainanceCards});
+        this.setState({maintenanceCards: this.state.maintenanceCards});
         firstCard = [];
+    }
+
+    moveCard(card) {
+        console.log(card);
+
+
     }
 
     /* Räknar ihop värdet på alla US som ligger i backlogkolumnen */
@@ -130,24 +81,38 @@ class App extends React.Component {
         console.log(sum);
     }
 
+    rollDice() {
+        let dice = Math.floor(Math.random() * 6 + 1);
+        dice += Math.floor(Math.random() * 6 + 1);
+        dice += Math.floor(Math.random() * 6 + 1);
+        dice += Math.floor(Math.random() * 6 + 1);
+        dice += Math.floor(Math.random() * 6 + 1);
+        dice += Math.floor(Math.random() * 6 + 1);
+        console.log(dice);
+        this.setState({dice: dice});
+    }
+
     render() {
+        // console.log(this.state.usCards, this.state.defectCards, this.state.maintenanceCards);
         return (
             <div>
-                <Start getCards={this.getCards.bind(this)} />
                 <Calc onClick={this.calcSum.bind(this)} />
-                <div className='head'>
+                <div>
+                    <span>{this.state.dice}</span>
+                {/* <div className='head'>
                 Agile Board Game
-                </div>
+                </div> */}
                 <div className='container'>
-                    <Backlog title='Backlog' addUs={this.addCard.bind(this)} addD={this.addDebugCard.bind(this)} addM={this.addMaintainanceCard.bind(this)} />
-                    <Column title='Analysis' cards={this.state.analysisCards} />
-                    <Column title='Dev.' cards={this.state.developCards} />
-                    <Column title='Testing' cards={this.state.testingCards} />
+                    <Backlog title='Backlog' rollDice={this.rollDice.bind(this)} addUs={this.addUs.bind(this)} addD={this.addDefectCard.bind(this)} addM={this.addMaintenanceCard.bind(this)} />
+                    <Column title='Analysis' cards={this.state.analysisCards} moveCard={this.moveCard} />
+                    <Column title='Dev.' cards={this.state.developCards} moveCard={this.moveCard} />
+                    <Column title='Testing' cards={this.state.testingCards} moveCard={this.moveCard} />
                     <div className='col position-relative'><div className='head'>Done</div></div>
                     {/* <div className='saldo'>
                         <div className='weekday'>Total money earned</div>
                         <div className='day-content'></div>
                     </div> */}
+                </div>
                 </div>
             </div>
       );

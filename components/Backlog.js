@@ -1,8 +1,8 @@
 import React from 'react';
 import Dice from './Dice';
-import AddCard from './AddCard';
-import DebugCard from './DebugCard';
-import MaintainanceCard from './MaintainanceCard';
+import AddUs from './AddUs';
+import DefectCard from './DefectCard';
+import MaintenanceCard from './MaintenanceCard';
 import Calendar from './Calendar';
 
 
@@ -12,10 +12,10 @@ class Backlog extends React.Component {
         return (
             <div className='col'>
                 <div className='head'>{this.props.title}</div>
-                <Dice />
-                <AddCard addUs={this.props.addUs.bind(this)} />
-                <DebugCard addD={this.props.addD.bind(this)} />
-                <MaintainanceCard addM={this.props.addM.bind(this)} />
+                <Dice rollDice={this.props.rollDice.bind(this)} />
+                <AddUs addUs={this.props.addUs.bind(this)} />
+                <DefectCard addD={this.props.addD.bind(this)} />
+                <MaintenanceCard addM={this.props.addM.bind(this)} />
                 <Calendar />
             </div>
         );

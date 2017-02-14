@@ -1,7 +1,7 @@
 {
   "name": "3",
   "version": "1.0.0",
-  "description": "Projekt mapp för websida \"glada geten\".",
+  "description": "Agile Board Game",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot"
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.15.3",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "webpack": "^2.2.1",

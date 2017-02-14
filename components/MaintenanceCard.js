@@ -1,6 +1,6 @@
 import React from 'react';
 
-class MaintainanceCards extends React.Component {
+class MaintenanceCards extends React.Component {
 
     render() {
         return (
@@ -9,4 +9,4 @@ class MaintainanceCards extends React.Component {
     }
 }
 
-export default MaintainanceCards;
+export default MaintenanceCards;

@@ -7,6 +7,7 @@ body {
     background-color: white;
     box-shadow: inset 0px 0px 80px -10px rgba(0,0,0,0.75);
     user-select: none;
+    overflow: hidden;
 }
 
 .container {
@@ -32,7 +33,7 @@ body {
 }
 
 .col {
-    flex-grow: 1;
+    /*flex-grow: 1;*/
     border-radius: 5px;
     background: #eeeeee;
     border: 1px solid #dddddd;
@@ -40,9 +41,14 @@ body {
     padding: 5px;
     margin: 5px;
     box-sizing: border-box;
-    width: 250px;
-    height: 74vh;
+    width: 20%;
+    height: 580px;
+    /*overflow-y: auto;*/
+}
+
+.col-content {
     overflow-y: auto;
+    height: 530px;
 }
 
 .calendar {
@@ -94,6 +100,10 @@ body {
     cursor: pointer;
 }
 
+.us-btn:active {
+    box-shadow: inset #dddddd 0px 5px 50px;
+}
+
 .us-btn-txt {
     padding: 0;
     margin: 0;
@@ -120,7 +130,7 @@ body {
     padding: 3px;
 }
 
-.title-debug {
+.title-defect {
     background-color: #D46A6A;
     color: black;
     border-radius: 3px 3px 0 0;
@@ -144,4 +154,8 @@ body {
     font-size: 1.5em;
     margin: 0 0 5px 0;
     padding: 0;
+}
+
+.inc-dec {
+    width: 50%;
 }

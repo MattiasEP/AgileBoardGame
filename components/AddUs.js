@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AddCard extends React.Component {
+class AddUs extends React.Component {
 
     render() {
         return (
@@ -9,4 +9,4 @@ class AddCard extends React.Component {
     }
 }
 
-export default AddCard;
+export default AddUs;
