@@ -91,7 +91,7 @@ class Card extends React.Component {
         switch(this.state.location){
             case 'analysis':
                 this.setState({location: 'development'})
-                this.props.moveCard(this);
+                this.props.moveCard();
                 break;
 
             case 'development':

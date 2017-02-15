@@ -64,9 +64,8 @@ class App extends React.Component {
         firstCard = [];
     }
 
-    moveCard(card) {
-        console.log(card);
-
+    moveCard() {
+        console.log(this);
 
     }
 

@@ -3,6 +3,9 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+CREATE DATABASE `boardgame` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
+USE `boardgame`;
+
 DROP TABLE IF EXISTS `cards`;
 CREATE TABLE `cards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -76,15 +79,17 @@ INSERT INTO `cards` (`id`, `type`, `name`, `value`, `analysis`, `develop`, `test
 (58,	'userstory',	'US58',	50,	5,	8,	6),
 (59,	'userstory',	'US59',	150,	7,	6,	3),
 (60,	'userstory',	'US60',	250,	5,	7,	6),
-(1001,	'debug',	'D1',	0,	1,	6,	4),
-(1002,	'debug',	'D2',	0,	3,	4,	7),
-(1003,	'debug',	'D3',	0,	2,	7,	5),
-(1004,	'debug',	'D4',	0,	5,	8,	6),
-(1005,	'debug',	'D5',	0,	7,	5,	3),
-(1006,	'debug',	'D6',	0,	5,	7,	3),
-(1007,	'debug',	'D7',	0,	1,	6,	3),
+(1001,	'defect',	'D1',	0,	1,	6,	4),
+(1002,	'defect',	'D2',	0,	3,	4,	7),
+(1003,	'defect',	'D3',	0,	2,	7,	5),
+(1004,	'defect',	'D4',	0,	5,	8,	6),
+(1005,	'defect',	'D5',	0,	7,	5,	3),
+(1006,	'defect',	'D6',	0,	5,	7,	3),
+(1007,	'defect',	'D7',	0,	1,	6,	3),
 (2001,	'maintenance',	'M1',	0,	4,	7,	4),
 (2002,	'maintenance',	'M2',	0,	2,	5,	3),
 (2003,	'maintenance',	'M3',	0,	3,	8,	7),
 (2004,	'maintenance',	'M4',	0,	2,	5,	4),
 (2005,	'maintenance',	'M5',	0,	5,	7,	3);
+
+-- 2017-02-15 09:44:37
