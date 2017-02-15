@@ -1,10 +1,9 @@
+-- Adminer 4.2.5 MySQL dump
+
 SET NAMES utf8;
 SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
-
-CREATE DATABASE `boardgame` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_bin */;
-USE `boardgame`;
 
 DROP TABLE IF EXISTS `cards`;
 CREATE TABLE `cards` (
@@ -92,4 +91,15 @@ INSERT INTO `cards` (`id`, `type`, `name`, `value`, `analysis`, `develop`, `test
 (2004,	'maintenance',	'M4',	0,	2,	5,	4),
 (2005,	'maintenance',	'M5',	0,	5,	7,	3);
 
--- 2017-02-15 09:44:37
+DROP TABLE IF EXISTS `login`;
+CREATE TABLE `login` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(200) COLLATE utf8_bin NOT NULL,
+  `password` varchar(200) COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+INSERT INTO `login` (`id`, `username`, `password`) VALUES
+(1,	'admin',	'admin');
+
+-- 2017-02-15 10:29:39
