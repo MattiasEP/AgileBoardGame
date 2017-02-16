@@ -156,6 +156,10 @@ body {
     padding: 0;
 }
 
+.hidden {
+    display: none;
+}
+
 .inc-dec {
     width: 50%;
 }
