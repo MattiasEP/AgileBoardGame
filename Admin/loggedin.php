@@ -8,7 +8,9 @@
 <body>
 	<nav>
 		<a href="loggedin.php?page=userstory">User Story</a>
-        <a href="logout.php">Logga ut</a>
+        <a href="loggedin.php?page=maintenance">Maintenance</a>
+        <a href="loggedin.php?page=defect">Defect</a>
+        <a href="logout.php" style="float: right">Logga ut</a>
 	</nav>
 
 <?php
@@ -20,6 +22,12 @@
     switch($currentPage) {
         case "userstory";
           	include ("userstory_admin.php");
+        break;
+        case "maintenance";
+          	include ("maintenance_admin.php");
+        break;
+        case "defect";
+          	include ("defect_admin.php");
         break;
         default:
           	include ("userstory_admin.php");
