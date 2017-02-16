@@ -4,16 +4,16 @@ include('session.php');
 
 <br><br><br><br>
 
-	<form action="add_us.php" method="post" name="us">
-		<div class="">
+	<form action="add_userstory.php" method="post" name="us">
+		<div class="blueprint">
 			<div class="title-userstory">Name of card: <input type="text" name="name" /> Value: <input type="number" name="value" /><br></div>
-			<div>
-				Analysis: <input type="number" name="analysis" /><br>
-				Developing: <input type="number" name="develop" /><br>
-				Testing: <input type="number" name="testing" /><br>
+			<div class="values">
+				Analysis: <input class="admin_value" type="number" name="analysis" /><br>
+				Developing: <input class="admin_value" type="number" name="develop" /><br>
+				Testing: <input class="admin_value" type="number" name="testing" /><br><br>
+			 	<input type="submit" value="Lägg till kort" />
 			</div>
 		</div>
- 		<input type="submit" value="Lägg till kort" />
  	</form>
 	
 </div>

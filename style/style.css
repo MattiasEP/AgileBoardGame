@@ -163,3 +163,19 @@ body {
 .inc-dec {
     width: 50%;
 }
+
+.blueprint {
+    width: 500px;
+    margin: 0 auto;
+    border-color: gray;
+    border-radius: 6px;
+    border-style: solid;
+    box-shadow: inset #dddddd 0 5px 20px;
+    background-color: white;
+    box-sizing: border-box;
+}
+
+.admin_value {
+    float: right;
+    clear: both;
+}
