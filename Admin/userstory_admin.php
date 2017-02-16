@@ -1,12 +1,18 @@
-<div id="addUserStory">
+<?php
+include('session.php');
+?>
+
+<br><br><br><br>
 
 	<form action="add_us.php" method="post" name="us">
-			Type of card: <input type="text" name="type" /><br>
-			Name of card: <input type="text" name="name" /><br>
-			Value: <input type="text" name="value" /><br>
-			Analysis: <input type="text" name="analysis" /><br>
-			Developing: <input type="text" name="develop" /><br>
-			Testing: <input type="text" name="testing" /><br>
+		<div class="">
+			<div class="title-userstory">Name of card: <input type="text" name="name" /> Value: <input type="number" name="value" /><br></div>
+			<div>
+				Analysis: <input type="number" name="analysis" /><br>
+				Developing: <input type="number" name="develop" /><br>
+				Testing: <input type="number" name="testing" /><br>
+			</div>
+		</div>
  		<input type="submit" value="Lägg till kort" />
  	</form>
 	

@@ -8,8 +8,9 @@ mysqli_query($db, "SET NAMES utf8");
 if (mysqli_connect_errno($db)) {
 	echo "<h1>Anslutning till MySQL misslyckades: " . mysqli_connect_error() ."</h1>";
 	}
-$new_type = $_POST['type'];
-$new_type = mysqli_real_escape_string($db, $_POST['type']);
+
+
+$new_type = "userstory";
 $new_name = $_POST['name'];
 $new_name = mysqli_real_escape_string($db, $_POST['name']);
 $new_value = $_POST['value'];
