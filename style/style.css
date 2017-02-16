@@ -123,6 +123,10 @@ body {
     float: right;
 }
 
+.hidden {
+    display: none;
+}
+
 .title-userstory {
     background-color: #51A35F;
     color: black;

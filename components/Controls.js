@@ -7,11 +7,11 @@ import Calendar from './Calendar';
 
 
 
-class Backlog extends React.Component {
+class Controls extends React.Component {
     render() {
         return (
             <div className='col'>
-                <div className='head'>{this.props.title}</div>
+                <div className='head'>Controls</div>
                 <Dice rollDice={this.props.rollDice.bind(this)} />
                 <AddUs addUs={this.props.addUs.bind(this)} />
                 <DefectCard addD={this.props.addD.bind(this)} />
@@ -22,4 +22,4 @@ class Backlog extends React.Component {
     }
 }
 
-export default Backlog;
+export default Controls;

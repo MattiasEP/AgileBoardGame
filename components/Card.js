@@ -14,7 +14,7 @@ class Card extends React.Component {
             developmentCap: null,
             testing: null,
             testingCap: null,
-            location: 'analysis'
+            location: null
         }
     }
 
@@ -28,14 +28,15 @@ class Card extends React.Component {
             development: this.props.develop,
             developmentCap: this.props.develop,
             testing: this.props.test,
-            testingCap: this.props.test
+            testingCap: this.props.test,
+            location: this.props.cardObj.location
         })
     }
 
     decrease() {
         switch(this.state.location) {
             case 'analysis':
-                if(this.state.analysis === 1) {
+                if(this.state.analysis <= 1) {
                     this.state.analysis--;
                     this.setState({analysis: this.state.analysis});
                     this.switchLocation();
@@ -47,13 +48,27 @@ class Card extends React.Component {
                 break;
 
             case 'development':
-                this.state.analysis--;
-                this.setState({analysis: this.state.analysis});
+                if(this.state.development <= 1) {
+                    this.state.development--;
+                    this.setState({development: this.state.development});
+                    this.switchLocation();
+                }
+                else {
+                    this.state.development--;
+                    this.setState({development: this.state.development});
+                }
                 break;
 
             case 'testing':
-                this.state.analysis--;
-                this.setState({analysis: this.state.analysis});
+                if(this.state.testing <= 1) {
+                    this.state.testing--;
+                    this.setState({testing: this.state.testing});
+                    this.switchLocation();
+                }
+                else {
+                    this.state.testing--;
+                    this.setState({testing: this.state.testing});
+                }
                 break;
 
             default: break;
@@ -90,15 +105,17 @@ class Card extends React.Component {
     switchLocation() {
         switch(this.state.location){
             case 'analysis':
+                this.props.moveCard(this.props.cardObj);
                 this.setState({location: 'development'})
-                this.props.moveCard();
                 break;
 
             case 'development':
+                this.props.moveCard(this.props.cardObj);
                 this.setState({location: 'testing'})
                 break;
 
             case 'testing':
+                this.props.moveCard(this.props.cardObj);
                 this.setState({location: 'done'})
                 break;
         }
@@ -108,7 +125,9 @@ class Card extends React.Component {
         return (
             <div className='us'>
                 <div className={'title-'+this.state.type}>{this.state.name}<div className='value'>{this.state.value}</div></div>
-                <div className='values'>
+
+
+                <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
                     <div>Analysis: {this.state.analysis}</div>
                     <div>Development: {this.state.development}</div>
                     <div>Testing: {this.state.testing}</div>
