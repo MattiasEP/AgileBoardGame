@@ -6,6 +6,7 @@ import Analysis from './components/Analysis';
 import Development from './components/Development';
 import Testing from './components/Testing';
 import Done from './components/Done';
+import Worker from './components/Worker';
 
 class App extends React.Component {
 
@@ -114,13 +115,14 @@ class App extends React.Component {
                 {/* <div className='head'>
                 Agile Board Game
                 </div> */}
-                <div className='container'>
-                    <Controls    rollDice={this.rollDice.bind(this)} addUs={this.addUs.bind(this)} addD={this.addDefectCard.bind(this)} addM={this.addMaintenanceCard.bind(this)} />
-                    <Analysis    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                    <Development cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                    <Testing     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                    <Done        cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                </div>
+                    <Worker />
+                    <div className='container'>
+                        <Controls    rollDice={this.rollDice.bind(this)} addUs={this.addUs.bind(this)} addD={this.addDefectCard.bind(this)} addM={this.addMaintenanceCard.bind(this)} />
+                        <Analysis    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                        <Development cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                        <Testing     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                        <Done        cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                    </div>
                 </div>
             </div>
       );
