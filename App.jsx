@@ -48,7 +48,7 @@ class App extends React.Component {
     }
 
     addDefectCard() {
-        if (this.state.usCards.length != 0 ) {
+        if (this.state.defectCards.length != 0 ) {
             let firstCard = this.state.defectCards.shift();
             firstCard.location = 'analysis';
             this.state.activeCards.push(firstCard);
@@ -59,7 +59,7 @@ class App extends React.Component {
     }
 
     addMaintenanceCard() {
-        if (this.state.usCards.length != 0 ) {
+        if (this.state.maintenanceCards.length != 0 ) {
             let firstCard = this.state.maintenanceCards.shift();
             firstCard.location = 'analysis';
             this.state.activeCards.push(firstCard);
