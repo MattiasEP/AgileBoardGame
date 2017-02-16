@@ -48,21 +48,25 @@ class App extends React.Component {
     }
 
     addDefectCard() {
-        let firstCard = this.state.defectCards.shift();
-        firstCard.location = 'analysis';
-        this.state.activeCards.push(firstCard);
-        this.setState({activeCards: this.state.activeCards});
-        this.setState({defectCards: this.state.defectCards});
-        firstCard = [];
+        if (this.state.usCards.length != 0 ) {
+            let firstCard = this.state.defectCards.shift();
+            firstCard.location = 'analysis';
+            this.state.activeCards.push(firstCard);
+            this.setState({activeCards: this.state.activeCards});
+            this.setState({defectCards: this.state.defectCards});
+            firstCard = [];
+        }
     }
 
     addMaintenanceCard() {
-        let firstCard = this.state.maintenanceCards.shift();
-        firstCard.location = 'analysis';
-        this.state.activeCards.push(firstCard);
-        this.setState({activeCards: this.state.activeCards});
-        this.setState({maintenanceCards: this.state.maintenanceCards});
-        firstCard = [];
+        if (this.state.usCards.length != 0 ) {
+            let firstCard = this.state.maintenanceCards.shift();
+            firstCard.location = 'analysis';
+            this.state.activeCards.push(firstCard);
+            this.setState({activeCards: this.state.activeCards});
+            this.setState({maintenanceCards: this.state.maintenanceCards});
+            firstCard = [];
+        }
     }
 
     moveCard(card) {
