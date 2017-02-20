@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="../style/divanim.css">
+</head>
+<body>
+	<img src="help.jpeg" class="help">
+	<center><div class="wrapper">
+			<img src="blend2.png" id="slide" width="1302px" height="701" /><br>
+			<button class="link" onclick="myFunction()">play</button></div></center>
+			<p id="demo"></p>
+
+
+	<script>
+		$(".link").off().on("click", function(){
+    $(".wrapper").slideToggle();
+});
+		$(document).ready(function(){
+    	$(".help").click(function(){
+        $(".wrapper").toggle("slow");
+    });
+});
+
+	var person = null;
+
+	function myFunction() {
+
+	    if (person != null) {
+	        document.getElementById("demo").innerHTML =
+	        "Team: " + person ;
+	    }
+	    else {
+	    	person = prompt("Please enter your team name");
+	    	document.getElementById("demo").innerHTML =
+	        "Team: " + person ;
+	    }
+	}
+
+	</script>
+</body>
+</html>
