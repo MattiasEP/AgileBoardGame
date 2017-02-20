@@ -18,7 +18,8 @@ class Testing extends React.Component {
                                 value    = {card.value}
                                 analysis = '0'
                                 develop  = '0'
-                                test     = {card.test} />);
+                                test     = {card.test}
+                                dice     = {this.props.dice}/>);
                     })
                 }</div>
             </div>

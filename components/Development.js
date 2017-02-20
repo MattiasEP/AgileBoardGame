@@ -18,7 +18,8 @@ class Development extends React.Component {
                                 value    = {card.value}
                                 analysis = '0'
                                 develop  = {card.develop}
-                                test     = {card.test} />);
+                                test     = {card.test}
+                                dice     = {this.props.dice}/>);
                     })
                 }</div>
             </div>

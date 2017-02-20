@@ -1,12 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Card from './components/Card';
+import Departments from './components/Departments';
 import Controls from './components/Controls';
 import Analysis from './components/Analysis';
 import Development from './components/Development';
 import Testing from './components/Testing';
 import Done from './components/Done';
-import Worker from './components/Worker';
 
 class App extends React.Component {
 
@@ -18,7 +18,8 @@ class App extends React.Component {
             defectCards: [],
             maintenanceCards: [],
             doneCards: [],
-            dice: null,
+            dice: [],
+            workers: []
         }
     }
 
@@ -33,6 +34,16 @@ class App extends React.Component {
                 this.setState({usCards: this.state.usCards, defectCards: this.state.defectCards, maintenanceCards: this.state.maintenanceCards});
             }
         );
+
+        this.setState({workers: [
+                {key: 0, src:'./img/dudes/1.png', location: 'analysis', dice: this.state.dice[0]},
+                {key: 1, src:'./img/dudes/2.png', location: 'development', dice: this.state.dice[1]},
+                {key: 2, src:'./img/dudes/3.png', location: 'development', dice: this.state.dice[2]},
+                {key: 3, src:'./img/dudes/4.png', location: 'development', dice: this.state.dice[3]},
+                {key: 4, src:'./img/dudes/5.png', location: 'development', dice: this.state.dice[4]},
+                {key: 5, src:'./img/dudes/6.png', location: 'testing', dice: this.state.dice[5]}]
+        })
+
     }
 
     /* Lägger till översta kortet från kortleken till analysiskolumnen */
@@ -89,14 +100,11 @@ class App extends React.Component {
     }
 
     rollDice() {
-        let dice = Math.floor(Math.random() * 6 + 1);
-        dice += Math.floor(Math.random() * 6 + 1);
-        dice += Math.floor(Math.random() * 6 + 1);
-        dice += Math.floor(Math.random() * 6 + 1);
-        dice += Math.floor(Math.random() * 6 + 1);
-        dice += Math.floor(Math.random() * 6 + 1);
-        console.log(dice);
-        this.setState({dice: dice});
+        for (var i = 0; i < 6; i++) {
+            this.state.dice[i] = Math.floor(Math.random() * 6) + 1;
+        }
+        this.setState({dice: this.state.dice})
+        console.log(this.state.dice);
     }
 
     calcSum() {
@@ -111,16 +119,17 @@ class App extends React.Component {
         return (
             <div>
                 <div>
-                    <span>{this.state.dice}</span>
                 {/* <div className='head'>
                 Agile Board Game
                 </div> */}
-                    <Worker />
                     <div className='container'>
+                        <Departments workers={this.state.workers} dice={this.state.dice}/>
+                    </div>
+                    <div className='container container-col'>
                         <Controls    rollDice={this.rollDice.bind(this)} addUs={this.addUs.bind(this)} addD={this.addDefectCard.bind(this)} addM={this.addMaintenanceCard.bind(this)} />
-                        <Analysis    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                        <Development cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                        <Testing     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                        <Analysis    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                        <Development cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                        <Testing     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                         <Done        cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
                     </div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import Dice from './Dice';
+import RollDice from './RollDice';
 import AddUs from './AddUs';
 import DefectCard from './DefectCard';
 import MaintenanceCard from './MaintenanceCard';
@@ -12,7 +12,7 @@ class Controls extends React.Component {
         return (
             <div className='col'>
                 <div className='head'>Controls</div>
-                <Dice rollDice={this.props.rollDice.bind(this)} />
+                <RollDice rollDice={this.props.rollDice} />
                 <AddUs addUs={this.props.addUs.bind(this)} />
                 <DefectCard addD={this.props.addD.bind(this)} />
                 <MaintenanceCard addM={this.props.addM.bind(this)} />

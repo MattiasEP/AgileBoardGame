@@ -15,7 +15,9 @@
     "webpack": "^2.2.1",
     "webpack-dev-server": "^1.16.3"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "webpack-dev-server": "^1.16.3"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MattiasEP/AgileBoardGame.git"

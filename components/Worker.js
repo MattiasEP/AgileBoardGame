@@ -1,11 +1,23 @@
 import React from 'react';
+import Dice from './Dice';
 
 class Worker extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            location: null
+        }
+    }
+
+    componentWillMount() {
+        this.setState({location: this.props.location});
+    }
 
     render() {
         return (
-            <div>
-                <img src='./img/dudes/1.png' />
+            <div className='worker-box'>
+                <Dice dice={this.props.dice} />
+                <img className='worker-img' src={this.props.src} />
             </div>
         );
     }

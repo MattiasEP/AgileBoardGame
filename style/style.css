@@ -4,7 +4,7 @@ body {
     font-family: 'Raleway', sans-serif;
     min-width: 100vw;
     min-height: 100vh;
-    background-color: white;
+    background-color: #005E51;
     box-shadow: inset 0px 0px 80px -10px rgba(0,0,0,0.75);
     user-select: none;
     overflow: hidden;
@@ -16,6 +16,11 @@ body {
     display: flex;
     /*border: 1px solid #dddddd;*/
     /*background-color: white;*/
+}
+
+.container-col {
+    /*background-color: black;*/
+    /*border-radius: 5px;*/
 }
 
 .weekday {
@@ -163,3 +168,80 @@ body {
 .inc-dec {
     width: 50%;
 }
+
+.container-wrk {
+    display: flex;
+    width: 100%;
+}
+
+.workers {
+    display: flex;
+    justify-content: space-around;
+    /*align-content: center;*/
+    /*border: 1px solid lime;*/
+}
+
+.field p {
+    font-size: 1.5em;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 5px 0;
+}
+
+.float-left {
+    float: left;
+}
+
+.field {
+    flex-grow: 1;
+    border-radius: 5px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    box-shadow: inset #dddddd 0 5px 20px;
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+}
+
+/*----- WORKER COMPONENT -----*/
+
+.worker-box {
+    float: left;
+    position: relative;
+    width: 30px;
+    height: 92px;
+    /*margin: auto;*/
+    /*background-color: red;*/
+}
+
+.worker-img {
+    position: absolute;
+    left: 5px;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.dice {
+    margin: auto;
+    width: 25px;
+    height: 25px;
+    font-size: 1.5em;
+    text-align: center;
+    background-color: white;
+    border-radius: 5px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.dice-value {
+
+}
+
+/*.tempdice {
+    position: absolute;
+    top: 0;
+    width: 40px;
+    margin: 0;
+    padding: 0;
+}*/
