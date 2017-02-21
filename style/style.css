@@ -210,8 +210,16 @@ body {
     position: relative;
     width: 30px;
     height: 92px;
-    /*margin: auto;*/
+    -webkit-transition: all .05s ease-in-out;
+    -moz-transition: all .05s ease-in-out;
+    -o-transition: all .05s ease-in-out;
+    -ms-transition: all .05s ease-in-out;
+    /*margin: 0 20px 0 20px;*/
     /*background-color: red;*/
+}
+
+.worker-box:hover {
+    transform: scale(1.2);
 }
 
 .worker-img {
@@ -220,6 +228,22 @@ body {
     bottom: 0;
     margin: 0;
     padding: 0;
+}
+
+.arrow-left {
+    position: absolute;
+    top: 55%;
+    left: -35%;
+}
+
+.arrow-right {
+    position: absolute;
+    top: 55%;
+    right: -35%;
+}
+
+.click-box {
+    border: 1px solid red;
 }
 
 .dice {

@@ -19,15 +19,40 @@ class Card extends React.Component {
     }
 
     componentWillMount() {
+
+        let analysis, develop, test;
+
+        switch(this.props.location) {
+            case 'analysis':
+                analysis = this.props.analysis;
+                develop  = this.props.develop;
+                test     = this.props.test;
+                break;
+
+            case 'development':
+                analysis = 0;
+                develop  = this.props.develop;
+                test     = this.props.test;
+                break;
+
+            case 'testing':
+                analysis = 0;
+                develop  = 0;
+                test     = this.props.test;
+                break;
+
+            default: break;
+        }
+
         this.setState({
             type: this.props.type,
             name: this.props.name,
             value: this.props.value,
-            analysis: this.props.analysis,
+            analysis: analysis,
             analysisCap: this.props.analysis,
-            development: this.props.develop,
+            development: develop,
             developmentCap: this.props.develop,
-            testing: this.props.test,
+            testing: test,
             testingCap: this.props.test,
             location: this.props.cardObj.location
         })
@@ -118,6 +143,8 @@ class Card extends React.Component {
                 this.props.moveCard(this.props.cardObj);
                 this.setState({location: 'done'})
                 break;
+
+            default: break;
         }
     }
 
@@ -125,8 +152,6 @@ class Card extends React.Component {
         return (
             <div className='us'>
                 <div className={'title-'+this.state.type}>{this.state.name}<div className='value'>{this.state.value}</div></div>
-
-
                 <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
                     <div>Analysis: {this.state.analysis}</div>
                     <div>Development: {this.state.development}</div>
@@ -135,7 +160,6 @@ class Card extends React.Component {
                 </div>
             </div>);
     }
-
 }
 
 export default Card;
