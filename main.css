@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: #151414;
+}
+
+#wrapper {
+  background: #151414;
+  width: auto;
+  heigt: 600px;
+  margin: 2em 4em;
+  border-radius: 1%;
+}
+
+#wrapper h1 {
+  text-align: center;
+  padding-top: 50px;
+  font-family: 'Permanent Marker', cursive;
+  font-size: 3em;
+  color: #FFF;
+}
+
+#B {
+  color: #660066;
+}
+#O {
+ color: #77aaff;
+}
+#A {
+ color: #00ff6b;
+}
+#R {
+ color: #f0ff00;
+}
+#D{
+ color: #cd3333;
+}
+
+#highscore {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  float: right
+}
+
+#highscore p {
+  font-family: 'Raleway', sans-serif;
+  color: #fff;
+  text-align: center;
+  font-weight: bold;
+}
+
+form {
+    max-width: 350px;
+    margin:0 auto;
+    text-align: center;
+    padding-top: 100px;
+}
+
+.input {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    border-radius: 3px;
+    border: 2px solid #dddddd;
+    padding: 13px;
+    margin-bottom: 15px;
+    width: 80%;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.feedback-input:focus {
+    border: 2px solid #dddddd;
+}
+
+[type="submit"] {
+    font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    width: 80%;
+    background: #cd3333;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    color: white;
+    font-size: 24px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    transition: all 0.3s;
+    margin-top: -4px;
+    font-weight: 700;
+}
+
+[type="submit"]:hover {
+    background: #D46A6A;
+}
