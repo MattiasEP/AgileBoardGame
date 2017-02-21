@@ -3,7 +3,7 @@ session_start();
 $error='';
 if (isset($_POST['submit'])) {
 	if (empty($_POST['username']) || empty($_POST['password'])) {
-	$error = "Användarnamnet eller lösenordet är felaktigt";
+	$error = 'Användarnamnet eller lösenordet är felaktigt';
 	} else {
 	include ('dbconf.php');
 
@@ -16,9 +16,9 @@ if (isset($_POST['submit'])) {
 	$rows = mysqli_query($db, $query);
 	if ($rows == 1) {
 		$_SESSION['login_user']=$username;
-		header("location: loggedin.php");
+		header('location: loggedin.php');
 		} else {
-			$error = "Användarnamnet eller lösenordet är felaktigt";
+			$error = 'Användarnamnet eller lösenordet är felaktigt';
 		}
 		mysqli_close($db);
 		}

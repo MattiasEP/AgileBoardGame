@@ -285,3 +285,6 @@ body {
     float: right;
     clear: both;
 }
+.valueDiv {
+    float: right;
+}

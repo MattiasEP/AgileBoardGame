@@ -6,7 +6,7 @@ include('session.php');
 
 	<form action="add_userstory.php" method="post" name="us">
 		<div class="blueprint">
-			<div class="title-userstory">Name of card: <input type="text" name="name" /> Value: <input type="number" name="value" /><br></div>
+			<div class="title-userstory">User Story <div class="valueDiv">Value: <input type="number" name="value" /></div></div>
 			<div class="values">
 				Analysis: <input class="admin_value" type="number" name="analysis" /><br>
 				Developing: <input class="admin_value" type="number" name="develop" /><br>
