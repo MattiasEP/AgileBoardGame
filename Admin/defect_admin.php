@@ -4,9 +4,9 @@ include('session.php');
 
 <br><br><br><br>
 
-	<form action="add_userstory.php" method="post" name="us">
+	<form action="add_defect.php" method="post" name="us">
 		<div class="blueprint">
-			<div class="title-userstory">Name of card: <input type="text" name="name" /> Value: <input type="number" name="value" /><br></div>
+			<div class="title-defect">Name of card: <input type="text" name="name" /> Value: <input type="number" name="value" /><br></div>
 			<div class="values">
 				Analysis: <input class="admin_value" type="number" name="analysis" /><br>
 				Developing: <input class="admin_value" type="number" name="develop" /><br>
