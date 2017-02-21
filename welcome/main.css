@@ -1,23 +1,65 @@
 body {
   margin: 0;
   padding: 0;
-  background: #151414;
+  background: #005E51;
 }
 
-#wrapper {
-  background: #151414;
-  width: auto;
-  heigt: 600px;
-  margin: 2em 4em;
+
+.wrapper {
+  position: relative;
+  z-index: 2;
+  width: 1300px;
+  height: 700px;
+  border-radius: 8px;
+  align-content: center;
+}
+
+#slide {
+  margin-top: -10px;
+  width: 80%;
+}
+.wrapper .link{
+  position: absolute;
+  bottom: 56px;
+  font-family: 'Raleway', sans-serif;
+  padding: 15px 32px;
+  width: 140px;
+  border-radius: 10px ;
+  background-color: #fff;
+  color: black;
+  left: 580px;
+  text-align: center;
+  cursor: pointer;
+    border: none;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-property: background, border-radius;
+    transition-duration: 0.5s;
+    transition-timing-function: linear;
+}
+  .link:hover {
+    background: #21442e;
+    color: white;
+    border-radius: 50%;
+  }
+
+#wrapper2 {
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
   border-radius: 1%;
+  z-index: 1;
+  position: absolute;
 }
 
-#wrapper h1 {
+#wrapper2 h1 {
   text-align: center;
   padding-top: 50px;
   font-family: 'Permanent Marker', cursive;
   font-size: 3em;
-  color: #FFF;
+  color: #000;
 }
 
 #B {
@@ -54,7 +96,8 @@ form {
     max-width: 350px;
     margin:0 auto;
     text-align: center;
-    padding-top: 100px;
+    padding-top: 50px;
+    z-index: 1;
 }
 
 .input {
@@ -68,6 +111,7 @@ form {
     width: 80%;
     box-sizing: border-box;
     outline: 0;
+    z-index: 1;
 }
 
 .feedback-input:focus {
