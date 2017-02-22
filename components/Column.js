@@ -9,7 +9,8 @@ class Analysis extends React.Component {
                 <div className='head'>{this.props.title}</div>
                 <div className='col-content'>
                     {this.props.cards.filter((card) => card.location == this.props.type).map(card => {
-                        return (<Card
+                        return (
+                            <Card
                                 cardObj  = {card}
                                 moveCard = {this.props.moveCard.bind(this)}
                                 key      = {card.id}
@@ -20,7 +21,8 @@ class Analysis extends React.Component {
                                 analysis = {card.analysis}
                                 develop  = {card.develop}
                                 test     = {card.test}
-                                dice     = {this.props.dice}/>);
+                                dice     = {this.props.dice}
+                            />);
                     })
                 }</div>
             </div>

@@ -103,7 +103,7 @@ class App extends React.Component {
     }
 
     rollDice() {
-        for (var i = 0; i < 6; i++) {
+        for (let i = 0; i < 6; i++) {
             this.state.dice[i] = Math.floor(Math.random() * 6) + 1;
         }
         this.setState({dice: this.state.dice})
@@ -122,13 +122,13 @@ class App extends React.Component {
             <div>
                 <div>
                 {/* <div className='head'>
-                Agile Board Game
+                    Agile Board Game
                 </div> */}
                     <div className='container'>
                         <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
                     </div>
                     <div className='container container-col'>
-                        <Controls rollDice={this.rollDice.bind(this)} addUs={this.addUs.bind(this)} addD={this.addDefectCard.bind(this)} addM={this.addMaintenanceCard.bind(this)} />
+                        <Controls rollDice ={this.rollDice.bind(this)} addUs={this.addUs.bind(this)}  addD ={this.addDefectCard.bind(this)} addM ={this.addMaintenanceCard.bind(this)} />
                         <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                         <Column type='development' title='Development' cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                         <Column type='testing'     title='Testing'     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />

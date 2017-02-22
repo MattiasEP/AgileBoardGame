@@ -40,7 +40,7 @@ class Card extends React.Component {
                 develop  = 0;
                 test     = this.props.test;
                 break;
-
+                
             default: break;
         }
 
@@ -151,7 +151,7 @@ class Card extends React.Component {
     render() {
         return (
             <div className='us'>
-                <div className={'title-'+this.state.type}>{this.state.name}<div className='value'>{this.state.value}</div></div>
+                <div className={'title-'+this.state.type}>{this.state.name}{(this.state.type == 'userstory') && <div className='value'>${this.state.value}</div>}</div>
                 <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
                     <div>Analysis: {this.state.analysis}</div>
                     <div>Development: {this.state.development}</div>
