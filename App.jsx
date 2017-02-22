@@ -122,7 +122,7 @@ class App extends React.Component {
     increasePoint(card) {
         let workers = this.state.workers;
         let activeCards = this.state.activeCards;
-        for (var i = 0; i < workers.length; i++) {
+        for (let i = 0; i < workers.length; i++) {
             let worker = workers[i]
             console.log(worker);
             if (worker.location == card.location && worker.dice < worker.originalDice) {
@@ -142,7 +142,7 @@ class App extends React.Component {
     decreasePoint(card) {
         let workers = this.state.workers;
         let activeCards = this.state.activeCards;
-        for (var i = 0; i < workers.length; i++) {
+        for (let i = 0; i < workers.length; i++) {
             let worker = workers[i]
             if (worker.location == card.location && worker.dice > 0) {
                 let cardIndex = activeCards.indexOf(card);
@@ -150,21 +150,15 @@ class App extends React.Component {
                 switch(card.location) {
                     case 'analysis':
                         activeCards[cardIndex].analysis--;
-                        if(activeCards[cardIndex].analysis == 0) {
-                            this.moveCard(card);
-                        }
+                        activeCards[cardIndex].analysis == 0 && this.moveCard(card);
                         break;
                     case 'development':
                         activeCards[cardIndex].develop--;
-                        if(activeCards[cardIndex].develop == 0) {
-                            this.moveCard(card);
-                        }
+                        activeCards[cardIndex].develop == 0 && this.moveCard(card);
                         break;
                     case 'testing':
                         activeCards[cardIndex].test--;
-                        if(activeCards[cardIndex].test == 0) {
-                            this.moveCard(card);
-                        }
+                        activeCards[cardIndex].test == 0 && this.moveCard(card);
                         break;
                 }
                 break;
