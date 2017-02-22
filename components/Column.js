@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from './Card';
 
-class Analysis extends React.Component {
+class Column extends React.Component {
 
     render() {
         return (
@@ -22,6 +22,8 @@ class Analysis extends React.Component {
                                 develop  = {card.develop}
                                 test     = {card.test}
                                 dice     = {this.props.dice}
+                                increasePoint = {this.props.increasePoint}
+                                decreasePoint = {this.props.decreasePoint}
                             />);
                     })
                 }</div>
@@ -29,4 +31,4 @@ class Analysis extends React.Component {
         );
     }
 }  
-export default Analysis;
+export default Column;

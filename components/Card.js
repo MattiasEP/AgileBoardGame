@@ -40,7 +40,7 @@ class Card extends React.Component {
                 develop  = 0;
                 test     = this.props.test;
                 break;
-                
+
             default: break;
         }
 
@@ -56,75 +56,6 @@ class Card extends React.Component {
             testingCap: this.props.test,
             location: this.props.cardObj.location
         })
-    }
-
-    decrease() {
-        switch(this.state.location) {
-            case 'analysis':
-                if(this.state.analysis <= 1) {
-                    this.state.analysis--;
-                    this.setState({analysis: this.state.analysis});
-                    this.switchLocation();
-                }
-                else {
-                    this.state.analysis--;
-                    this.setState({analysis: this.state.analysis});
-                }
-                break;
-
-            case 'development':
-                if(this.state.development <= 1) {
-                    this.state.development--;
-                    this.setState({development: this.state.development});
-                    this.switchLocation();
-                }
-                else {
-                    this.state.development--;
-                    this.setState({development: this.state.development});
-                }
-                break;
-
-            case 'testing':
-                if(this.state.testing <= 1) {
-                    this.state.testing--;
-                    this.setState({testing: this.state.testing});
-                    this.switchLocation();
-                }
-                else {
-                    this.state.testing--;
-                    this.setState({testing: this.state.testing});
-                }
-                break;
-
-            default: break;
-        }
-    }
-
-    increase() {
-        switch(this.state.location) {
-            case 'analysis':
-                if(this.state.analysis < this.state.analysisCap) {
-                    this.state.analysis++;
-                    this.setState({analysis: this.state.analysis});
-                }
-                break;
-
-            case 'development':
-                if(this.state.development < this.state.developmentCap) {
-                    this.state.development++;
-                    this.setState({development: this.state.development});
-                }
-                break;
-
-            case 'testing':
-                if(this.state.testing < this.state.testingCap) {
-                    this.state.testing++;
-                    this.setState({testing: this.state.testing});
-                }
-                break;
-
-            default: break;
-        }
     }
 
     switchLocation() {
@@ -153,10 +84,10 @@ class Card extends React.Component {
             <div className='us'>
                 <div className={'title-'+this.state.type}>{this.state.name}{(this.state.type == 'userstory') && <div className='value'>${this.state.value}</div>}</div>
                 <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
-                    <div>Analysis: {this.state.analysis}</div>
-                    <div>Development: {this.state.development}</div>
-                    <div>Testing: {this.state.testing}</div>
-                    <button className='inc-dec' onClick={this.decrease.bind(this)}>-</button><button className='inc-dec' onClick={this.increase.bind(this)}>+</button>
+                    <div>Analysis: {this.props.cardObj.analysis}</div>
+                    <div>Development: {this.props.cardObj.develop}</div>
+                    <div>Testing: {this.props.cardObj.test}</div>
+                    <button className='inc-dec' onClick={() => this.props.decreasePoint(this.props.cardObj)}>-</button><button className='inc-dec' onClick={() => this.props.increasePoint(this.props.cardObj)}>+</button>
                 </div>
             </div>);
     }

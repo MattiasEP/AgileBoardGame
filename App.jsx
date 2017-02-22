@@ -34,12 +34,12 @@ class App extends React.Component {
         );
 
         this.setState({workers: [
-            {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: 'analysis',    dice: this.state.dice[0]},
-            {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: 'development', dice: this.state.dice[1]},
-            {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', dice: this.state.dice[2]},
-            {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: 'development', dice: this.state.dice[3]},
-            {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: 'development', dice: this.state.dice[4]},
-            {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing',     dice: this.state.dice[5]}
+            {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: 'analysis',    dice: this.state.dice[0], originalDice: this.state.dice[0]},
+            {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: 'development', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+            {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', dice: this.state.dice[2], originalDice: this.state.dice[2]},
+            {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: 'development', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+            {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: 'development', dice: this.state.dice[4], originalDice: this.state.dice[4]},
+            {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing',     dice: this.state.dice[5], originalDice: this.state.dice[5]}
         ]})
     }
 
@@ -103,10 +103,12 @@ class App extends React.Component {
     }
 
     rollDice() {
-        for (let i = 0; i < 6; i++) {
-            this.state.dice[i] = Math.floor(Math.random() * 6) + 1;
-        }
-        this.setState({dice: this.state.dice})
+        let workers = this.state.workers;
+        workers.map(worker => {
+            worker.dice = Math.floor(Math.random() * 6) + 1;
+            worker.originalDice = worker.dice;
+        })
+        this.setState({workers: workers});
     }
 
     calcSum() {
@@ -115,6 +117,60 @@ class App extends React.Component {
             return value += parseInt(card.value);
         })
         console.log(value);
+    }
+
+    increasePoint(card) {
+        let workers = this.state.workers;
+        let activeCards = this.state.activeCards;
+        for (var i = 0; i < workers.length; i++) {
+            let worker = workers[i]
+            console.log(worker);
+            if (worker.location == card.location && worker.dice < worker.originalDice) {
+                let cardIndex = activeCards.indexOf(card);
+                worker.dice++;
+                switch(card.location) {
+                    case 'analysis': activeCards[cardIndex].analysis++; break;
+                    case 'development': activeCards[cardIndex].develop++; break;
+                    case 'testing': activeCards[cardIndex].test++; break;
+                }
+                break;
+            }
+        }
+        this.setState({workers: this.state.workers, activeCards: activeCards});
+    }
+
+    decreasePoint(card) {
+        let workers = this.state.workers;
+        let activeCards = this.state.activeCards;
+        for (var i = 0; i < workers.length; i++) {
+            let worker = workers[i]
+            if (worker.location == card.location && worker.dice > 0) {
+                let cardIndex = activeCards.indexOf(card);
+                worker.dice--;
+                switch(card.location) {
+                    case 'analysis':
+                        activeCards[cardIndex].analysis--;
+                        if(activeCards[cardIndex].analysis == 0) {
+                            this.moveCard(card);
+                        }
+                        break;
+                    case 'development':
+                        activeCards[cardIndex].develop--;
+                        if(activeCards[cardIndex].develop == 0) {
+                            this.moveCard(card);
+                        }
+                        break;
+                    case 'testing':
+                        activeCards[cardIndex].test--;
+                        if(activeCards[cardIndex].test == 0) {
+                            this.moveCard(card);
+                        }
+                        break;
+                }
+                break;
+            }
+        }
+        this.setState({workers: this.state.workers, activeCards: activeCards});
     }
 
     render() {
@@ -129,9 +185,9 @@ class App extends React.Component {
                     </div>
                     <div className='container container-col'>
                         <Controls rollDice ={this.rollDice.bind(this)} addUs={this.addUs.bind(this)}  addD ={this.addDefectCard.bind(this)} addM ={this.addMaintenanceCard.bind(this)} />
-                        <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                        <Column type='development' title='Development' cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                        <Column type='testing'     title='Testing'     cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                        <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                        <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                        <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                         <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
                     </div>
                 </div>

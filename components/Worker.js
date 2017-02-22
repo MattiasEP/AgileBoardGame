@@ -29,7 +29,7 @@ class Worker extends React.Component {
     render() {
         return (
             <div className='worker-box'>
-                <Dice dice={this.props.dice} />
+                <Dice dice={this.props.workerObj.dice} />
                 <div className='hover-box'>
                     <div onClick={this.moveCardLeft.bind(this)}>
                         <FontAwesome name='caret-left' size='2x' className={(this.state.location === 'analysis' || (this.state.origin == 'tester' && this.state.location == 'development')) ? 'hidden' : 'arrow-left'} />
