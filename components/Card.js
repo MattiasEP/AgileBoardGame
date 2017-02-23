@@ -2,32 +2,6 @@ import React from 'react';
 
 class Card extends React.Component {
 
-    componentWillMount() {
-        let analysis, develop, test;
-        switch(this.props.location) {
-
-            case 'analysis':
-                analysis = this.props.analysis;
-                develop  = this.props.develop;
-                test     = this.props.test;
-                break;
-
-            case 'development':
-                analysis = 0;
-                develop  = this.props.develop;
-                test     = this.props.test;
-                break;
-
-            case 'testing':
-                analysis = 0;
-                develop  = 0;
-                test     = this.props.test;
-                break;
-
-            default: break;
-        }
-    }
-
     render() {
         return (
             <div className='us'>

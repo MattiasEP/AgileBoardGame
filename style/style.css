@@ -105,6 +105,14 @@ body {
     cursor: pointer;
 }
 
+.us-btn.nextDay {
+    width: 162px;
+    height: 138px;
+    float: right;
+    margin-left: -182px;
+    margin-right: 20px;
+}
+
 .us-btn:active {
     box-shadow: inset #dddddd 0px 5px 50px;
 }
@@ -228,6 +236,12 @@ body {
     bottom: 0;
     margin: 0;
     padding: 0;
+}
+
+.worker-origin {
+    position: absolute;
+    right: -30%;
+    bottom: 40%;
 }
 
 .arrow-left {
