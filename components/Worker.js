@@ -15,27 +15,25 @@ class Worker extends React.Component {
         this.setState({location: this.props.location, origin: this.props.workerObj.origin});
     }
 
-    moveCardLeft() {
+    moveWorkerLeft() {
         this.props.move(this.props.workerObj, 'left');
-        console.log(this.state.origin);
     }
 
-    moveCardRight() {
+    moveWorkerRight() {
         this.props.move(this.props.workerObj, 'right');
-        console.log(this.state.origin);
-
     }
 
     render() {
         return (
             <div className='worker-box'>
-                <Dice dice={this.props.dice} />
+                <Dice dice={this.props.workerObj.dice} />
                 <div className='hover-box'>
-                    <div onClick={this.moveCardLeft.bind(this)}>
+                    <div onClick={this.moveWorkerLeft.bind(this)}>
                         <FontAwesome name='caret-left' size='2x' className={(this.state.location === 'analysis' || (this.state.origin == 'tester' && this.state.location == 'development')) ? 'hidden' : 'arrow-left'} />
                     </div>
                     <img className='worker-img' src={this.props.src} />
-                    <div onClick={this.moveCardRight.bind(this)}>
+                    <div onClick={this.moveWorkerRight.bind(this)}>
+                        <span className='worker-origin'>{this.props.workerObj.letter}</span>
                         <FontAwesome name='caret-right' size='2x' className={(this.state.location === 'testing' || (this.state.origin == 'analytic' && this.state.location == 'development')) ? 'hidden' : 'arrow-right'} />
                     </div>
                 </div>
