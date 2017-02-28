@@ -184,8 +184,8 @@ class App extends React.Component {
 
     render() {
         return (
-            <ScrollableAnchor id={'scrumboard'}>
                 <div>
+                    <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                     {/* <div className='head'>
                         Agile Board Game
@@ -202,11 +202,14 @@ class App extends React.Component {
                         </div>
                         <ReleasePlanButton text='Show release plan' direction='down' />
                     </div>
+                    </ScrollableAnchor>
                     <ScrollableAnchor id={'releaseplan'}>
-                        <ReleasePlan />
+                        <div className='panel'>
+                            <ReleasePlan />
+                        </div>
                     </ScrollableAnchor>
                 </div>
-            </ScrollableAnchor>
+
 
       );
    }
