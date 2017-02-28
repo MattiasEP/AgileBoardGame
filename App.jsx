@@ -10,7 +10,9 @@ import Done from './components/Done';
 import NextDay from './components/NextDay';
 import ReleasePlan from './components/ReleasePlan';
 import ReleasePlanButton from './components/ReleasePlanButton';
-
+import Tutorial from './components/Tutorial';
+import TutorialButton from './components/TutorialButton';
+// import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
 class App extends React.Component {
 
@@ -25,7 +27,8 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1
+            currentDay: 1,
+            earnings: 0,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -126,18 +129,18 @@ class App extends React.Component {
         this.state.activeCards.filter((card) => card.location == 'done').map(card => {
             return value += parseInt(card.value);
         })
-        console.log(value);
+        this.setState({earnings: value});
     }
 
     //Drar av ett poäng från ett kort och från workern
     decreasePoint(card) {
-        let workers = this.state.workers;
+        // let workers = this.state.workers;
         let activeCards = this.state.activeCards;
-        for (let i = 0; i < workers.length; i++) {
-            let worker = workers[i]
-            if (worker.location == card.location && worker.dice > 0) {
+        // for (let i = 0; i < workers.length; i++) {
+        //     let worker = workers[i]
+        //     if (worker.location == card.location && worker.dice > 0) {
                 let cardIndex = activeCards.indexOf(card);
-                worker.dice--;
+        //         worker.dice--;
                 switch(card.location) {
                     case 'analysis':
                     activeCards[cardIndex].analysis--;
@@ -152,9 +155,9 @@ class App extends React.Component {
                     activeCards[cardIndex].test == 0 && this.moveCard(card);
                     break;
                 }
-                break;
-            }
-        }
+        //         break;
+        //     }
+        // }
         this.setState({workers: this.state.workers, activeCards: activeCards});
     }
 
@@ -186,8 +189,19 @@ class App extends React.Component {
     render() {
         return (
                 <div>
+                    {/* <SideNav
+                        showNav        =  {this.state.showNav}
+                        onHideNav      =  {() => this.setState({showNav: false})}
+                        title          =  "Agile Board Game"
+                        items          =  {['Tutorial', 'Highscore']}
+                        titleStyle     =  {{backgroundColor: '#005E51'}}
+                        itemStyle      =  {{backgroundColor: '#fff'}}
+                        itemHoverStyle =  {{backgroundColor: '#51A35F'}}
+                    /> */}
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
+                        {/* <MenuIcon onClick={() => this.setState({showNav: true})} className='sideNav' /> */}
+                        <TutorialButton />
                     {/* <div className='head'>
                         Agile Board Game
                     </div> */}
@@ -199,14 +213,20 @@ class App extends React.Component {
                             <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                            <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                            <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
                         </div>
                         <ReleasePlanButton text='Calendar' direction='down' />
                     </div>
                     </ScrollableAnchor>
                     <ScrollableAnchor id={'releaseplan'}>
                         <div className='panel'>
+                            <TutorialButton />
                             <ReleasePlan currentDay={this.state.currentDay} />
+                        </div>
+                    </ScrollableAnchor>
+                    <ScrollableAnchor id={'tutorial'}>
+                        <div className='panel'>
+                            <Tutorial />
                         </div>
                     </ScrollableAnchor>
                 </div>

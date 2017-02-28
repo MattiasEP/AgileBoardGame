@@ -1,5 +1,6 @@
 import React from 'react';
 import Card from './Card';
+import Earnings from './Earnings';
 
 class Done extends React.Component {
 
@@ -20,7 +21,9 @@ class Done extends React.Component {
                                 develop  = '0'
                                 test     = '0' />);
                     })
-                }</div>
+                }
+                </div>
+                <Earnings earnings={this.props.earnings} />
             </div>
         );
     }
