@@ -48,6 +48,14 @@ body {
 
 .calendar-container {
     height: 90vh;
+    border-radius: 5px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    box-shadow: inset #dddddd 0 5px 20px;
+    padding: 5px;
+    margin: 5px;
+    box-sizing: border-box;
+    width: 80vw;
 }
 
 .position-relative {

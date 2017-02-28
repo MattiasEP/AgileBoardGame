@@ -4,7 +4,7 @@ class NextDay extends React.Component {
 
     render() {
             return (
-                <div onClick={() => this.props.nextDay()} className='us-btn nextDay'>
+                <div onClick={() => this.props.nextDay()} className='us-btn'>
                    <span className='us-btn-txt'>Next day...</span>
                 </div>
             );

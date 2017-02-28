@@ -1,11 +1,16 @@
 import React from 'react';
 import axios from 'axios';
+import ScrollableAnchor from 'react-scrollable-anchor'
+import { configureAnchors } from 'react-scrollable-anchor'
 import Card from './components/Card';
 import Column from './components/Column';
 import Departments from './components/Departments';
 import Controls from './components/Controls';
 import Done from './components/Done';
 import NextDay from './components/NextDay';
+import ReleasePlan from './components/ReleasePlan';
+import ReleasePlanButton from './components/ReleasePlanButton';
+
 
 class App extends React.Component {
 
@@ -21,6 +26,8 @@ class App extends React.Component {
             workers: [],
             newDay: true
         }
+        configureAnchors({offset: -10, scrollDuration: 500})
+
     }
 
     componentDidMount() {
@@ -172,29 +179,35 @@ class App extends React.Component {
 
     //Sätter newDay-statet till true
     nextDay() {
-        this.setState({newDay: true});
+        this.setState({newDay: true})
     }
 
     render() {
         return (
-            <div>
+            <ScrollableAnchor id={'scrumboard'}>
                 <div>
-                {/* <div className='head'>
-                    Agile Board Game
-                </div> */}
-                    <NextDay nextDay={this.nextDay.bind(this)} />
-                    <div className='container'>
-                        <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
+                    <div className='panel'>
+                    {/* <div className='head'>
+                        Agile Board Game
+                    </div> */}
+                        <div className='container'>
+                            <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
+                        </div>
+                        <div className='container container-col'>
+                            <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)}/>
+                            <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                            <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                            <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                            <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
+                        </div>
+                        <ReleasePlanButton text='Show release plan' direction='down' />
                     </div>
-                    <div className='container container-col'>
-                        <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} />
-                        <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                        <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                        <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
-                        <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
-                    </div>
+                    <ScrollableAnchor id={'releaseplan'}>
+                        <ReleasePlan />
+                    </ScrollableAnchor>
                 </div>
-            </div>
+            </ScrollableAnchor>
+
       );
    }
 }
