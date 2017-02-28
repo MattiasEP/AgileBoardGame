@@ -1,3 +1,7 @@
+* {
+    box-sizing: border-box;
+}
+
 body {
     margin: 0;
     padding-top: 10px;
@@ -9,6 +13,7 @@ body {
     user-select: none;
     overflow: hidden;
 }
+
 
 a {
     text-decoration: none;
@@ -28,17 +33,17 @@ a {
 }
 
 .container-col {
-    height: 70%;
+    height: 73%;
 }
 
 .weekday {
     text-align: center;
-    /*height: 80px;*/
 }
 
 
 .col {
-    /*flex-grow: 1;*/
+    flex-grow: 1;
+    float: left;
     border-radius: 5px;
     background: #eeeeee;
     border: 1px solid #dddddd;
@@ -47,14 +52,11 @@ a {
     margin: 5px;
     box-sizing: border-box;
     width: 20%;
-    /*height: 575px;*/
-    height: 100%;
     overflow-y: auto;
 }
 
 .col-content {
     overflow-y: auto;
-    /*height: 530px;*/
 }
 
 .position-relative {
@@ -83,17 +85,24 @@ a {
     cursor: pointer;
 }
 
+.control-box {
+    /*display: flex;*/
+    /*flex-direction: column;*/
+
+}
+
 .us-btn {
     box-shadow: inset #dddddd 0 5px 20px;
     margin: 0 0 15px 0;
     border-radius: 3px;
     background-color: white;
     width: 100%;
-    height: 92px;
+    height: 15%;
     box-sizing: border-box;
     border: 1px solid #dddddd;
     position: relative;
     cursor: pointer;
+    flex-grow: 1;
 }
 
 .us-btn:active {
@@ -150,6 +159,10 @@ a {
     font-size: 1.5em;
     margin: 0 0 5px 0;
     padding: 0;
+}
+
+.top {
+    height: 17%;
 }
 
 .hidden {
@@ -291,6 +304,7 @@ a {
 
 .release-button {
     text-align: center;
+    height: 10%;
 }
 
 .release-button-text {

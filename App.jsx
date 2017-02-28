@@ -27,7 +27,6 @@ class App extends React.Component {
             newDay: true
         }
         configureAnchors({offset: -10, scrollDuration: 500})
-
     }
 
     componentDidMount() {
@@ -167,9 +166,9 @@ class App extends React.Component {
             if (worker.location == card.location && worker.dice < worker.originalDice) {
                 let cardIndex = activeCards.indexOf(card);
                 switch(card.location) {
-                    case 'analysis': if(card.analysis < card.analysisCap) activeCards[cardIndex].analysis++; worker.dice++; break;
-                    case 'development': if(card.develop < card.developCap) activeCards[cardIndex].develop++; worker.dice++; break;
-                    case 'testing': if(card.test < card.testCap) activeCards[cardIndex].test++; worker.dice++; break;
+                    case 'analysis': if(card.analysis < card.analysisCap) { activeCards[cardIndex].analysis++; worker.dice++; } break;
+                    case 'development': if(card.develop < card.developCap) { activeCards[cardIndex].develop++; worker.dice++; } break;
+                    case 'testing': if(card.test < card.testCap) { activeCards[cardIndex].test++; worker.dice++; } break;
                 }
                 break;
             }
@@ -190,7 +189,7 @@ class App extends React.Component {
                     {/* <div className='head'>
                         Agile Board Game
                     </div> */}
-                        <div className='container'>
+                        <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
                         </div>
                         <div className='container container-col'>
