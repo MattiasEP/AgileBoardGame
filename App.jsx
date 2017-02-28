@@ -24,7 +24,8 @@ class App extends React.Component {
             doneCards: [],
             dice: [],
             workers: [],
-            newDay: true
+            newDay: true,
+            currentDay: 1
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -178,7 +179,8 @@ class App extends React.Component {
 
     //Sätter newDay-statet till true
     nextDay() {
-        this.setState({newDay: true})
+        this.state.currentDay++;
+        this.setState({newDay: true, currentDay: this.state.currentDay})
     }
 
     render() {
@@ -199,12 +201,12 @@ class App extends React.Component {
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} />
                         </div>
-                        <ReleasePlanButton text='Show release plan' direction='down' />
+                        <ReleasePlanButton text='Calendar' direction='down' />
                     </div>
                     </ScrollableAnchor>
                     <ScrollableAnchor id={'releaseplan'}>
                         <div className='panel'>
-                            <ReleasePlan />
+                            <ReleasePlan currentDay={this.state.currentDay} />
                         </div>
                     </ScrollableAnchor>
                 </div>

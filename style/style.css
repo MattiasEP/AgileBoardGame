@@ -26,20 +26,18 @@ a {
 
 .container {
     margin: 0 auto;
-    width: 60%;
+    width: 75%;
     display: flex;
-    /*border: 1px solid #dddddd;*/
-    /*background-color: white;*/
 }
 
 .container-col {
-    height: 73%;
+    /*margin-top: 10px;*/
+    height: 70%;
 }
 
 .weekday {
     text-align: center;
 }
-
 
 .col {
     flex-grow: 1;
@@ -54,6 +52,8 @@ a {
     width: 20%;
     overflow-y: auto;
 }
+
+
 
 .col-content {
     overflow-y: auto;
@@ -162,7 +162,10 @@ a {
 }
 
 .top {
-    height: 17%;
+    height: 20%;
+    min-height: 135px;
+    /*box-sizing: border-box;*/
+
 }
 
 .hidden {
@@ -176,6 +179,7 @@ a {
 .container-wrk {
     display: flex;
     width: 100%;
+    margin 5px;
 }
 
 .workers {
@@ -205,6 +209,8 @@ a {
     padding: 5px;
     margin: 5px;
     box-sizing: border-box;
+    min-height: 135px;
+
 }
 
 /*----- WORKER COMPONENT -----*/
@@ -212,14 +218,15 @@ a {
 .worker-box {
     float: left;
     position: relative;
-    width: 30px;
-    height: 92px;
+    /*width: 35px;*/
+    /*height: 100%;*/
     -webkit-transition: all .05s ease-in-out;
     -moz-transition: all .05s ease-in-out;
     -o-transition: all .05s ease-in-out;
     -ms-transition: all .05s ease-in-out;
     /*margin: 0 20px 0 20px;*/
     /*background-color: red;*/
+    text-align: center;
 }
 
 .worker-box:hover {
@@ -227,29 +234,28 @@ a {
 }
 
 .worker-img {
-    position: absolute;
-    left: 5px;
-    bottom: 0;
-    margin: 0;
+    /*position: absolute;*/
+    margin: 5px 0 0 0;
     padding: 0;
+    width: 80%;
 }
 
 .worker-origin {
     position: absolute;
-    right: -30%;
+    right: -40%;
     bottom: 40%;
 }
 
 .arrow-left {
     position: absolute;
     top: 55%;
-    left: -35%;
+    left: -45%;
 }
 
 .arrow-right {
     position: absolute;
     top: 55%;
-    right: -35%;
+    right: -45%;
 }
 
 .click-box {
@@ -317,10 +323,47 @@ a {
 
 .calendar {
     height: 70px;
+    /*width: 14.28%;*/
+    flex-grow: 1;
+    /*margin: auto;*/
 }
 
 .calendar-container {
-    height: 100vh;
+    background-color: red;
+    width: 75%;
+    margin: auto;
+    position: relative;
+    text-align: center;
+    display: flex;
+}
+
+.calendar-box {
+    border-radius: 5px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    box-shadow: inset #dddddd 0 5px 20px;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 5px;
+    width: 14.28%;
+    display: inline-block;
+    flex-grow: 1;
+    height: 75px;
+    position: relative;
+}
+
+.day-passed {
+    background-color: red;
+}
+
+.current-day {
+    background-color: lime;
+}
+
+.container-sprint {
+    margin: auto;
+    width: 75%;
+    display: flex;
 }
 
 .day-content {

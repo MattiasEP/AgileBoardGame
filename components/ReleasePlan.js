@@ -8,20 +8,22 @@ class ReleasePlan extends React.Component {
 
     render() {
         return (
-            <ScrollableAnchor id={'releaseplan'}>
-                <div className='calendar-container'>
-                    <ReleasePlanButton text='Back to scrum board' direction='up' />
-                    <SprintHeader />
-                    <Sprint title='1'/>
-                    <Sprint title='2'/>
-                    <Sprint title='3'/>
-                    <Sprint title='4'/>
-                    <Sprint title='5'/>
-                    <Sprint title='6'/>
-                    <Sprint title='7'/>
-                </div>
-            </ScrollableAnchor>
-        );
+                <ScrollableAnchor id={'releaseplan'}>
+                    <div>
+                        <ReleasePlanButton text='Scrum Board' direction='up' />
+                        <div className='container-col'>
+                        <SprintHeader />
+                        <Sprint sprintNumber='1' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='2' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='3' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='4' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='5' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='6' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='7' currentDay={this.props.currentDay}/>
+                        </div>
+                    </div>
+                </ScrollableAnchor>
+        );
     }
 }
 
