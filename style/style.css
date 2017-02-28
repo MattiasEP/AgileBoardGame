@@ -283,6 +283,10 @@ a {
     clear: both;
 }
 
+.valueDiv {
+    float: right;
+}
+
 /*----- RELEASE PLAN -----*/
 
 .release-button {
