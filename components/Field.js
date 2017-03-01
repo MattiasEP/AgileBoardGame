@@ -6,7 +6,7 @@ class Analytics extends React.Component {
     render() {
         return (
             <div className='field'>
-                <p>{this.props.title}</p>
+                <p className='head'>{this.props.title}</p>
                 <div className='workers'>
                     {this.props.workers.filter((worker) => worker.location == this.props.type).map(worker => {
                     return (<Worker

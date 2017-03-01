@@ -134,13 +134,13 @@ class App extends React.Component {
 
     //Drar av ett poäng från ett kort och från workern
     decreasePoint(card) {
-        // let workers = this.state.workers;
+        let workers = this.state.workers;
         let activeCards = this.state.activeCards;
-        // for (let i = 0; i < workers.length; i++) {
-        //     let worker = workers[i]
-        //     if (worker.location == card.location && worker.dice > 0) {
+        for (let i = 0; i < workers.length; i++) {
+            let worker = workers[i]
+            if (worker.location == card.location && worker.dice > 0) {
                 let cardIndex = activeCards.indexOf(card);
-        //         worker.dice--;
+                worker.dice--;
                 switch(card.location) {
                     case 'analysis':
                     activeCards[cardIndex].analysis--;
@@ -155,9 +155,9 @@ class App extends React.Component {
                     activeCards[cardIndex].test == 0 && this.moveCard(card);
                     break;
                 }
-        //         break;
-        //     }
-        // }
+                break;
+            }
+        }
         this.setState({workers: this.state.workers, activeCards: activeCards});
     }
 

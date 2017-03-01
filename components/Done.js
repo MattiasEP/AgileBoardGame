@@ -8,7 +8,7 @@ class Done extends React.Component {
         return (
             <div className='col'>
                 <div className='head'>Done</div>
-                <div className='col-content'>{
+                <div className='done-col'>{
                     this.props.cards.filter((card) => card.location == 'done').map(card => {
                         return (<Card
                                 cardObj  = {card}

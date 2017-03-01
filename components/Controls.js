@@ -11,7 +11,7 @@ class Controls extends React.Component {
             <div className='col'>
                 <div className='head'>Controls</div>
                 {/* <div className='control-box'> */}
-                    <div className='col-content'>
+                    <div className='controls-col'>
                         <RollDice rollDice={this.props.rollDice} />
                         <AddCard title='Add Userstory'   type='us'          addCard={this.props.addCard} />
                         <AddCard title='Add Defect'      type='defect'      addCard={this.props.addCard} />

@@ -11,7 +11,7 @@ class ReleasePlan extends React.Component {
                 <ScrollableAnchor id={'releaseplan'}>
                     <div>
                         <ReleasePlanButton text='Scrum Board' direction='up' />
-                        <div className='container-col'>
+                        <div className='container-col2'>
                         <SprintHeader />
                         <Sprint sprintNumber='1' currentDay={this.props.currentDay}/>
                         <Sprint sprintNumber='2' currentDay={this.props.currentDay}/>
