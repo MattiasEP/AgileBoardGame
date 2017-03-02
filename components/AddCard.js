@@ -12,13 +12,16 @@ class AddCard extends React.Component {
                 break;
             case 'defect':
                 buttonClass = 'button button-red';
+                break;
             case 'maintenance':
+                buttonClass = 'button';
+                break;
             default:
-
+                break;
         }
-        
+
         return (
-            <a onClick={() => this.props.addCard(this.props.type)} className='button button-green'>{this.props.title}</a>
+            <a onClick={() => this.props.addCard(this.props.type)} className={buttonClass}><span className='us-btn-txt'>{this.props.title}</span></a>
         );
     }
 }
