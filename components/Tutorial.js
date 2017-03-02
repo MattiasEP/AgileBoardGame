@@ -7,7 +7,7 @@ class Tutorial extends React.Component {
         return (
             <div>
                 <ReleasePlanButton text='Back to game' direction='up' />
-                <h1 className='us-btn-txt'>Hur fan gör man?</h1>
+                <h1 className='us-btn-txt letter-pressed'>Hur fan gör man?</h1>
             </div>
         );
     }

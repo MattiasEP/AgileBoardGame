@@ -189,22 +189,11 @@ class App extends React.Component {
     render() {
         return (
                 <div>
-                    {/* <SideNav
-                        showNav        =  {this.state.showNav}
-                        onHideNav      =  {() => this.setState({showNav: false})}
-                        title          =  "Agile Board Game"
-                        items          =  {['Tutorial', 'Highscore']}
-                        titleStyle     =  {{backgroundColor: '#005E51'}}
-                        itemStyle      =  {{backgroundColor: '#fff'}}
-                        itemHoverStyle =  {{backgroundColor: '#51A35F'}}
-                    /> */}
+
+
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
-                        {/* <MenuIcon onClick={() => this.setState({showNav: true})} className='sideNav' /> */}
                         <TutorialButton />
-                    {/* <div className='head'>
-                        Agile Board Game
-                    </div> */}
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
                         </div>

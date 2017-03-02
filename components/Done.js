@@ -9,7 +9,7 @@ class Done extends React.Component {
             <div className='col'>
                 <div className='head'>Done</div>
                 <div className='done-col'>{
-                    this.props.cards.filter((card) => card.location == 'done').map(card => {
+                    this.props.cards.filter((card) => card.location == 'done').reverse().map(card => {
                         return (<Card
                                 cardObj  = {card}
                                 moveCard = {this.props.moveCard.bind(this)}
