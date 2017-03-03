@@ -41,6 +41,7 @@ class App extends React.Component {
                     card.analysisCap = card.analysis;
                     card.developCap  = card.develop;
                     card.testCap     = card.test;
+                    card.movable     = true;
                     if(card.type === 'userstory')   { this.state.usCards.push(card); }
                     else if(card.type === 'defect') { this.state.defectCards.push(card); }
                     else                            { this.state.maintenanceCards.push(card); }
@@ -138,21 +139,21 @@ class App extends React.Component {
         let activeCards = this.state.activeCards;
         for (let i = 0; i < workers.length; i++) {
             let worker = workers[i]
-            if (worker.location == card.location && worker.dice > 0) {
+            if (worker.location == card.location && worker.dice > 0 && card.movable) {
                 let cardIndex = activeCards.indexOf(card);
                 worker.dice--;
                 switch(card.location) {
                     case 'analysis':
                     activeCards[cardIndex].analysis--;
-                    activeCards[cardIndex].analysis == 0 && this.moveCard(card);
+                    if (activeCards[cardIndex].analysis == 0) { this.moveCard(card); card.movable = false; }
                     break;
                     case 'development':
                     activeCards[cardIndex].develop--;
-                    activeCards[cardIndex].develop == 0 && this.moveCard(card);
+                    if (activeCards[cardIndex].develop == 0) { this.moveCard(card); card.movable = false; }
                     break;
                     case 'testing':
                     activeCards[cardIndex].test--;
-                    activeCards[cardIndex].test == 0 && this.moveCard(card);
+                    if (activeCards[cardIndex].test == 0) { this.moveCard(card); card.movable = false; }
                     break;
                 }
                 break;
@@ -183,7 +184,8 @@ class App extends React.Component {
     //Sätter newDay-statet till true
     nextDay() {
         this.state.currentDay++;
-        this.setState({newDay: true, currentDay: this.state.currentDay})
+        this.state.activeCards.map((card) => { card.movable = true });
+        this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
     }
 
     render() {

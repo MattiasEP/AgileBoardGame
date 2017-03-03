@@ -18,7 +18,7 @@ class Sprint extends React.Component {
 
         return (
                 <div className='container-sprint'>
-                    <div className='calendar-box'><p className='us-btn-txt'>#{this.props.sprintNumber}</p></div>
+                    <div className='calendar-box'><p className='us-btn-txt letter-pressed'>#{this.props.sprintNumber}</p></div>
                     <Day currentDay={this.props.currentDay} day={days[0]} />
                     <Day currentDay={this.props.currentDay} day={days[1]} />
                     <Day currentDay={this.props.currentDay} day={days[2]} />
