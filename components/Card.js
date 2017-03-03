@@ -3,8 +3,18 @@ import React from 'react';
 class Card extends React.Component {
 
     render() {
+
+        let cardClass;
+
+        if (this.props.cardObj.location != 'done' && this.props.cardObj.movable == false) {
+            cardClass = 'us disabled';
+        }
+        else {
+            cardClass = 'us';
+        }
+
         return (
-            <div className='us'>
+            <div className={cardClass}>
                 <div className={'title-'+this.props.type}>{this.props.name}{(this.props.type == 'userstory') && <div className='value'>${this.props.value}</div>}</div>
                 <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
                     <div>Analysis: {this.props.cardObj.analysis}</div>

@@ -538,3 +538,7 @@ a {
   background-image: -o-linear-gradient(top, #666, #fff);
   background-image: linear-gradient(to bottom, #666, #fff);
 }
+
+.disabled {
+    opacity: 0.5;
+}
