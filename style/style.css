@@ -130,16 +130,17 @@ a {
     transform: translate(-50%, -50%)
 }
 
-.tips-box {
+.hint-box {
     width: 100%;
     height: calc(16.66% - 5px);
     margin-bottom: 5px;
     border: 1px dashed black;
     border-radius: 3px;
+    background-color: #fff;
 }
 
-.tips {
-    margin: 5px 0 0 5px;
+.hint {
+    margin: 5px;
 }
 
 .btn-img {
@@ -291,10 +292,20 @@ a {
     border-radius: 5px;
     padding-bottom: 5px;
     box-sizing: border-box;
+    border: 1px solid black;
 }
 
 .dice-value {
+    font-size: 20px;
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
 
+.dice-value-6 {
+    top: 14%;
 }
 
 .blueprint {

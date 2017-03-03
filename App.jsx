@@ -12,7 +12,6 @@ import ReleasePlan from './components/ReleasePlan';
 import ReleasePlanButton from './components/ReleasePlanButton';
 import Tutorial from './components/Tutorial';
 import TutorialButton from './components/TutorialButton';
-// import SideNav, {MenuIcon} from 'react-simple-sidenav';
 
 class App extends React.Component {
 
@@ -29,6 +28,8 @@ class App extends React.Component {
             newDay: true,
             currentDay: 1,
             earnings: 0,
+            hint: 'Distribute your workers. Roll the dice when you are done.',
+            wastedPoints: 0,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -120,6 +121,7 @@ class App extends React.Component {
                 worker.dice = Math.floor(Math.random() * 6) + 1;
                 worker.originalDice = worker.dice;
             })
+            this.changeHint('rolledDice');
             this.setState({workers: workers, newDay: false});
         }
     }
@@ -135,6 +137,11 @@ class App extends React.Component {
 
     //Drar av ett poäng från ett kort och från workern
     decreasePoint(card) {
+
+        if(!card.movable) {
+            this.changeHint('cantMove');
+        }
+
         let workers = this.state.workers;
         let activeCards = this.state.activeCards;
         for (let i = 0; i < workers.length; i++) {
@@ -164,6 +171,11 @@ class App extends React.Component {
 
     //Lägger till poäng (om möjligt) när man trycker på '+' på ett kort
     increasePoint(card) {
+
+        if(!card.movable) {
+            this.changeHint('cantMove');
+        }
+
         let workers = this.state.workers;
         let activeCards = this.state.activeCards;
         for (let i = 0; i < workers.length; i++) {
@@ -185,14 +197,46 @@ class App extends React.Component {
     nextDay() {
         this.state.currentDay++;
         this.state.activeCards.map((card) => { card.movable = true });
+        this.changeHint('nextDay');
+        this.clearDice();
         this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
+    }
+
+    //Tömmer arbetarnas tärningar
+    clearDice() {
+        this.state.workers.map((worker) => {
+            worker.dice = null;
+        })
+        this.setState({dice: []});
+    }
+
+    wastedPoints() {
+        let wastedPoints = 0;
+        for (let i = 0; i < this.state.workers.length; i++) {
+            wastedPoints = wastedPoints + parseInt(this.state.workers[i].dice);
+        }
+        if (wastedPoints > 0) {
+            this.setState({hint: `Du vaskade ${wastedPoints} poäng. Planera dina dagar bättre!`})
+        }
+    }
+
+    changeHint(message) {
+        switch(message) {
+            case 'rolledDice':
+                this.setState({hint: 'Add cards and use your points. Press the next-day-button to continue.'});
+                break;
+            case 'nextDay':
+                this.setState({hint: 'Distribute your workers. Roll the dice when you are done.'});
+                break;
+            case 'cantMove':
+                this.setState({hint: 'Cards can only be moved one column a day.'})
+            default: break;
+        }
     }
 
     render() {
         return (
                 <div>
-
-
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                         <TutorialButton />
@@ -200,7 +244,7 @@ class App extends React.Component {
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
                         </div>
                         <div className='container container-col'>
-                            <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)}/>
+                            <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)} hint={this.state.hint} wastedPoints={this.state.wastedPoints} />
                             <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
