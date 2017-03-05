@@ -7,6 +7,7 @@ import Column from './components/Column';
 import Departments from './components/Departments';
 import Controls from './components/Controls';
 import Done from './components/Done';
+import Actions from './components/Actions';
 import NextDay from './components/NextDay';
 import ReleasePlan from './components/ReleasePlan';
 import ReleasePlanButton from './components/ReleasePlanButton';
@@ -241,14 +242,17 @@ class App extends React.Component {
                     <div className='panel'>
                         <TutorialButton />
                         <div className='container top'>
-                            <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)}/>
+                            <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>
                         </div>
                         <div className='container container-col'>
                             <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)} hint={this.state.hint} wastedPoints={this.state.wastedPoints} />
                             <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
+                            <div className='dubble-col'>
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
+                            <Actions />
+                            </div>
                         </div>
                         <ReleasePlanButton text='Calendar' direction='down' />
                     </div>

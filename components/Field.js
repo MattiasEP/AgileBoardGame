@@ -16,6 +16,7 @@ class Analytics extends React.Component {
                             location = {worker.location}
                             dice = {this.props.dice[worker.key]}
                             move = {this.props.move}
+                            newDay = {this.props.newDay}
                             />);
                 })}
                 </div>

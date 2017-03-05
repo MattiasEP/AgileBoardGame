@@ -21,7 +21,7 @@ class AddCard extends React.Component {
         }
 
         return (
-            <a onClick={() => this.props.addCard(this.props.type)} className={buttonClass}><span className='us-btn-txt'>{this.props.title}</span></a>
+            <div onClick={() => this.props.addCard(this.props.type)} className={buttonClass}><span className='us-btn-txt'>{this.props.title}</span></div>
         );
     }
 }

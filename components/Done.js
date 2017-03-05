@@ -6,7 +6,7 @@ class Done extends React.Component {
 
     render() {
         return (
-            <div className='col'>
+            <div className='col-half'>
                 <div className='head'>Done</div>
                 <div className='done-col'>{
                     this.props.cards.filter((card) => card.location == 'done').reverse().map(card => {
