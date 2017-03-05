@@ -3,13 +3,6 @@ import FontAwesome from 'react-fontawesome';
 import Dice from './Dice';
 
 class Worker extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            location: null,
-            origin: null
-        }
-    }
 
     componentWillMount() {
         this.setState({location: this.props.location, origin: this.props.workerObj.origin});
@@ -24,9 +17,6 @@ class Worker extends React.Component {
     }
 
     render() {
-
-        console.log(this.props);
-
         let leftArrow;
         let rightArrow;
         if (this.props.newDay) {

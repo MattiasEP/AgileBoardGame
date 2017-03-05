@@ -25,8 +25,8 @@ class Card extends React.Component {
                     <div>Development: {this.props.cardObj.develop}</div>
                     <div>Testing: {this.props.cardObj.test}</div>
                     {/* <button className='inc-dec' onClick={() => this.props.decreasePoint(this.props.cardObj)}>-</button><button className='inc-dec' onClick={() => this.props.increasePoint(this.props.cardObj)}>+</button> */}
-                    <div onClick={() => this.props.decreasePoint(this.props.cardObj)} className='button button-white inc-dec'><span className='us-btn-txt'>-</span></div>
-                    <div onClick={() => this.props.increasePoint(this.props.cardObj)} className='button button-white inc-dec'><span className='us-btn-txt'>+</span></div>
+                    <div onClick={() => this.props.decreasePoint(this.props.cardObj)} className='button button-white inc-dec button-left'><span className='us-btn-txt'>-</span></div>
+                    <div onClick={() => this.props.increasePoint(this.props.cardObj)} className='button button-white inc-dec button-right'><span className='us-btn-txt'>+</span></div>
                 </div>
             </div>);
     }

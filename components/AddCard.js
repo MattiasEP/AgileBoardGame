@@ -20,12 +20,10 @@ class AddCard extends React.Component {
                 break;
         }
 
-        return (
+        return (
             <div onClick={() => this.props.addCard(this.props.type)} className={buttonClass}><span className='us-btn-txt'>{this.props.title}</span></div>
         );
     }
 }
 
 export default AddCard;
-
-{/* <div className='us-btn' onClick={() => this.props.addCard(this.props.type)}><p className='us-btn-txt'>{this.props.title}</p></div> */}

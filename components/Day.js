@@ -4,6 +4,11 @@ class Day extends React.Component {
 
     render() {
 
+        let returnMessage;
+        if(this.props.day == this.props.workerReturnDay) {
+            returnMessage = 'Developer will return from sick leave.';
+        }
+
         let dayClass;
         if (this.props.day == this.props.currentDay) {
             dayClass = 'calendar-box current-day';
@@ -16,7 +21,7 @@ class Day extends React.Component {
         }
 
         return (
-            <div className={dayClass}></div>
+            <div className={dayClass}>{returnMessage}</div>
         );
     }
 }

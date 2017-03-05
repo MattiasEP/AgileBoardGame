@@ -8,6 +8,7 @@ import Departments from './components/Departments';
 import Controls from './components/Controls';
 import Done from './components/Done';
 import Actions from './components/Actions';
+import ActionCardScreen from './components/ActionCardScreen';
 import NextDay from './components/NextDay';
 import ReleasePlan from './components/ReleasePlan';
 import ReleasePlanButton from './components/ReleasePlanButton';
@@ -31,6 +32,9 @@ class App extends React.Component {
             earnings: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
             wastedPoints: 0,
+            showActionScreen: false,
+            sickDays: null,
+            workerReturnDay: null
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -196,11 +200,18 @@ class App extends React.Component {
 
     //Sätter newDay-statet till true
     nextDay() {
-        this.state.currentDay++;
-        this.state.activeCards.map((card) => { card.movable = true });
-        this.changeHint('nextDay');
-        this.clearDice();
-        this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
+        if(!this.state.newDay) {
+            this.state.currentDay++;
+            this.state.activeCards.map((card) => { card.movable = true });
+            this.changeHint('nextDay');
+            this.clearDice();
+            this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
+            this.actions();
+            this.checkWorkers();
+        }
+        else {
+            this.changeHint('notNewDay');
+        }
     }
 
     //Tömmer arbetarnas tärningar
@@ -224,14 +235,58 @@ class App extends React.Component {
     changeHint(message) {
         switch(message) {
             case 'rolledDice':
-                this.setState({hint: 'Add cards and use your points. Press the next-day-button to continue.'});
+                this.setState({hint: 'Add cards and spend your points. Press the Next day-button to continue.'});
                 break;
             case 'nextDay':
                 this.setState({hint: 'Distribute your workers. Roll the dice when you are done.'});
                 break;
             case 'cantMove':
-                this.setState({hint: 'Cards can only be moved one column a day.'})
+                this.setState({hint: 'Cards can only be moved one column a day.'});
+                break;
+            case 'notNewDay':
+                this.setState({hint: 'You must roll the dice and spend your points before moving on to the next day.'})
             default: break;
+        }
+    }
+
+    actions() {
+        switch(this.state.currentDay) {
+            case 2: this.setState({showActionScreen: true}); break;
+        }
+    }
+
+    closeActionScreen() {
+        this.state.sickDays--;
+        this.setState({showActionScreen: false, sickDays: this.state.sickDays});
+        
+    }
+
+    sickWorker() {
+        let days = Math.floor(Math.random() * 6) + 1;
+        let returnDay = this.state.currentDay + days;
+        this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
+            {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
+            {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+            {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+            {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
+            {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
+        });
+        console.log(returnDay);
+    }
+
+    checkWorkers() {
+        if(this.state.sickDays > 0) {
+            this.state.sickDays--;
+            this.setState({sickDays: this.state.sickDays});
+        } else if (this.state.sickDays == 0) {
+            this.setState({sickDays: null, workers: [
+                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
+                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+                {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
+                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[2].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
+                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[4].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}] 
+            });
         }
     }
 
@@ -240,6 +295,7 @@ class App extends React.Component {
                 <div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
+                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)}/>
                         <TutorialButton />
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>
@@ -260,7 +316,7 @@ class App extends React.Component {
                     <ScrollableAnchor id={'releaseplan'}>
                         <div className='panel'>
                             <TutorialButton />
-                            <ReleasePlan currentDay={this.state.currentDay} />
+                            <ReleasePlan currentDay={this.state.currentDay} workerReturnDay={this.state.workerReturnDay} />
                         </div>
                     </ScrollableAnchor>
                     <ScrollableAnchor id={'tutorial'}>

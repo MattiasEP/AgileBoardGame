@@ -13,13 +13,13 @@ class ReleasePlan extends React.Component {
                         <ReleasePlanButton text='Scrum Board' direction='up' />
                         <div className='container-col2'>
                         <SprintHeader />
-                        <Sprint sprintNumber='1' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='2' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='3' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='4' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='5' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='6' currentDay={this.props.currentDay}/>
-                        <Sprint sprintNumber='7' currentDay={this.props.currentDay}/>
+                        <Sprint sprintNumber='1' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='2' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='3' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='4' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='5' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='6' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
+                        <Sprint sprintNumber='7' currentDay={this.props.currentDay} workerReturnDay={this.props.workerReturnDay}/>
                         </div>
                     </div>
                 </ScrollableAnchor>
