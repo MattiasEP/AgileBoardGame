@@ -194,21 +194,21 @@ a {
 .title-defect {
     background-color: #D46A6A;
     color: black;
-    border-radius: 3px 3px 0 0;
+    border-radius: 1px 1px 0 0;
     padding: 3px;
 }
 
 .title-highpriodefect {
     background-color: #D46A6A;
     color: black;
-    border-radius: 3px 3px 0 0;
+    border-radius: 1px 1px 0 0;
     padding: 3px;
 }
 
 .title-maintenance {
     background-color: #FFFF00;
     color: black;
-    border-radius: 3px 3px 0 0;
+    border-radius: 1px 1px 0 0;
     padding: 3px;
 }
 

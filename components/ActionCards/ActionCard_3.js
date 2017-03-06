@@ -3,8 +3,8 @@ import React from 'react';
 class ActionCard_3 extends React.Component {
 
     close() {
-        this.props.close();
         this.props.halfTestPoints();
+        this.props.nextMessage();
     }    
 
     render() {

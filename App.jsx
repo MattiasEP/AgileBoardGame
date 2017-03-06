@@ -76,14 +76,32 @@ class App extends React.Component {
     addCard(type) {
         let firstCard;
         switch(type) {
-            case 'us'         : if(this.state.usCard != 0)                  firstCard = this.state.usCards.shift();          break;
-            case 'defect'     : if(this.state.defectCards.length != 0)      firstCard = this.state.defectCards.shift();      break;
-            case 'maintenance': if(this.state.maintenanceCards.length != 0) firstCard = this.state.maintenanceCards.shift(); break;
+            case 'us': 
+                if(this.state.usCard != 0) {
+                    firstCard = this.state.usCards.shift();
+                    firstCard.location = 'analysis';
+                    firstCard.addedSprint = this.state.currentSprint;
+                    this.state.activeCards.push(firstCard);
+                }
+                break;
+            case 'defect':
+                if(this.state.defectCards.length != 0) {
+                    firstCard = this.state.defectCards.shift(); 
+                    firstCard.location = 'analysis';
+                    firstCard.addedSprint = this.state.currentSprint;
+                    this.state.activeCards.push(firstCard);
+                }    
+                 break;
+            case 'maintenance': 
+                if(this.state.maintenanceCards.length != 0) {
+                    firstCard = this.state.maintenanceCards.shift(); 
+                    firstCard.location = 'analysis';
+                    firstCard.addedSprint = this.state.currentSprint;
+                    this.state.activeCards.push(firstCard);
+                }
+                break;
             default: break;
         }
-        firstCard.location = 'analysis';
-        firstCard.addedSprint = this.state.currentSprint;
-        this.state.activeCards.push(firstCard);
         this.setState({
             activeCards     : this.state.activeCards,
             usCards         : this.state.usCards,
@@ -221,6 +239,9 @@ class App extends React.Component {
             this.actions();
             this.checkWorkers();
             this.nextSprint();
+            if(this.state.sickDays <= 0) {
+                this.setState({sickDays: null});
+            }
         }
         else {
             this.changeHint('notNewDay');
@@ -283,7 +304,8 @@ class App extends React.Component {
             case 11: this.setState({showActionScreen: true}); break;
             case 15: this.setState({showActionScreen: true}); break;
             case 18: this.setState({showActionScreen: true}); break;
-            case 21: this.removeValueFromHighPrioDefect(); break;
+            case 21: this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); break;
+            case 26: this.checkMaintenanceCards(); break;
             case 24: this.setState({showActionScreen: true}); break;
             case 28: this.setState({showActionScreen: true}); break;
         }
@@ -319,10 +341,11 @@ class App extends React.Component {
     }
 
     checkWorkers() {
-        if(this.state.sickDays > 0) {
+        if(this.state.sickDays > 1) {
             this.state.sickDays--;
             this.setState({sickDays: this.state.sickDays});
-        } else if (this.state.sickDays == 0) {
+        } 
+        else if (this.state.sickDays == 0) {
             this.setState({sickDays: null, workers: [
                 {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
                 {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
@@ -374,11 +397,11 @@ class App extends React.Component {
     }
 
     positionM1() {
-        let fees;
+        let fee;
         let m1 = this.state.activeCards.filter((card) => card.id == 2001);
         if (m1.length == 0 || m1[0].location != 'done') {
-            fees = this.state.fees + 200;
-            this.setState({fees: fees});
+            fee = this.state.fees + 200;
+            this.setState({fees: fee});
             this.calcSum(200);
         }
     }
@@ -417,6 +440,22 @@ class App extends React.Component {
         cardToMove.test = parseInt(cardToMove.testCap); 
     }
 
+    checkMaintenanceCards() {
+        let fee;
+        let doneMCards = this.state.activeCards.filter((card) => card.location == 'done' && card.type == 'maintenance');
+        if(doneMCards.length < 5) {
+            fee = this.state.fee + 800;
+            this.setState({fees: fee});
+            this.calcSum(800);
+        }
+    }
+
+    discardActiveUSCards() {
+        this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory').map((card) => {
+            card.location = 'discarded';
+        })
+    } 
+
     render() {
         return (
                 <div>
@@ -427,7 +466,7 @@ class App extends React.Component {
                             sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} 
                             dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} 
                             positionM1={this.positionM1.bind(this)} addHighPrioDefect={this.addHighPrioDefect.bind(this)} 
-                            moveBuggedUS={this.moveBuggedUS.bind(this)}
+                            moveBuggedUS={this.moveBuggedUS.bind(this)} discardActiveUSCards={this.discardActiveUSCards.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>
