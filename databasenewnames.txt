@@ -5,101 +5,22 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
-DROP TABLE IF EXISTS `cards`;
-CREATE TABLE `cards` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(100) COLLATE utf8_bin NOT NULL,
-  `name` varchar(100) COLLATE utf8_bin NOT NULL,
-  `value` int(11) NOT NULL,
-  `analysis` int(11) NOT NULL,
-  `develop` int(11) NOT NULL,
-  `test` int(11) NOT NULL,
+DROP TABLE IF EXISTS `actioncards`;
+CREATE TABLE `actioncards` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `text` text COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `cards` (`id`, `type`, `name`, `value`, `analysis`, `develop`, `test`) VALUES
-(1,	'userstory',	'1',	100,	4,	7,	6),
-(2,	'userstory',	'2',	200,	3,	4,	7),
-(3,	'userstory',	'3',	150,	4,	8,	4),
-(4,	'userstory',	'4',	300,	3,	8,	5),
-(5,	'userstory',	'5',	150,	6,	7,	5),
-(6,	'userstory',	'6',	50,	4,	8,	8),
-(7,	'userstory',	'7',	350,	5,	8,	6),
-(8,	'userstory',	'8',	250,	1,	6,	3),
-(9,	'userstory',	'9',	150,	4,	8,	6),
-(10,	'userstory',	'10',	200,	3,	8,	4),
-(11,	'userstory',	'11',	100,	2,	8,	4),
-(12,	'userstory',	'12',	150,	5,	3,	3),
-(13,	'userstory',	'13',	200,	7,	8,	5),
-(14,	'userstory',	'14',	300,	3,	7,	5),
-(15,	'userstory',	'15',	50,	5,	3,	2),
-(16,	'userstory',	'16',	150,	3,	6,	6),
-(17,	'userstory',	'17',	100,	8,	8,	3),
-(18,	'userstory',	'18',	250,	4,	8,	5),
-(19,	'userstory',	'19',	350,	3,	8,	6),
-(20,	'userstory',	'20',	250,	4,	8,	3),
-(21,	'userstory',	'21',	150,	7,	6,	5),
-(22,	'userstory',	'22',	200,	6,	3,	5),
-(23,	'userstory',	'23',	100,	3,	8,	4),
-(24,	'userstory',	'24',	50,	2,	6,	5),
-(25,	'userstory',	'25',	300,	4,	8,	7),
-(26,	'userstory',	'26',	250,	3,	6,	3),
-(27,	'userstory',	'27',	100,	2,	4,	8),
-(28,	'userstory',	'28',	50,	3,	6,	4),
-(29,	'userstory',	'29',	150,	6,	5,	2),
-(30,	'userstory',	'30',	100,	4,	8,	5),
-(31,	'userstory',	'31',	250,	5,	3,	4),
-(32,	'userstory',	'32',	150,	8,	2,	9),
-(33,	'userstory',	'33',	200,	4,	7,	5),
-(34,	'userstory',	'34',	150,	4,	6,	3),
-(35,	'userstory',	'35',	50,	6,	8,	8),
-(36,	'userstory',	'36',	350,	1,	7,	5),
-(37,	'userstory',	'37',	100,	8,	7,	4),
-(38,	'userstory',	'38',	150,	4,	8,	4),
-(39,	'userstory',	'39',	50,	2,	6,	5),
-(40,	'userstory',	'40',	200,	3,	8,	4),
-(41,	'userstory',	'41',	100,	3,	8,	5),
-(42,	'userstory',	'42',	50,	6,	8,	5),
-(43,	'userstory',	'43',	250,	5,	8,	4),
-(44,	'userstory',	'44',	150,	2,	6,	5),
-(45,	'userstory',	'45',	300,	4,	8,	3),
-(46,	'userstory',	'46',	100,	3,	6,	8),
-(47,	'userstory',	'47',	100,	2,	7,	3),
-(48,	'userstory',	'48',	50,	3,	6,	3),
-(49,	'userstory',	'49',	150,	5,	3,	6),
-(50,	'userstory',	'50',	50,	6,	4,	2),
-(51,	'userstory',	'51',	200,	3,	7,	3),
-(52,	'userstory',	'52',	150,	6,	8,	4),
-(53,	'userstory',	'53',	100,	3,	5,	5),
-(54,	'userstory',	'54',	50,	5,	8,	4),
-(55,	'userstory',	'55',	150,	2,	4,	3),
-(56,	'userstory',	'56',	200,	4,	8,	4),
-(57,	'userstory',	'57',	150,	2,	8,	3),
-(58,	'userstory',	'58',	50,	5,	8,	6),
-(59,	'userstory',	'59',	150,	7,	6,	3),
-(60,	'userstory',	'60',	250,	5,	7,	6),
-(1001,	'defect',	'1',	0,	1,	6,	4),
-(1002,	'defect',	'2',	0,	3,	4,	7),
-(1003,	'defect',	'3',	0,	2,	7,	5),
-(1004,	'defect',	'4',	0,	5,	8,	6),
-(1005,	'defect',	'5',	0,	7,	5,	3),
-(1006,	'defect',	'6',	0,	5,	7,	3),
-(1007,	'defect',	'7',	0,	1,	6,	3),
-(2001,	'maintenance',	'1',	0,	4,	7,	4),
-(2002,	'maintenance',	'2',	0,	2,	5,	3),
-(2003,	'maintenance',	'3',	0,	3,	8,	7),
-(2004,	'maintenance',	'4',	0,	2,	5,	4),
-(2005,	'maintenance',	'5',	0,	5,	7,	3);
+INSERT INTO `actioncards` (`id`, `text`) VALUES
+(1,	'One of the developers gets a fever and will be away for one dice throw of days.'),
+(2,	'The customer hires a new test manager who decides that all functionality needs to be regression tested. All stories now require double testing effort.'),
+(3,	'The customer fires the new test manager. Testing effort is back to normal.'),
+(4,	'If maintenance task 1 is not completed, the system goes down. According to the contract this means that the downtime will be subtracted from your pay for the sprint. Please subtract $200 from the total and pull M1 with highest priority.'),
+(5,	'A critical defect! Pull in the defect with the highest priority that has not been started yet. If the team manages to fix the defect in this sprint the customer pays $400 for the fix. After sprint end customer will not pay extra.'),
+(6,	'The tester is involved in a traffic incident and will be away for one dice throw of days.'),
+(7,	'The stakeholders request a demo immediately to review the functionality. The story furthest along in the sprint gets rejected due to unclear user interface. Add 2 analysis points, 4 dev points and 2 test points and pull it back to the top of the sprint backlig with the highest priority. No change in money for the US.'),
+(8,	'Management wants team to work with sprint commitment. Decide together how many stories the team can make for the sprint. Team gets $200 extra if they make it.'),
+(9,	'How goes the commitment? Team can decide to work during the weekend to be ready in time. However they will then lose one day of the next sprint. Team decides.');
 
-DROP TABLE IF EXISTS `login`;
-CREATE TABLE `login` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(200) COLLATE utf8_bin NOT NULL,
-  `password` varchar(200) COLLATE utf8_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-INSERT INTO `login` (`id`, `username`, `password`) VALUES
-(1,	'admin',	'admin');
-
--- 2017-03-02 15:00:50
+-- 2017-03-06 12:16:15
