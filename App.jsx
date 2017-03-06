@@ -233,15 +233,12 @@ class App extends React.Component {
         if(!this.state.newDay) {
             this.state.currentDay++;
             this.state.activeCards.map((card) => { card.movable = true });
+            this.checkWorkers();
             this.changeHint('nextDay');
             this.clearDice();
             this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
             this.actions();
-            this.checkWorkers();
             this.nextSprint();
-            if(this.state.sickDays <= 0) {
-                this.setState({sickDays: null});
-            }
         }
         else {
             this.changeHint('notNewDay');
@@ -308,11 +305,16 @@ class App extends React.Component {
             case 26: this.checkMaintenanceCards(); break;
             case 24: this.setState({showActionScreen: true}); break;
             case 28: this.setState({showActionScreen: true}); break;
+            case 32: this.setState({showActionScreen: true}); break;
         }
     }
 
     closeActionScreen() {
-        this.state.sickDays--;
+        if(this.state.currentDay === 3 || this.state.currentDay === 24) {
+            this.state.sickDays--;
+        } else if (this.state.currentDay === 32) {
+            this.state.sickDays = 3;
+        }
         this.setState({showActionScreen: false, sickDays: this.state.sickDays});
         
     }
@@ -338,15 +340,24 @@ class App extends React.Component {
                 {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},] 
             });
         }
+        else if (origin == 'developer-quit') {
+            this.setState({workerReturnDay: 36, workers: [
+                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
+                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
+                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
+            });
+        }
     }
 
     checkWorkers() {
-        if(this.state.sickDays > 1) {
+        if(this.state.sickDays > 0) {
             this.state.sickDays--;
             this.setState({sickDays: this.state.sickDays});
         } 
         else if (this.state.sickDays == 0) {
-            this.setState({sickDays: null, workers: [
+            this.setState({workers: [
                 {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
                 {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
                 {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
@@ -488,7 +499,7 @@ class App extends React.Component {
                     <ScrollableAnchor id={'releaseplan'}>
                         <div className='panel'>
                             <TutorialButton />
-                            <ReleasePlan currentDay={this.state.currentDay} workerReturnDay={this.state.workerReturnDay} />
+                            <ReleasePlan currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} workerReturnDay={this.state.workerReturnDay} />
                         </div>
                     </ScrollableAnchor>
                     <ScrollableAnchor id={'tutorial'}>

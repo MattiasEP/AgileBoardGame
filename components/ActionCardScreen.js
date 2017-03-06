@@ -8,6 +8,7 @@ import ActionCard_6 from './ActionCards/ActionCard_6';
 import ActionCard_7 from './ActionCards/ActionCard_7';
 import ActionCard_10 from './ActionCards/ActionCard_10';
 import ActionCard_11 from './ActionCards/ActionCard_11';
+import ActionCard_12 from './ActionCards/ActionCard_12';
 
 
 class ActionCardScreen extends React.Component {
@@ -35,6 +36,7 @@ class ActionCardScreen extends React.Component {
             case 24: actionCard = (<ActionCard_6 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
             case 28: actionCard = (<ActionCard_7 close={this.props.close} moveBuggedUS={this.props.moveBuggedUS} />); break;
             case 21: actionCard = (<ActionCard_10 close={this.props.close} />); break;
+            case 32: actionCard = (<ActionCard_12 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
 
         }
 

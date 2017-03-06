@@ -14,16 +14,17 @@ class Sprint extends React.Component {
             case '5': days = [21,22,23,24,25]; break;
             case '6': days = [26,27,28,29,30]; break;
             case '7': days = [31,32,33,34,35]; break;
+            case '8': days = [36,37,38,39,40]; break;
         }
 
         return (
                 <div className='container-sprint'>
                     <div className='calendar-box'><p className='us-btn-txt letter-pressed'>#{this.props.sprintNumber}</p></div>
-                    <Day currentDay={this.props.currentDay} day={days[0]} workerReturnDay={this.props.workerReturnDay} />
-                    <Day currentDay={this.props.currentDay} day={days[1]} workerReturnDay={this.props.workerReturnDay} />
-                    <Day currentDay={this.props.currentDay} day={days[2]} workerReturnDay={this.props.workerReturnDay} />
-                    <Day currentDay={this.props.currentDay} day={days[3]} workerReturnDay={this.props.workerReturnDay} />
-                    <Day currentDay={this.props.currentDay} day={days[4]} workerReturnDay={this.props.workerReturnDay} />
+                    <Day currentDay={this.props.currentDay} day={days[0]} currentSprint={this.props.currentSprint} workerReturnDay={this.props.workerReturnDay} />
+                    <Day currentDay={this.props.currentDay} day={days[1]} currentSprint={this.props.currentSprint} workerReturnDay={this.props.workerReturnDay} />
+                    <Day currentDay={this.props.currentDay} day={days[2]} currentSprint={this.props.currentSprint} workerReturnDay={this.props.workerReturnDay} />
+                    <Day currentDay={this.props.currentDay} day={days[3]} currentSprint={this.props.currentSprint} workerReturnDay={this.props.workerReturnDay} />
+                    <Day currentDay={this.props.currentDay} day={days[4]} currentSprint={this.props.currentSprint} workerReturnDay={this.props.workerReturnDay} />
                     <Day day={1000} />
                 </div>
         );

@@ -6,7 +6,12 @@ class Day extends React.Component {
 
         let returnMessage;
         if(this.props.day == this.props.workerReturnDay) {
-            returnMessage = 'Worker will return from sick leave.';
+            if(this.props.currentSprint === 7) {
+                returnMessage = 'New worker will be able to work independently.'
+            }
+            else {
+                returnMessage = 'Worker will return from sick leave.';
+            }
         }
 
         let dayClass;

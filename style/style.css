@@ -397,7 +397,7 @@ a {
 .calendar-box {
     border-radius: 5px;
     background: #eeeeee;
-    border: 1px solid #666;
+    border: 1px solid black;
     /*box-shadow: inset #dddddd 0 5px 20px;*/
     box-sizing: border-box;
     padding: 5px;
@@ -405,7 +405,7 @@ a {
     width: 14.28%;
     display: inline-block;
     flex-grow: 1;
-    height: 9vh;
+    height: 8vh;
     position: relative;
 }
 
