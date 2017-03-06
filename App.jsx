@@ -28,7 +28,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 23,
+            currentDay: 1,
             earnings: 0,
             fees: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
