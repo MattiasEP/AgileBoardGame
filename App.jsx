@@ -28,7 +28,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 23,
             earnings: 0,
             fees: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
@@ -265,6 +265,7 @@ class App extends React.Component {
             case 15: this.setState({showActionScreen: true}); break;
             case 18: this.setState({showActionScreen: true}); break;
             case 21: this.removeValueFromHighPrioDefect(); break;
+            case 24: this.setState({showActionScreen: true}); break;
         }
     }
 
@@ -274,16 +275,27 @@ class App extends React.Component {
         
     }
 
-    sickWorker() {
+    sickWorker(origin) {
         let days = Math.floor(Math.random() * 6) + 1;
         let returnDay = this.state.currentDay + days;
-        this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
-            {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
-            {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
-            {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
-            {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
-            {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
-        });
+        if(origin == 'developer') {
+            this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
+                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
+                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
+                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
+            });
+        }
+        else if (origin == 'tester') {
+            this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
+                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
+                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
+                {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: this.state.workers[2].location, letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
+                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
+                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},] 
+            });
+        }
     }
 
     checkWorkers() {
@@ -297,7 +309,7 @@ class App extends React.Component {
                 {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
                 {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[2].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
                 {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
-                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[4].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}] 
+                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing', letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}] 
             });
         }
     }
