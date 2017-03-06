@@ -251,7 +251,10 @@ class App extends React.Component {
 
     actions() {
         switch(this.state.currentDay) {
-            case 2: this.setState({showActionScreen: true}); break;
+            case 3: this.setState({showActionScreen: true}); break;
+            case 6: this.setState({showActionScreen: true}); break;
+            case 11: this.setState({showActionScreen: true}); break;
+            case 15: this.setState({showActionScreen: true}); break;
         }
     }
 
@@ -289,12 +292,28 @@ class App extends React.Component {
         }
     }
 
+    dubbleTestPoints()  {
+        let tempCards = this.state.activeCards.map((card) => {
+            card.test = card.test * 2;
+            card.testCap = card.testCap * 2;
+        });
+        // this.setState({activeCards: tempCards});
+    }
+
+    halfTestPoints() {
+        let tempCards = this.state.activeCards.map((card) => {
+            card.test = card.test / 2;
+            card.testCap = card.testCap / 2;
+        });
+        // this.setState({activeCards: tempCards});
+    }
+
     render() {
         return (
                 <div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
-                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)}/>
+                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)}/>
                         <TutorialButton />
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>

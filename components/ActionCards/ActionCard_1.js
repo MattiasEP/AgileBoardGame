@@ -1,12 +1,11 @@
 import React from 'react';
 
-class ActionCard extends React.Component {
+class ActionCard_1 extends React.Component {
 
     close() {
         if(this.props.sickDays != null) {
             this.props.close();
         }
-        // console.log('hej');
     }
 
     render() {
@@ -26,4 +25,4 @@ class ActionCard extends React.Component {
     }
 }
 
-export default ActionCard;
+export default ActionCard_1;
