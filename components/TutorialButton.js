@@ -8,6 +8,7 @@ class TutorialButton extends React.Component {
             <div className='tutorial-btn'>
                 <a href='#tutorial'><FontAwesome name='question-circle' size='3x' /></a>
             </div>
+            
         );
     }
 }

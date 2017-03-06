@@ -470,6 +470,29 @@ class App extends React.Component {
     render() {
         return (
                 <div>
+                    <div className='panel'>
+                        <center>
+                        <img src="./welcome/blend2.png" id="slide" width="1000px" height="600" />
+                        <ReleasePlanButton text='Sign' direction='hej' />
+                        </center>
+
+                    </div>
+                    <ScrollableAnchor id={'start'}>
+                    <div className='panel'>
+
+                        <center>
+                        <div id="wrapper2">
+                          <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
+                          <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
+                          <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
+                          <form action="welcome/teamname.php" method="POST">
+                            <input name="name" id="name" type="text" className="input" placeholder="Choose teamname" required />
+                            <input className="button" type="submit" defaultValue="PLAY" />
+                          </form>
+                        </div>
+                        </center>
+                    </div>
+                    </ScrollableAnchor>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                         <ActionCardScreen 

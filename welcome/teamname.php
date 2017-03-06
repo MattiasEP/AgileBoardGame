@@ -1,7 +1,7 @@
 <?php
-	$db = mysqli_connect("localhost", "root", "root", "boardgame");
+	$db = mysqli_connect("localhost", "root", "", "boardgame");
 
-//DEFINA IF VARIABLE IS SET
+//DEFINE IF VARIABLE IS SET
 if  (isset($_POST['name']))
 
 {
@@ -16,7 +16,7 @@ if  (isset($_POST['name']))
   // SENDS A MYSQL QUERY
   mysqli_query($db, $query);
 
-  header("Location: http://localhost:3000");
+  header("Location: http://localhost:3000#scrumboard");
 }
 
 ?>

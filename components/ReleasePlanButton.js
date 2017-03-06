@@ -8,10 +8,12 @@ class ReleasePlanButton extends React.Component {
         let direction, destination;
 
         switch(this.props.direction) {
+            case 'hej': direction ='caret-down'; destination ='#start'; break;
             case 'down': direction = 'caret-down'; destination = '#releaseplan'; break;
             case 'up': direction = 'caret-up'; destination = '#scrumboard'; break;
             defaul: break;
         }
+        
 
         return (
             <div className='release-button'>
