@@ -271,7 +271,6 @@ class App extends React.Component {
             {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
             {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
         });
-        console.log(returnDay);
     }
 
     checkWorkers() {
@@ -325,8 +324,6 @@ class App extends React.Component {
                         </div>
                     </ScrollableAnchor>
                 </div>
-
-
       );
    }
 }

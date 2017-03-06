@@ -2,6 +2,13 @@ import React from 'react';
 
 class ActionCard extends React.Component {
 
+    close() {
+        if(this.props.sickDays != null) {
+            this.props.close();
+        }
+        // console.log('hej');
+    }
+
     render() {
         return (
             <div className='us-btn-txt action-card'>
@@ -11,7 +18,7 @@ class ActionCard extends React.Component {
                         <div onClick={() => this.props.sickWorker()} className='button button-white dice-button'><div className='us-btn-txt'><img className='btn-img' src='../img/dice.svg' /><span className='btn-txt'>Roll the dice</span></div></div>
                         <div className='dice-result'><span className='us-btn-txt'>{this.props.sickDays}</span></div>
                     </div>
-                    <div className='button button-green action-button' onClick={() => this.props.close()}>
+                    <div className='button button-green action-button' onClick={() => this.close()}>
                     <p className='us-btn-txt'>OK!</p>
                 </div>
             </div>
