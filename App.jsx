@@ -30,11 +30,12 @@ class App extends React.Component {
             newDay: true,
             currentDay: 1,
             earnings: 0,
+            fees: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
             wastedPoints: 0,
             showActionScreen: false,
             sickDays: null,
-            workerReturnDay: null
+            workerReturnDay: null,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -137,6 +138,7 @@ class App extends React.Component {
         this.state.activeCards.filter((card) => card.location == 'done').map(card => {
             return value += parseInt(card.value);
         })
+        value -= this.state.fees;
         this.setState({earnings: value});
     }
 
@@ -297,7 +299,19 @@ class App extends React.Component {
             card.test = card.test * 2;
             card.testCap = card.testCap * 2;
         });
-        // this.setState({activeCards: tempCards});
+        tempcards = this.state.usCards.map((card) => {
+            card.test = card.test * 2;
+            card.testCap = card.testCap * 2;
+        })
+        tempcards = this.state.maintenanceCards.map((card) => {
+            card.test = card.test * 2;
+            card.testCap = card.testCap * 2;
+        })
+        tempcards = this.state.defectCards.map((card) => {
+            card.test = card.test * 2;
+            card.testCap = card.testCap * 2;
+        })
+       
     }
 
     halfTestPoints() {
@@ -305,7 +319,22 @@ class App extends React.Component {
             card.test = card.test / 2;
             card.testCap = card.testCap / 2;
         });
-        // this.setState({activeCards: tempCards});
+        tempCards = this.state.usCards.map((card) => {
+            card.test = card.test / 2;
+            card.testCap = card.testCap / 2;
+        });
+        tempCards = this.state.maintenanceCards.map((card) => {
+            card.test = card.test / 2;
+            card.testCap = card.testCap / 2;
+        });
+        tempCards = this.state.defectCards.map((card) => {
+            card.test = card.test / 2;
+            card.testCap = card.testCap / 2;
+        });
+    }
+
+    positionM1() {
+        let m1 = this.state.activeCards.filter
     }
 
     render() {
