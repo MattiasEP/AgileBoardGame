@@ -4,7 +4,7 @@ class ActionCard_5 extends React.Component {
 
     close() {
         this.props.close();
-        this.props.positionM1();
+        this.props.addHighPrioDefect();
     }    
 
     render() {

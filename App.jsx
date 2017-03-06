@@ -28,7 +28,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 17,
             earnings: 0,
             fees: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
@@ -36,6 +36,7 @@ class App extends React.Component {
             showActionScreen: false,
             sickDays: null,
             workerReturnDay: null,
+            highPrioDefect: null,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -262,6 +263,8 @@ class App extends React.Component {
             case 6: this.setState({showActionScreen: true}); break;
             case 11: this.setState({showActionScreen: true}); break;
             case 15: this.setState({showActionScreen: true}); break;
+            case 18: this.setState({showActionScreen: true}); break;
+            case 21: this.removeValueFromHighPrioDefect(); break;
         }
     }
 
@@ -348,12 +351,34 @@ class App extends React.Component {
         }
     }
 
+    addHighPrioDefect() {
+        let defectCard = this.state.defectCards.shift();
+        defectCard.value = '400';
+        defectCard.location = 'analysis';
+        defectCard.type = 'highpriodefect';
+        this.state.activeCards.push(defectCard);
+        this.setState({
+            highPrioDefect: defectCard.id,
+            activeCards: this.state.activeCards,
+            defectCards: this.state.defectCards,
+        });
+    }
+
+    removeValueFromHighPrioDefect() {
+        this.state.activeCards.filter((card) => card.id == this.state.highPrioDefect).map((card) => {
+            if(card.location != 'done') {
+                card.value = '0';
+                this.setState({activeCards: this.state.activeCards});
+            }
+        });
+    }
+
     render() {
         return (
                 <div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
-                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} positionM1={this.positionM1.bind(this)}/>
+                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} positionM1={this.positionM1.bind(this)} addHighPrioDefect={this.addHighPrioDefect.bind(this)}/>
                         <TutorialButton />
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>

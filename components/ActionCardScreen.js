@@ -3,6 +3,7 @@ import ActionCard_1 from './ActionCards/ActionCard_1';
 import ActionCard_2 from './ActionCards/ActionCard_2';
 import ActionCard_3 from './ActionCards/ActionCard_3';
 import ActionCard_4 from './ActionCards/ActionCard_4';
+import ActionCard_5 from './ActionCards/ActionCard_5';
 
 class ActionCardScreen extends React.Component {
 
@@ -14,9 +15,8 @@ class ActionCardScreen extends React.Component {
             case 6: actionCard = (<ActionCard_2 close={this.props.close} dubbleTestPoints={this.props.dubbleTestPoints} />); break;
             case 11: actionCard = (<ActionCard_3 close={this.props.close} halfTestPoints={this.props.halfTestPoints} />); break;
             case 15: actionCard = (<ActionCard_4 close={this.props.close} positionM1={this.props.positionM1} />); break;
+            case 18: actionCard = (<ActionCard_5 close={this.props.close} addHighPrioDefect={this.props.addHighPrioDefect} />); break;
         }
-
-
 
         let actionClass;
         if (this.props.showActionScreen) {

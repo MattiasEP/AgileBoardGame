@@ -19,7 +19,7 @@ class Card extends React.Component {
 
         return (
             <div className={cardClass}>
-                <div className={borderRadius}>{this.props.name}{(this.props.type == 'userstory') && <div className='value'>${this.props.value}</div>}</div>
+                <div className={borderRadius}>{this.props.name}{(this.props.type == 'userstory') && <div className='value'>${this.props.value}</div>}{(this.props.type == 'highpriodefect' && this.props.value == '400') && <div className='value'>${this.props.value}</div>}</div>
                 <div className={(this.props.cardObj.location === 'done') ? 'hidden' : 'values'}>
                     <div>Analysis: {this.props.cardObj.analysis}</div>
                     <div>Development: {this.props.cardObj.develop}</div>
