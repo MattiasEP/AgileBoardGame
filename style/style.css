@@ -156,6 +156,7 @@ a {
 .border-radius {
     border-radius: 3px !important;
     border: 1px solid #666;
+    margin-bottom: 5px;
 }
 
 .hint-box {

@@ -13,7 +13,7 @@ class ActionCardScreen extends React.Component {
             case 3: actionCard = (<ActionCard_1 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
             case 6: actionCard = (<ActionCard_2 close={this.props.close} dubbleTestPoints={this.props.dubbleTestPoints} />); break;
             case 11: actionCard = (<ActionCard_3 close={this.props.close} halfTestPoints={this.props.halfTestPoints} />); break;
-            case 15: actionCard = (<ActionCard_4 close={this.props.close} />); break;
+            case 15: actionCard = (<ActionCard_4 close={this.props.close} positionM1={this.props.positionM1} />); break;
         }
 
 

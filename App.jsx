@@ -133,12 +133,17 @@ class App extends React.Component {
     }
 
     //Räknar ut summan på alla US som ligger i Done-kolumnen
-    calcSum() {
+    calcSum(fees) {
         let value = 0;
         this.state.activeCards.filter((card) => card.location == 'done').map(card => {
             return value += parseInt(card.value);
         })
-        value -= this.state.fees;
+        if(fees) {
+            value -= fees;
+        }
+        else {
+            value -= this.state.fees;
+        }
         this.setState({earnings: value});
     }
 
@@ -334,7 +339,13 @@ class App extends React.Component {
     }
 
     positionM1() {
-        let m1 = this.state.activeCards.filter
+        let fees;
+        let m1 = this.state.activeCards.filter((card) => card.id == 2001);
+        if (m1.length == 0 || m1[0].location != 'done') {
+            fees = this.state.fees + 200;
+            this.setState({fees: fees});
+            this.calcSum(200);
+        }
     }
 
     render() {
@@ -342,7 +353,7 @@ class App extends React.Component {
                 <div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
-                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)}/>
+                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} positionM1={this.positionM1.bind(this)}/>
                         <TutorialButton />
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>
