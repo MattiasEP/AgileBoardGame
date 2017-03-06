@@ -153,7 +153,7 @@ class App extends React.Component {
         let activeCards = this.state.activeCards;
         for (let i = 0; i < workers.length; i++) {
             let worker = workers[i]
-            if (worker.location == card.location && worker.dice > 0 && card.movable) {
+            if (worker.location == card.location && worker.dice > 0 && card.movable && !this.state.newDay) {
                 let cardIndex = activeCards.indexOf(card);
                 worker.dice--;
                 switch(card.location) {
@@ -187,7 +187,7 @@ class App extends React.Component {
         let activeCards = this.state.activeCards;
         for (let i = 0; i < workers.length; i++) {
             let worker = workers[i]
-            if (worker.location == card.location && worker.dice < worker.originalDice) {
+            if (worker.location == card.location && worker.dice < worker.originalDice && !this.state.newDay) {
                 let cardIndex = activeCards.indexOf(card);
                 switch(card.location) {
                     case 'analysis': if(card.analysis < card.analysisCap) { activeCards[cardIndex].analysis++; worker.dice++; } break;
