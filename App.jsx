@@ -28,7 +28,8 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 23,
+            currentSprint: 1,
             earnings: 0,
             fees: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
@@ -50,6 +51,8 @@ class App extends React.Component {
                     card.developCap  = card.develop;
                     card.testCap     = card.test;
                     card.movable     = true;
+                    card.doneSprint  = null;
+                    card.addedSprint = null;
                     if(card.type === 'userstory')   { this.state.usCards.push(card); }
                     else if(card.type === 'defect') { this.state.defectCards.push(card); }
                     else                            { this.state.maintenanceCards.push(card); }
@@ -79,6 +82,7 @@ class App extends React.Component {
             default: break;
         }
         firstCard.location = 'analysis';
+        firstCard.addedSprint = this.state.currentSprint;
         this.state.activeCards.push(firstCard);
         this.setState({
             activeCards     : this.state.activeCards,
@@ -173,7 +177,7 @@ class App extends React.Component {
                     break;
                     case 'testing':
                     activeCards[cardIndex].test--;
-                    if (activeCards[cardIndex].test == 0) { this.moveCard(card); card.movable = false; }
+                    if (activeCards[cardIndex].test == 0) { this.moveCard(card); card.movable = false; card.doneSprint = this.state.currentSprint }
                     break;
                 }
                 break;
@@ -216,9 +220,24 @@ class App extends React.Component {
             this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
             this.actions();
             this.checkWorkers();
+            this.nextSprint();
         }
         else {
             this.changeHint('notNewDay');
+        }
+    }
+
+    nextSprint() {
+        let sprint;
+        switch(this.state.currentDay) {
+            case 6: sprint = 2; break;
+            case 11: sprint = 3; break;
+            case 16: sprint = 4; break;
+            case 21: sprint = 5; break;
+            case 26: sprint = 6; break;
+            case 31: sprint = 7; break;
+            case 36: sprint = 8; break;
+            default: break;
         }
     }
 
@@ -266,6 +285,7 @@ class App extends React.Component {
             case 18: this.setState({showActionScreen: true}); break;
             case 21: this.removeValueFromHighPrioDefect(); break;
             case 24: this.setState({showActionScreen: true}); break;
+            case 28: this.setState({showActionScreen: true}); break;
         }
     }
 
@@ -385,12 +405,30 @@ class App extends React.Component {
         });
     }
 
+    moveBuggedUS() {
+        let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory' && card.addedSprint == this.state.currentSprint);
+        let cardToMove = doneCards[0];
+        cardToMove.location = 'analysis';
+        cardToMove.analysisCap = parseInt(cardToMove.analysisCap) + 2;
+        cardToMove.analysis = parseInt(cardToMove.analysisCap);
+        cardToMove.developCap = parseInt(cardToMove.developCap) + 4;
+        cardToMove.develop = parseInt(cardToMove.developCap);
+        cardToMove.testCap = parseInt(cardToMove.testCap) + 2;
+        cardToMove.test = parseInt(cardToMove.testCap); 
+    }
+
     render() {
         return (
                 <div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
-                        <ActionCardScreen showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} positionM1={this.positionM1.bind(this)} addHighPrioDefect={this.addHighPrioDefect.bind(this)}/>
+                        <ActionCardScreen 
+                            showActionScreen={this.state.showActionScreen} close={this.closeActionScreen.bind(this)} 
+                            sickDays={this.state.sickDays} sickWorker={this.sickWorker.bind(this)} currentDay={this.state.currentDay} 
+                            dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} 
+                            positionM1={this.positionM1.bind(this)} addHighPrioDefect={this.addHighPrioDefect.bind(this)} 
+                            moveBuggedUS={this.moveBuggedUS.bind(this)}
+                        />
                         <TutorialButton />
                         <div className='container top'>
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>

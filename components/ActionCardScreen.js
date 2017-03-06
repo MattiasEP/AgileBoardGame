@@ -5,6 +5,7 @@ import ActionCard_3 from './ActionCards/ActionCard_3';
 import ActionCard_4 from './ActionCards/ActionCard_4';
 import ActionCard_5 from './ActionCards/ActionCard_5';
 import ActionCard_6 from './ActionCards/ActionCard_6';
+import ActionCard_7 from './ActionCards/ActionCard_7';
 
 class ActionCardScreen extends React.Component {
 
@@ -18,6 +19,7 @@ class ActionCardScreen extends React.Component {
             case 15: actionCard = (<ActionCard_4 close={this.props.close} positionM1={this.props.positionM1} />); break;
             case 18: actionCard = (<ActionCard_5 close={this.props.close} addHighPrioDefect={this.props.addHighPrioDefect} />); break;
             case 24: actionCard = (<ActionCard_6 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
+            case 28: actionCard = (<ActionCard_7 close={this.props.close} moveBuggedUS={this.props.moveBuggedUS} />); break;
         }
 
         let actionClass;
