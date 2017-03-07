@@ -28,7 +28,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 5,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -373,15 +373,15 @@ class App extends React.Component {
             card.test = card.test * 2;
             card.testCap = card.testCap * 2;
         });
-        tempcards = this.state.usCards.map((card) => {
+        tempCards = this.state.usCards.map((card) => {
             card.test = card.test * 2;
             card.testCap = card.testCap * 2;
         })
-        tempcards = this.state.maintenanceCards.map((card) => {
+        tempCards = this.state.maintenanceCards.map((card) => {
             card.test = card.test * 2;
             card.testCap = card.testCap * 2;
         })
-        tempcards = this.state.defectCards.map((card) => {
+        tempCards = this.state.defectCards.map((card) => {
             card.test = card.test * 2;
             card.testCap = card.testCap * 2;
         })
@@ -390,20 +390,24 @@ class App extends React.Component {
 
     halfTestPoints() {
         let tempCards = this.state.activeCards.map((card) => {
-            card.test = card.test / 2;
-            card.testCap = card.testCap / 2;
+            card.test = Math.floor(card.test / 2);
+            card.testCap = Math.floor(card.testCap / 2);
+            if (card.test == 0) card.location = 'done';
         });
         tempCards = this.state.usCards.map((card) => {
-            card.test = card.test / 2;
-            card.testCap = card.testCap / 2;
+            card.test = Math.floor(card.test / 2);
+            card.testCap = Math.floor(card.testCap / 2);
+            if (card.test == 0) card.location = 'done';
         });
         tempCards = this.state.maintenanceCards.map((card) => {
-            card.test = card.test / 2;
-            card.testCap = card.testCap / 2;
+            card.test = Math.floor(card.test / 2);
+            card.testCap = Math.floor(card.testCap / 2);
+            if (card.test == 0) card.location = 'done';
         });
         tempCards = this.state.defectCards.map((card) => {
-            card.test = card.test / 2;
-            card.testCap = card.testCap / 2;
+            card.test = Math.floor(card.test / 2);
+            card.testCap = Math.floor(card.testCap / 2);
+            if (card.test == 0) card.location = 'done';
         });
     }
 

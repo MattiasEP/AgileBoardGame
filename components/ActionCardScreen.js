@@ -24,6 +24,10 @@ class ActionCardScreen extends React.Component {
         this.setState({dayWithDubbleCards: true});
     }
 
+    destroyEleven() {
+        this.setState({dayWithDubbleCards: false});
+    }
+
     render() {
 
         let actionCard;
@@ -41,7 +45,7 @@ class ActionCardScreen extends React.Component {
         }
 
         if(this.state.dayWithDubbleCards) {
-            actionCard = (<ActionCard_11 close={this.props.close} discardActiveUSCards={this.props.discardActiveUSCards} />);
+            actionCard = (<ActionCard_11 close={this.props.close} discardActiveUSCards={this.props.discardActiveUSCards} destroyEleven={this.destroyEleven.bind(this)} />);
         }
 
         let actionClass;

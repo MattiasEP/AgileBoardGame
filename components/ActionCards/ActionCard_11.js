@@ -5,6 +5,7 @@ class ActionCard_11 extends React.Component {
     close() {
         this.props.close();
         this.props.discardActiveUSCards();
+        this.props.destroyEleven();
     }    
 
     render() {
