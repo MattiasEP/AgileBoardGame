@@ -29,7 +29,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 17,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
