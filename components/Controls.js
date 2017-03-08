@@ -3,6 +3,7 @@ import RollDice from './RollDice';
 import NextDay from './NextDay';
 import AddCard from './AddCard';
 import HintBox from './HintBox';
+import MiniCalendar from './MiniCalendar';
 
 
 
@@ -12,13 +13,14 @@ class Controls extends React.Component {
             <div className='col'>
                 <div className='head'>Controls</div>
                 <div className='controls-col'>
+                    <HintBox tips={this.props.hint}/>
                     <RollDice rollDice={this.props.rollDice} />
                     <AddCard title='Add Userstory'   type='us'          addCard={this.props.addCard} />
                     <AddCard title='Add Maintenance' type='maintenance' addCard={this.props.addCard} />
                     <AddCard title='Add Defect'      type='defect'      addCard={this.props.addCard} />
                     <NextDay nextDay={this.props.nextDay} />
-                    <HintBox tips={this.props.hint}/>
                 </div>
+                <MiniCalendar currentDay={this.props.currentDay} currentSprint={this.props.currentSprint} />
             </div>
         );
     }

@@ -93,8 +93,8 @@ a {
 }
 
 .controls-col {
-    overflow-y: auto;
-    height: calc(100% - 34px);
+    overflow-y: hidden;
+    height: calc(100% - 76px);
 }
 
 .col-content {
@@ -427,11 +427,11 @@ a {
 }
 
 .day-passed {
-    background-color: #D46A6A;
+    background-color: #D46A6A !important;
 }
 
 .current-day {
-    background-color: #51A35F;
+    background-color: #51A35F !important;
 }
 
 .container-sprint {
@@ -675,6 +675,25 @@ a {
     border-radius: 4px;
     border: 1px solid #666;
     font-size: 5em;
+}
+
+.mini-calendar-wrapper {
+    border: 1px solid #666;
+    border-radius: 4px;
+    padding: 10px;
+}
+
+.mini-calendar {
+    display: flex;
+    justify-content: space-around;
+}
+
+.mini-day {
+    height: 20px;
+    width: 20px;
+    border: 1px solid #666;
+    border-radius: 4px;
+    background-color: white;
 }
 
 

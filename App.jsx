@@ -265,7 +265,7 @@ class App extends React.Component {
             case 36: sprint = 8; break;
             default: break;
         }
-        if(sprint != undefined) {
+        if(!!sprint) {
             this.setState({currentSprint: sprint});
         }
     }
@@ -536,7 +536,7 @@ class App extends React.Component {
                             <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>
                         </div>
                         <div className='container container-col'>
-                            <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)} hint={this.state.hint} wastedPoints={this.state.wastedPoints} />
+                            <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)} hint={this.state.hint} wastedPoints={this.state.wastedPoints} currentDay={this.state.currentDay} currentSprint={this.state.currentSprint}/>
                             <Column type='analysis'    title='Analysis'    cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='development' title='Development' cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
