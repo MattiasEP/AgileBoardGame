@@ -676,3 +676,19 @@ a {
     border: 1px solid #666;
     font-size: 5em;
 }
+
+
+
+
+/*----- MEDIA QUERIES -----*/
+
+/* iPad in portrait & landscape */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px)  { 
+    .container {
+        width: 95%;
+    }
+    .container-sprint {
+        width: 95%;
+    }
+
+}

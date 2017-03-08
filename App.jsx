@@ -265,6 +265,9 @@ class App extends React.Component {
             case 36: sprint = 8; break;
             default: break;
         }
+        if(sprint != undefined) {
+            this.setState({currentSprint: sprint});
+        }
     }
 
     //Tömmer arbetarnas tärningar
