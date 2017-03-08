@@ -29,7 +29,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 17,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -431,20 +431,27 @@ class App extends React.Component {
 
     addHighPrioDefect() {
         let defectCard = this.state.defectCards.shift();
-        if (defectCard.length > 0) {
+        if (defectCard != undefined) {
             defectCard.value = '400';
             defectCard.location = 'analysis';
             defectCard.type = 'highpriodefect';
             this.state.activeCards.push(defectCard);
         }
-        // else {
-        //     this.state.activeCards.map((card) => )
-        // }
+        else {
+            defectCard = this.state.activeCards.filter((card) => card.location != 'done');
+            if (defectCard != undefined) {
+                defectCard[defectCard.length - 1].value = '400';
+                defectCard[defectCard.length - 1].location = 'analysis';
+                defectCard[defectCard.length - 1].type = 'highpriodefect';
+            }
+        }
+        if (defectCard != undefined) {
             this.setState({
                 highPrioDefect: defectCard.id,
                 activeCards: this.state.activeCards,
                 defectCards: this.state.defectCards,
             });
+        }
     }
 
     removeValueFromHighPrioDefect() {
