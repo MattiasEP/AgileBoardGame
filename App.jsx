@@ -1,7 +1,8 @@
 import React from 'react';
 import axios from 'axios';
-import ScrollableAnchor from 'react-scrollable-anchor'
-import { configureAnchors } from 'react-scrollable-anchor'
+import ScrollableAnchor from 'react-scrollable-anchor';
+import { configureAnchors } from 'react-scrollable-anchor';
+import StartScreen from './components/Startscreen';
 import Card from './components/Card';
 import Column from './components/Column';
 import Departments from './components/Departments';
@@ -430,15 +431,20 @@ class App extends React.Component {
 
     addHighPrioDefect() {
         let defectCard = this.state.defectCards.shift();
-        defectCard.value = '400';
-        defectCard.location = 'analysis';
-        defectCard.type = 'highpriodefect';
-        this.state.activeCards.push(defectCard);
-        this.setState({
-            highPrioDefect: defectCard.id,
-            activeCards: this.state.activeCards,
-            defectCards: this.state.defectCards,
-        });
+        if (defectCard.length > 0) {
+            defectCard.value = '400';
+            defectCard.location = 'analysis';
+            defectCard.type = 'highpriodefect';
+            this.state.activeCards.push(defectCard);
+        }
+        // else {
+        //     this.state.activeCards.map((card) => )
+        // }
+            this.setState({
+                highPrioDefect: defectCard.id,
+                activeCards: this.state.activeCards,
+                defectCards: this.state.defectCards,
+            });
     }
 
     removeValueFromHighPrioDefect() {
@@ -451,7 +457,7 @@ class App extends React.Component {
     }
 
     moveBuggedUS() {
-        let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory' && card.addedSprint == this.state.currentSprint);
+        let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.location != 'discarded' && card.type == 'userstory' && card.addedSprint == this.state.currentSprint);
         let cardToMove = doneCards[0];
         cardToMove.location = 'analysis';
         cardToMove.analysisCap = parseInt(cardToMove.analysisCap) + 2;
@@ -481,7 +487,7 @@ class App extends React.Component {
     render() {
         return (
                 <div>
-                    <div className='panel'>
+                    {/*<div className='panel'>
                         <center>
                         <img src="./welcome/blend2.png" id="slide" width="1000px" height="600" />
                         <ReleasePlanButton text='Sign' direction='hej' />
@@ -502,7 +508,10 @@ class App extends React.Component {
                         </div>
                         </center>
                     </div>
-                    </ScrollableAnchor>
+                    </ScrollableAnchor>*/}
+                    <div className='panel'>
+                        <StartScreen />
+                    </div>
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                         <ActionCardScreen 
