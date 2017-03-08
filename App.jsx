@@ -28,7 +28,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 5,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -44,9 +44,16 @@ class App extends React.Component {
 
     componentDidMount() {
         //AJAX-anrop som hämtar korten från databasen
+        let userstory = 1;
+        let defect = 1;
+        let maintenance = 1;
+
         axios.get('http://localhost/AgileBoardGame/api/api.php').then(
             (response) => {
                 response.data.map(card => {
+                    if (card.type == 'userstory') { card.name = 'US' + userstory; userstory++ }
+                    if (card.type == 'defect') { card.name = 'D' + defect; defect++ }
+                    if (card.type == 'maintenance') { card.name = 'M' + maintenance; maintenance++ }
                     card.analysisCap = card.analysis;
                     card.developCap  = card.develop;
                     card.testCap     = card.test;
@@ -483,7 +490,6 @@ class App extends React.Component {
                     </div>
                     <ScrollableAnchor id={'start'}>
                     <div className='panel'>
-
                         <center>
                         <div id="wrapper2">
                           <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
