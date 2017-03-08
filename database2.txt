@@ -5,6 +5,14 @@ SET time_zone = '+00:00';
 SET foreign_key_checks = 0;
 SET sql_mode = 'NO_AUTO_VALUE_ON_ZERO';
 
+DROP TABLE IF EXISTS `actioncards`;
+CREATE TABLE `actioncards` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `text` text COLLATE utf8_bin NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+
 DROP TABLE IF EXISTS `cards`;
 CREATE TABLE `cards` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -18,78 +26,78 @@ CREATE TABLE `cards` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 INSERT INTO `cards` (`id`, `type`, `name`, `value`, `analysis`, `develop`, `test`) VALUES
-(1,	'userstory',	'US1',	100,	4,	7,	6),
-(2,	'userstory',	'US2',	200,	3,	4,	7),
-(3,	'userstory',	'US3',	150,	4,	8,	4),
-(4,	'userstory',	'US4',	300,	3,	8,	5),
-(5,	'userstory',	'US5',	150,	6,	7,	5),
-(6,	'userstory',	'US6',	50,	4,	8,	8),
-(7,	'userstory',	'US7',	350,	5,	8,	6),
-(8,	'userstory',	'US8',	250,	1,	6,	3),
-(9,	'userstory',	'US9',	150,	4,	8,	6),
-(10,	'userstory',	'US10',	200,	3,	8,	4),
-(11,	'userstory',	'US11',	100,	2,	8,	4),
-(12,	'userstory',	'US12',	150,	5,	3,	3),
-(13,	'userstory',	'US13',	200,	7,	8,	5),
-(14,	'userstory',	'US14',	300,	3,	7,	5),
-(15,	'userstory',	'US15',	50,	5,	3,	2),
-(16,	'userstory',	'US16',	150,	3,	6,	6),
-(17,	'userstory',	'US17',	100,	8,	8,	3),
-(18,	'userstory',	'US18',	250,	4,	8,	5),
-(19,	'userstory',	'US19',	350,	3,	8,	6),
-(20,	'userstory',	'US20',	250,	4,	8,	3),
-(21,	'userstory',	'US21',	150,	7,	6,	5),
-(22,	'userstory',	'US22',	200,	6,	3,	5),
-(23,	'userstory',	'US23',	100,	3,	8,	4),
-(24,	'userstory',	'US24',	50,	2,	6,	5),
-(25,	'userstory',	'US25',	300,	4,	8,	7),
-(26,	'userstory',	'US26',	250,	3,	6,	3),
-(27,	'userstory',	'US27',	100,	2,	4,	8),
-(28,	'userstory',	'US28',	50,	3,	6,	4),
-(29,	'userstory',	'US29',	150,	6,	5,	2),
-(30,	'userstory',	'US30',	100,	4,	8,	5),
-(31,	'userstory',	'US31',	250,	5,	3,	4),
-(32,	'userstory',	'US32',	150,	8,	2,	9),
-(33,	'userstory',	'US33',	200,	4,	7,	5),
-(34,	'userstory',	'US34',	150,	4,	6,	3),
-(35,	'userstory',	'US35',	50,	6,	8,	8),
-(36,	'userstory',	'US36',	350,	1,	7,	5),
-(37,	'userstory',	'US37',	100,	8,	7,	4),
-(38,	'userstory',	'US38',	150,	4,	8,	4),
-(39,	'userstory',	'US39',	50,	2,	6,	5),
-(40,	'userstory',	'US40',	200,	3,	8,	4),
-(41,	'userstory',	'US41',	100,	3,	8,	5),
-(42,	'userstory',	'US42',	50,	6,	8,	5),
-(43,	'userstory',	'US43',	250,	5,	8,	4),
-(44,	'userstory',	'US44',	150,	2,	6,	5),
-(45,	'userstory',	'US45',	300,	4,	8,	3),
-(46,	'userstory',	'US46',	100,	3,	6,	8),
-(47,	'userstory',	'US47',	100,	2,	7,	3),
-(48,	'userstory',	'US48',	50,	3,	6,	3),
-(49,	'userstory',	'US49',	150,	5,	3,	6),
-(50,	'userstory',	'US50',	50,	6,	4,	2),
-(51,	'userstory',	'US51',	200,	3,	7,	3),
-(52,	'userstory',	'US52',	150,	6,	8,	4),
-(53,	'userstory',	'US53',	100,	3,	5,	5),
-(54,	'userstory',	'US54',	50,	5,	8,	4),
-(55,	'userstory',	'US55',	150,	2,	4,	3),
-(56,	'userstory',	'US56',	200,	4,	8,	4),
-(57,	'userstory',	'US57',	150,	2,	8,	3),
-(58,	'userstory',	'US58',	50,	5,	8,	6),
-(59,	'userstory',	'US59',	150,	7,	6,	3),
-(60,	'userstory',	'US60',	250,	5,	7,	6),
-(1001,	'defect',	'D1',	0,	1,	6,	4),
-(1002,	'defect',	'D2',	0,	3,	4,	7),
-(1003,	'defect',	'D3',	0,	2,	7,	5),
-(1004,	'defect',	'D4',	0,	5,	8,	6),
-(1005,	'defect',	'D5',	0,	7,	5,	3),
-(1006,	'defect',	'D6',	0,	5,	7,	3),
-(1007,	'defect',	'D7',	0,	1,	6,	3),
-(2001,	'maintenance',	'M1',	0,	4,	7,	4),
-(2002,	'maintenance',	'M2',	0,	2,	5,	3),
-(2003,	'maintenance',	'M3',	0,	3,	8,	7),
-(2004,	'maintenance',	'M4',	0,	2,	5,	4),
-(2005,	'maintenance',	'M5',	0,	5,	7,	3);
+(1,	'userstory',	'1',	100,	4,	7,	6),
+(2,	'userstory',	'2',	200,	3,	4,	7),
+(3,	'userstory',	'3',	150,	4,	8,	4),
+(4,	'userstory',	'4',	300,	3,	8,	5),
+(5,	'userstory',	'5',	150,	6,	7,	5),
+(6,	'userstory',	'6',	50,	4,	8,	8),
+(7,	'userstory',	'7',	350,	5,	8,	6),
+(8,	'userstory',	'8',	250,	1,	6,	3),
+(9,	'userstory',	'9',	150,	4,	8,	6),
+(10,	'userstory',	'10',	200,	3,	8,	4),
+(11,	'userstory',	'11',	100,	2,	8,	4),
+(12,	'userstory',	'12',	150,	5,	3,	3),
+(13,	'userstory',	'13',	200,	7,	8,	5),
+(14,	'userstory',	'14',	300,	3,	7,	5),
+(15,	'userstory',	'15',	50,	5,	3,	2),
+(16,	'userstory',	'16',	150,	3,	6,	6),
+(17,	'userstory',	'17',	100,	8,	8,	3),
+(18,	'userstory',	'18',	250,	4,	8,	5),
+(19,	'userstory',	'19',	350,	3,	8,	6),
+(20,	'userstory',	'20',	250,	4,	8,	3),
+(21,	'userstory',	'21',	150,	7,	6,	5),
+(22,	'userstory',	'22',	200,	6,	3,	5),
+(23,	'userstory',	'23',	100,	3,	8,	4),
+(24,	'userstory',	'24',	50,	2,	6,	5),
+(25,	'userstory',	'25',	300,	4,	8,	7),
+(26,	'userstory',	'26',	250,	3,	6,	3),
+(27,	'userstory',	'27',	100,	2,	4,	8),
+(28,	'userstory',	'28',	50,	3,	6,	4),
+(29,	'userstory',	'29',	150,	6,	5,	2),
+(30,	'userstory',	'30',	100,	4,	8,	5),
+(31,	'userstory',	'31',	250,	5,	3,	4),
+(32,	'userstory',	'32',	150,	8,	2,	9),
+(33,	'userstory',	'33',	200,	4,	7,	5),
+(34,	'userstory',	'34',	150,	4,	6,	3),
+(35,	'userstory',	'35',	50,	6,	8,	8),
+(36,	'userstory',	'36',	350,	1,	7,	5),
+(37,	'userstory',	'37',	100,	8,	7,	4),
+(38,	'userstory',	'38',	150,	4,	8,	4),
+(39,	'userstory',	'39',	50,	2,	6,	5),
+(40,	'userstory',	'40',	200,	3,	8,	4),
+(41,	'userstory',	'41',	100,	3,	8,	5),
+(42,	'userstory',	'42',	50,	6,	8,	5),
+(43,	'userstory',	'43',	250,	5,	8,	4),
+(44,	'userstory',	'44',	150,	2,	6,	5),
+(45,	'userstory',	'45',	300,	4,	8,	3),
+(46,	'userstory',	'46',	100,	3,	6,	8),
+(47,	'userstory',	'47',	100,	2,	7,	3),
+(48,	'userstory',	'48',	50,	3,	6,	3),
+(49,	'userstory',	'49',	150,	5,	3,	6),
+(50,	'userstory',	'50',	50,	6,	4,	2),
+(51,	'userstory',	'51',	200,	3,	7,	3),
+(52,	'userstory',	'52',	150,	6,	8,	4),
+(53,	'userstory',	'53',	100,	3,	5,	5),
+(54,	'userstory',	'54',	50,	5,	8,	4),
+(55,	'userstory',	'55',	150,	2,	4,	3),
+(56,	'userstory',	'56',	200,	4,	8,	4),
+(57,	'userstory',	'57',	150,	2,	8,	3),
+(58,	'userstory',	'58',	50,	5,	8,	6),
+(59,	'userstory',	'59',	150,	7,	6,	3),
+(60,	'userstory',	'60',	250,	5,	7,	6),
+(1001,	'defect',	'1',	0,	1,	6,	4),
+(1002,	'defect',	'2',	0,	3,	4,	7),
+(1003,	'defect',	'3',	0,	2,	7,	5),
+(1004,	'defect',	'4',	0,	5,	8,	6),
+(1005,	'defect',	'5',	0,	7,	5,	3),
+(1006,	'defect',	'6',	0,	5,	7,	3),
+(1007,	'defect',	'7',	0,	1,	6,	3),
+(2001,	'maintenance',	'1',	0,	4,	7,	4),
+(2002,	'maintenance',	'2',	0,	2,	5,	3),
+(2003,	'maintenance',	'3',	0,	3,	8,	7),
+(2004,	'maintenance',	'4',	0,	2,	5,	4),
+(2005,	'maintenance',	'5',	0,	5,	7,	3);
 
 DROP TABLE IF EXISTS `login`;
 CREATE TABLE `login` (
@@ -99,23 +107,5 @@ CREATE TABLE `login` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
-INSERT INTO `login` (`id`, `username`, `password`) VALUES
-(1,	'admin',	'admin');
 
-DROP TABLE IF EXISTS `teamname`;
-CREATE TABLE `teamname` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) COLLATE utf8_bin NOT NULL,
-  `highscore` int(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
-
-INSERT INTO `teamname` (`id`, `name`, `highscore`) VALUES
-(1,	'TEAM PUTTE',	999999999),
-(2,	'TEAM GOAT',	75600),
-(3,	'test',	0),
-(4,	'softa',	0),
-(5,	'shurda',	0),
-(6,	'sdfsd',	0);
-
--- 2017-02-21 18:55:50
+-- 2017-03-08 09:52:46
