@@ -29,7 +29,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 12,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -442,9 +442,13 @@ class App extends React.Component {
         }
         else {
             defectCard = this.state.activeCards.filter((card) => card.type == 'defect');
-            if (defectCard != undefined) {
+            console.log(defectCard);
+            if (defectCard[defectCard.length - 1].location != 'done') {
                 defectCard[defectCard.length - 1].value = '400';
-                defectCard[defectCard.length - 1].location = 'analysis';
+                defectCard[defectCard.length - 1].type = 'highpriodefect';
+            } 
+            else {
+                defectCard[defectCard.length - 1].value = '400';
                 defectCard[defectCard.length - 1].type = 'highpriodefect';
             }
         }
@@ -455,6 +459,7 @@ class App extends React.Component {
                 defectCards: this.state.defectCards,
             });
         }
+        this.calcSum();
     }
 
     removeValueFromHighPrioDefect() {
