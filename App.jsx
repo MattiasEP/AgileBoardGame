@@ -536,20 +536,17 @@ class App extends React.Component {
                     <div className='panel'>
                         <center>
                         <div id="wrapper2">
-                          <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
-                          <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
-                          <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
+                            <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
+                            <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
+                            <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
                           {/*<form action="welcome/teamname.php" method="POST">
                             <input name="name" id="name" type="text" className="input" placeholder="Choose teamname" required />
                             <input className="button" type="submit" defaultValue="PLAY" />
                           </form>*/}
-                          <form onSubmit={this.handleSubmit}>
-        <label>
-          
-          <input type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+                            <form onSubmit={this.handleSubmit}>
+                                <input type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
+                                <input type="submit" value="Start Game" />
+                            </form>
 
 
 
