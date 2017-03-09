@@ -739,7 +739,6 @@ a {
 
 }
 
-
 /* Mac mellan */
 @media only screen and (min-device-width : 900px) and (max-device-width : 1440px)  { 
     .mini-day {
@@ -751,14 +750,17 @@ a {
 
 /* Mac liten */
 @media only screen and (min-device-width : 800px) and (max-device-width : 1280px)  { 
-    .mini-day {
-        height: 14px;
-        width: 14px;
-        margin-right: 1px;
+
+    .container {
+        width: 95%;
+    }
+    .container-sprint {
+        width: 95%;
     }
 
-    .mini-days {
-        margin-top: 4px;
-        vertical-align: bottom;
+    .tutorial-btn {
+        right: 45px;
+        top: 10px;
     }
+    
 }

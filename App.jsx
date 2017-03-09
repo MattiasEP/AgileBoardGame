@@ -441,7 +441,7 @@ class App extends React.Component {
             this.state.activeCards.push(defectCard);
         }
         else {
-            defectCard = this.state.activeCards.filter((card) => card.location != 'done');
+            defectCard = this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'defect');
             if (defectCard != undefined) {
                 defectCard[defectCard.length - 1].value = '400';
                 defectCard[defectCard.length - 1].location = 'analysis';
