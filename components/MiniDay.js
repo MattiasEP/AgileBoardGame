@@ -15,8 +15,6 @@ class MiniDay extends React.Component {
             dayClass = 'mini-day';
         }
 
-        console.log(this.props);
-
         return (
             <div className={dayClass}>
                 

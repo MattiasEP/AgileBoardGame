@@ -20,12 +20,14 @@ class MiniCalendar extends React.Component {
         return (
             <div className='mini-calendar-wrapper'>
                 <div className='mini-calendar'>
-                <span className='letter-pressed'>Sprint #{this.props.currentSprint}</span>
-                    <MiniDay day={days[0]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[1]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[2]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[3]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[4]} currentDay={this.props.currentDay} />
+                <span className='letter-pressed'>Sprint #{this.props.currentSprint}&nbsp;&nbsp;</span>
+                    <div className='mini-days'>
+                        <MiniDay day={days[0]} currentDay={this.props.currentDay} />
+                        <MiniDay day={days[1]} currentDay={this.props.currentDay} />
+                        <MiniDay day={days[2]} currentDay={this.props.currentDay} />
+                        <MiniDay day={days[3]} currentDay={this.props.currentDay} />
+                        <MiniDay day={days[4]} currentDay={this.props.currentDay} />
+                    </div>
                 </div>
             </div>
         );

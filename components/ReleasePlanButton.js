@@ -6,8 +6,10 @@ class ReleasePlanButton extends React.Component {
 
     render() {
         let direction, destination;
+        let buttonClass = 'release-button'
 
         switch(this.props.direction) {
+            case 'start': direction = 'caret-down'; destination = '#scrumboard'; buttonClass = 'release-button bottom'; break;
             case 'hej': direction ='caret-down'; destination ='#start'; break;
             case 'down': direction = 'caret-down'; destination = '#releaseplan'; break;
             case 'up': direction = 'caret-up'; destination = '#scrumboard'; break;
@@ -16,7 +18,7 @@ class ReleasePlanButton extends React.Component {
         
 
         return (
-            <div className='release-button'>
+            <div className={buttonClass}>
                 <a href={destination}>
                     <FontAwesome name={direction} size='5x'  />
                     <p className='release-button-text'>{this.props.text}</p>

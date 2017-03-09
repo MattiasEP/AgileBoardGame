@@ -23,6 +23,13 @@ a {
 .start-screen {
     width: 50%;
     text-align: center;
+    /*border-radius: 5px;
+    background: #eee;
+    border: 1px solid #ddd;
+    box-shadow: inset #ddd 0 50px 20px;
+    margin: 5px;
+    box-sizing: border-box;*/
+    padding: 50px !important;
 }
 
 .intro-head {
@@ -387,6 +394,14 @@ a {
     height: 10%;
 }
 
+.bottom {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+}
+
 .release-button-text {
     margin: -15px
 }
@@ -477,6 +492,10 @@ a {
 
 .fa-caret-down, .fa-caret-up, .fa-caret-left, .fa-caret-right, .release-button-text, .fa-question-circle, .letter-pressed {
     text-shadow: rgba(255, 255, 255, 0.2) 0 1px 0;
+}
+
+.letter-pressed2 {
+    text-shadow: rgba(0, 0, 0, 0.3) 0 1px 0;
 }
 
 
@@ -688,12 +707,20 @@ a {
     justify-content: space-around;
 }
 
+.mini-days {
+    display: flex;
+    justify-content: space-around;
+}
+
 .mini-day {
-    height: 20px;
-    width: 20px;
+    height: 22px;
+    width: 22px;
     border: 1px solid #666;
     border-radius: 4px;
     background-color: white;
+    vertical-align: bottom;
+    margin-right: 5px;
+    margin-top: -1px;
 }
 
 
@@ -710,4 +737,28 @@ a {
         width: 95%;
     }
 
+}
+
+
+/* Mac mellan */
+@media only screen and (min-device-width : 900px) and (max-device-width : 1440px)  { 
+    .mini-day {
+        height: 18px;
+        width: 18px;
+        margin-right: 2px;
+    }
+}
+
+/* Mac liten */
+@media only screen and (min-device-width : 800px) and (max-device-width : 1280px)  { 
+    .mini-day {
+        height: 14px;
+        width: 14px;
+        margin-right: 1px;
+    }
+
+    .mini-days {
+        margin-top: 4px;
+        vertical-align: bottom;
+    }
 }
