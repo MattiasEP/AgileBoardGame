@@ -15,12 +15,17 @@ import ReleasePlan from './components/ReleasePlan';
 import ReleasePlanButton from './components/ReleasePlanButton';
 import Tutorial from './components/Tutorial';
 import TutorialButton from './components/TutorialButton';
+import teamName from './components/teamName';
 
 class App extends React.Component {
 
     constructor() {
-        super();
-        this.state = {
+        super();/*3 first rows are for submit handler*/
+            this.state = {value: ''};
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSubmit = this.handleSubmit.bind(this);
+           
+            this.state = {
             usCards: [],
             defectCards: [],
             maintenanceCards: [],
@@ -39,6 +44,8 @@ class App extends React.Component {
             sickDays: null,
             workerReturnDay: null,
             highPrioDefect: null,
+
+            
         }
         configureAnchors({offset: -10, scrollDuration: 500})
     }
@@ -498,17 +505,33 @@ class App extends React.Component {
             card.location = 'discarded';
         })
     } 
+        /*Next 2 event handlers are for the form to continue to the game*/
+    handleChange(event) {
+         this.setState({value: event.target.value});
+    }
+
+  handleSubmit(event) {
+    window.location = 'http://localhost:3000/#scrumboard';
+    
+    event.preventDefault();
+  }
 
     render() {
         return (
                 <div>
-                    {/*<div className='panel'>
+                    <div className='panel'>
+                        <StartScreen />
+                        <ReleasePlanButton text="Continue" direction= 'cont'/>
+                    </div>
+                    <ScrollableAnchor id={'picture'}>
+                    <div className='panel'>
                         <center>
                         <img src="./welcome/blend2.png" id="slide" width="1000px" height="600" />
                         <ReleasePlanButton text='Sign' direction='hej' />
                         </center>
 
                     </div>
+                    </ScrollableAnchor>
                     <ScrollableAnchor id={'start'}>
                     <div className='panel'>
                         <center>
@@ -516,17 +539,26 @@ class App extends React.Component {
                           <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
                           <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
                           <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
-                          <form action="welcome/teamname.php" method="POST">
+                          {/*<form action="welcome/teamname.php" method="POST">
                             <input name="name" id="name" type="text" className="input" placeholder="Choose teamname" required />
                             <input className="button" type="submit" defaultValue="PLAY" />
-                          </form>
+                          </form>*/}
+                          <form onSubmit={this.handleSubmit}>
+        <label>
+          
+          <input type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+
+
+
                         </div>
                         </center>
                     </div>
-                    </ScrollableAnchor>*/}
-                    <div className='panel'>
-                        <StartScreen />
-                    </div>
+                    </ScrollableAnchor>
+                    {/**/}
+                    
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                         <ActionCardScreen 
@@ -550,6 +582,7 @@ class App extends React.Component {
                             <Actions />
                             </div>
                         </div>
+
                         <ReleasePlanButton text='Calendar' direction='down' />
                     </div>
                     </ScrollableAnchor>

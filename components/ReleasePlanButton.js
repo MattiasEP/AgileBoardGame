@@ -13,6 +13,7 @@ class ReleasePlanButton extends React.Component {
             case 'hej': direction ='caret-down'; destination ='#start'; break;
             case 'down': direction = 'caret-down'; destination = '#releaseplan'; break;
             case 'up': direction = 'caret-up'; destination = '#scrumboard'; break;
+            case 'cont': direction='caret-down'; destination ="#picture"; break;
             defaul: break;
         }
         
