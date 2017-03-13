@@ -544,7 +544,7 @@ class App extends React.Component {
                             <input className="button" type="submit" defaultValue="PLAY" />
                           </form>*/}
                             <form onSubmit={this.handleSubmit}>
-                                <input type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
+                                <input className='team_input' type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
                                 <input type="submit" value="Start Game" />
                             </form>
 

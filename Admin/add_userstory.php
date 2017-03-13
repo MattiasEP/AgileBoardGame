@@ -29,6 +29,4 @@ $sql="INSERT INTO
 			header('Location: index.php');
 			}
 	mysqli_close($db);
-
-
 ?>

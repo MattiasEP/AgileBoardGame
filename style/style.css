@@ -13,7 +13,7 @@ body {
     user-select: none;
     overflow: hidden;
 }
-input{
+.team_input{
   width:80%;
   text-align:center;
   font-size:2em;

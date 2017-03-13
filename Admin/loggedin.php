@@ -21,13 +21,13 @@
             
     switch($currentPage) {
         case 'userstory';
-          	include ('userstory_admin.php');
+          	include ('admin_userstory.php');
         break;
         case 'maintenance';
-          	include ('maintenance_admin.php');
+          	include ('admin_maintenance.php');
         break;
         case 'defect';
-          	include ('defect_admin.php');
+          	include ('admin_defect.php');
         break;
         // default:
         //   	include ('file.php');
