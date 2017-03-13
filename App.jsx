@@ -35,17 +35,19 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
-            currentSprint: 1,
+            currentDay: 16,
+            currentSprint: 4,
             earnings: 0,
             fees: 0,
+            rewards: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
             wastedPoints: 0,
-            showActionScreen: false,
+            showActionScreen: true,
             sickDays: null,
             workerReturnDay: null,
+            workerNumber: null,
             highPrioDefect: null,
-
+            amountOfUS: 3,
             
         }
         configureAnchors({offset: -10, scrollDuration: 500})
@@ -97,11 +99,14 @@ class App extends React.Component {
         let firstCard;
         switch(type) {
             case 'us': 
-                if(this.state.usCard != 0) {
+                if(this.state.usCards != 0) {
                     firstCard = this.state.usCards.shift();
                     firstCard.location = 'analysis';
                     firstCard.addedSprint = this.state.currentSprint;
                     this.state.activeCards.push(firstCard);
+                }
+                else {
+                    this.changeHint('us');
                 }
                 break;
             case 'defect':
@@ -110,7 +115,10 @@ class App extends React.Component {
                     firstCard.location = 'analysis';
                     firstCard.addedSprint = this.state.currentSprint;
                     this.state.activeCards.push(firstCard);
-                }    
+                } 
+                else {
+                    this.changeHint('defect');
+                } 
                  break;
             case 'maintenance': 
                 if(this.state.maintenanceCards.length != 0) {
@@ -118,6 +126,9 @@ class App extends React.Component {
                     firstCard.location = 'analysis';
                     firstCard.addedSprint = this.state.currentSprint;
                     this.state.activeCards.push(firstCard);
+                }
+                else {
+                    this.changeHint('maintenance');
                 }
                 break;
             default: break;
@@ -135,7 +146,7 @@ class App extends React.Component {
         switch(card.location) {
             case 'analysis'   : card.location = 'development'; break;
             case 'development': card.location = 'testing'; break;
-            case 'testing'    : card.location = 'done'; this.calcSum(); break;
+            case 'testing'    : card.location = 'done'; this.calcSum(); if (this.state.currentSprint == 4) this.checkUSdone(1); break;
             default: break;
         }
         this.setState({activeCards: this.state.activeCards});
@@ -187,6 +198,9 @@ class App extends React.Component {
         else {
             value -= this.state.fees;
         }
+
+        value += this.state.rewards;
+
         this.setState({earnings: value});
     }
 
@@ -312,7 +326,17 @@ class App extends React.Component {
                 this.setState({hint: 'Cards can only be moved one column a day.'});
                 break;
             case 'notNewDay':
-                this.setState({hint: 'You must roll the dice and spend your points before moving on to the next day.'})
+                this.setState({hint: 'You must roll the dice and spend your points before moving on to the next day.'});
+                break;
+            case 'us':
+                this.setState({hint: 'There are no user stories left.'});
+                break;
+            case 'defect':
+                this.setState({hint: 'There are no defect cards left.'});
+                break;
+            case 'maintenance':
+                this.setState({hint: 'There are no maintenance cards left.'});
+                break;
             default: break;
         }
     }
@@ -323,8 +347,9 @@ class App extends React.Component {
             case 6: this.setState({showActionScreen: true}); break;
             case 11: this.setState({showActionScreen: true}); break;
             case 15: this.setState({showActionScreen: true}); break;
+            case 16: this.setState({showActionScreen: true}); break;
             case 18: this.setState({showActionScreen: true}); break;
-            case 21: this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); break;
+            case 21: this.setState({showActionScreen: true}); this.checkUSdone(2); this.removeValueFromHighPrioDefect(); break;
             case 26: this.checkMaintenanceCards(); break;
             case 24: this.setState({showActionScreen: true}); break;
             case 28: this.setState({showActionScreen: true}); break;
@@ -342,36 +367,14 @@ class App extends React.Component {
         
     }
 
-    sickWorker(origin) {
+    sickWorker(origin, workerNumber) {
         let days = Math.floor(Math.random() * 6) + 1;
         let returnDay = this.state.currentDay + days;
-        if(origin == 'developer') {
-            this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
-                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
-                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
-                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
-                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
-                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
-            });
+        if(workerNumber == 3) {
+            returnDay = 36;
         }
-        else if (origin == 'tester') {
-            this.setState({sickDays: days, workerReturnDay: returnDay, workers: [
-                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
-                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
-                {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: this.state.workers[2].location, letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
-                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
-                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},] 
-            });
-        }
-        else if (origin == 'developer-quit') {
-            this.setState({workerReturnDay: 36, workers: [
-                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
-                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
-                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
-                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[4].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
-                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: this.state.workers[5].location, letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}]
-            });
-        }
+        this.state.workers[workerNumber].location = 'hospital';
+        this.setState({sickDays: days, workerReturnDay: returnDay, workerNumber: workerNumber});
     }
 
     checkWorkers() {
@@ -380,14 +383,11 @@ class App extends React.Component {
             this.setState({sickDays: this.state.sickDays});
         } 
         else if (this.state.sickDays == 0) {
-            this.setState({workers: [
-                {key: 0, src:'./img/dudes/1.png', origin: 'analytic',  location: this.state.workers[0].location, letter: 'A', dice: this.state.dice[0], originalDice: this.state.dice[0]},
-                {key: 1, src:'./img/dudes/2.png', origin: 'developer', location: this.state.workers[1].location, letter: 'D', dice: this.state.dice[1], originalDice: this.state.dice[1]},
-                {key: 2, src:'./img/dudes/3.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[2], originalDice: this.state.dice[2]},
-                {key: 3, src:'./img/dudes/4.png', origin: 'developer', location: this.state.workers[2].location, letter: 'D', dice: this.state.dice[3], originalDice: this.state.dice[3]},
-                {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: this.state.workers[3].location, letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
-                {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing', letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}] 
-            });
+            switch(this.state.workers[this.state.workerNumber].origin) {
+                case 'analytic': this.state.workers[this.state.workerNumber].location = 'analysis'; break;
+                case 'developer': this.state.workers[this.state.workerNumber].location = 'development'; break;
+                case 'tester': this.state.workers[this.state.workerNumber].location = 'testing'; break;
+            }
         }
     }
 
@@ -510,21 +510,45 @@ class App extends React.Component {
             card.location = 'discarded';
         })
     } 
+
+    changeAmountOfUS(operator) {
+        switch(operator) {
+            case '-': if (this.state.amountOfUS > 3) this.state.amountOfUS--; break;
+            case '+': if(this.state.amountOfUS < 10) this.state.amountOfUS++; break;
+        }
+        this.setState({amountOfUS: this.state.amountOfUS});
+    }
+
+    checkUSdone(type) {
+        switch(type) {
+            case 1:
+                this.state.amountOfUS--;
+                this.setState({amountOfUS: this.state.amountOfUS});
+                break;
+            case 2:
+                if(this.state.amountOfUS <= 0) {
+                    this.state.rewards += 200;
+                    this.setState({rewards: this.state.rewards});
+                    this.calcSum();
+                }
+        }
+        
+    }
+
         /*Next 2 event handlers are for the form to continue to the game*/
     handleChange(event) {
          this.setState({value: event.target.value});
     }
 
-  handleSubmit(event) {
-    window.location = 'http://localhost:3000/#scrumboard';
-    
-    event.preventDefault();
-  }
+    handleSubmit(event) {
+        window.location = 'http://localhost:3000/#scrumboard';
+        event.preventDefault();
+    }
 
     render() {
         return (
                 <div>
-                    <div className='panel'>
+                    {/*<div className='panel'>
                         <StartScreen />
                         <ReleasePlanButton text="Continue" direction= 'cont'/>
                     </div>
@@ -544,10 +568,6 @@ class App extends React.Component {
                             <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
                             <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
                             <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
-                          {/*<form action="welcome/teamname.php" method="POST">
-                            <input name="name" id="name" type="text" className="input" placeholder="Choose teamname" required />
-                            <input className="button" type="submit" defaultValue="PLAY" />
-                          </form>*/}
                             <form onSubmit={this.handleSubmit}>
                                 <input className='team_input' type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
                                 <input type="submit" value="Start Game" />
@@ -558,8 +578,8 @@ class App extends React.Component {
                         </div>
                         </center>
                     </div>
-                    </ScrollableAnchor>
-                    {/**/}
+                    </ScrollableAnchor>*/}
+
                     
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
@@ -569,6 +589,7 @@ class App extends React.Component {
                             dubbleTestPoints={this.dubbleTestPoints.bind(this)} halfTestPoints={this.halfTestPoints.bind(this)} 
                             positionM1={this.positionM1.bind(this)} addHighPrioDefect={this.addHighPrioDefect.bind(this)} 
                             moveBuggedUS={this.moveBuggedUS.bind(this)} discardActiveUSCards={this.discardActiveUSCards.bind(this)}
+                            amountOfUS={this.state.amountOfUS} changeAmountOfUS={this.changeAmountOfUS.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>
@@ -582,7 +603,7 @@ class App extends React.Component {
                             <div className='dubble-col'>
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
                             <Hospital workers={this.state.workers} />
-                            <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} />
+                            <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} returnDay={this.state.workerReturnDay}/>
                             </div>
                         </div>
 

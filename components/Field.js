@@ -18,7 +18,7 @@ class Analytics extends React.Component {
                             move = {this.props.move}
                             newDay = {this.props.newDay}
                             />);
-                    })}
+                })}
                 </div>
             </div>
         );

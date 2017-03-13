@@ -17,6 +17,14 @@ class Worker extends React.Component {
     }
 
     render() {
+        let diceClass;
+        if(this.props.workerObj.location == 'hospital') {
+            diceClass = 'hidden';
+        } 
+        else if(this.props.workerObj.dice == null && this.props.workerObj.location != 'hospital') {
+            diceClass = 'visibility';
+        }
+
         let leftArrow;
         let rightArrow;
         if (this.props.newDay) {
@@ -41,7 +49,9 @@ class Worker extends React.Component {
 
         return (
             <div className='worker-box'>
-                <Dice dice={this.props.workerObj.dice} />
+                <div className={diceClass}>
+                    <Dice dice={this.props.workerObj.dice} />
+                </div>
                 <div onClick={this.moveWorkerLeft.bind(this)}>
                     <FontAwesome name='caret-left' size='2x' className={leftArrow} />
                 </div>

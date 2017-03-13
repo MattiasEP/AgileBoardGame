@@ -11,7 +11,7 @@ body {
     background-color: #005E51;
     box-shadow: inset 0px 0px 80px -10px rgba(0,0,0,0.75);
     user-select: none;
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 .team_input{
   width:80%;
@@ -273,6 +273,10 @@ a {
     display: none;
 }
 
+.visibility {
+    visibility: hidden;
+}
+
 .container-wrk {
     display: flex;
     width: 100%;
@@ -462,6 +466,10 @@ a {
 
 .current-day {
     background-color: #51A35F !important;
+}
+
+.day-yellow {
+    background-color: #FFFF00 !important;
 }
 
 .container-sprint {
@@ -730,6 +738,7 @@ a {
 }
 
 .mini-day {
+    position: relative;
     height: 22px;
     width: 22px;
     border: 1px solid #666;
@@ -772,6 +781,25 @@ a {
 .pos-rel {
     position: relative;
 }
+
+.action-card-wrapper {
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    margin: auto;
+}
+
+.plusminus {
+    position: relative;
+    height: 100px;
+    width: 100px;
+}
+
+.amount-of-us {
+    font-size: 5em;
+}
+
 
 /*----- MEDIA QUERIES -----*/
 

@@ -23,11 +23,11 @@ class MiniSprint extends React.Component {
             <div className='block'>
                 <div className='mini-days'>
                     <span className='letter-pressed sprint-number'>#{this.props.sprintNumber}</span>
-                    <MiniDay day={days[0]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[1]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[2]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[3]} currentDay={this.props.currentDay} />
-                    <MiniDay day={days[4]} currentDay={this.props.currentDay} />
+                    <MiniDay day={days[0]} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniDay day={days[1]} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniDay day={days[2]} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniDay day={days[3]} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniDay day={days[4]} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
                 </div>
             </div>
         );

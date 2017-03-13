@@ -1,4 +1,5 @@
 import React from 'react';
+import Worker from './worker';
 
 class Hospital extends React.Component {
 
@@ -7,14 +8,12 @@ class Hospital extends React.Component {
             <div className='col-half col-hospital'>
                 <div className='head'>Hospital</div>
                 <div className='done-col'>
-                    {this.props.workers.filter((worker) => worker.location == this.props.type).map(worker => {
+                    {this.props.workers.filter((worker) => worker.location == 'hospital').map(worker => {
                     return (<Worker
                             key = {worker.key}
                             workerObj = {worker}
                             src = {worker.src}
                             location = {worker.location}
-                            dice = {this.props.dice[worker.key]}
-                            move = {this.props.move}
                             newDay = {this.props.newDay}
                             />);
                     })}

@@ -20,14 +20,14 @@ class MiniCalendar extends React.Component {
         return (
             <div className='mini-calendar-wrapper'>
                 <div>
-                    <MiniSprint sprintNumber='1' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='2' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='3' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='4' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='5' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='6' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='7' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
-                    <MiniSprint sprintNumber='8' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='1' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='2' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='3' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='4' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='5' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='6' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='7' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
+                    <MiniSprint sprintNumber='8' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} returnDay={this.props.returnDay} />
                 </div>
             </div>
         );
