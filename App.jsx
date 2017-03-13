@@ -514,7 +514,7 @@ class App extends React.Component {
     changeAmountOfUS(operator) {
         switch(operator) {
             case '-': if (this.state.amountOfUS > 3) this.state.amountOfUS--; break;
-            case '+': if(this.state.amountOfUS < 10) this.state.amountOfUS++; break;
+            case '+': if(this.state.amountOfUS < 30) this.state.amountOfUS++; break;
         }
         this.setState({amountOfUS: this.state.amountOfUS});
     }
