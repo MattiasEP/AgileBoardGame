@@ -7,9 +7,11 @@ import ActionCard_5 from './ActionCards/ActionCard_5';
 import ActionCard_6 from './ActionCards/ActionCard_6';
 import ActionCard_7 from './ActionCards/ActionCard_7';
 import ActionCard_8 from './ActionCards/ActionCard_8';
+import ActionCard_9 from './ActionCards/ActionCard_9';
 import ActionCard_10 from './ActionCards/ActionCard_10';
 import ActionCard_11 from './ActionCards/ActionCard_11';
 import ActionCard_12 from './ActionCards/ActionCard_12';
+import ActionCard_13 from './ActionCards/ActionCard_13';
 
 
 class ActionCardScreen extends React.Component {
@@ -30,7 +32,7 @@ class ActionCardScreen extends React.Component {
     }
 
     render() {
-
+        console.log(this.props);
         let actionCard;
         switch(this.props.currentDay) {
             case 3: actionCard = (<ActionCard_1 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
@@ -41,9 +43,10 @@ class ActionCardScreen extends React.Component {
             case 24: actionCard = (<ActionCard_6 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
             case 28: actionCard = (<ActionCard_7 close={this.props.close} moveBuggedUS={this.props.moveBuggedUS} />); break;
             case 16: actionCard = (<ActionCard_8 close={this.props.close} amountOfUS={this.props.amountOfUS} changeAmountOfUS={this.props.changeAmountOfUS} />); break;
+            case 20: actionCard = (<ActionCard_9 close={this.props.close} setWeekendWork={this.props.setWeekendWork} />); break;
             case 21: actionCard = (<ActionCard_10 close={this.props.close} />); break;
             case 32: actionCard = (<ActionCard_12 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
-
+            case 36: actionCard = (<ActionCard_13 close={this.props.close} amountOfDefects={this.props.amountOfDefects} getAmountOfDefects={this.props.getAmountOfDefects} addAmountOfDefects={this.props.addAmountOfDefects} />); break;
         }
 
         if(this.state.dayWithDubbleCards) {
