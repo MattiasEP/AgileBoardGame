@@ -49,6 +49,10 @@ class App extends React.Component {
             
         }
         configureAnchors({offset: -10, scrollDuration: 500})
+        //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
+        window.onbeforeunload = function() {
+        return "";
+        }
     }
 
     componentDidMount() {
