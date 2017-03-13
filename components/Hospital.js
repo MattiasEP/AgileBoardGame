@@ -1,13 +1,12 @@
 import React from 'react';
-import Worker from './Worker';
 
-class Analytics extends React.Component {
+class Hospital extends React.Component {
 
-    render() {
-        return (
-            <div className='field'>
-                <p className='head'>{this.props.title}</p>
-                <div className='workers'>
+    render() {
+        return (
+            <div className='col-half col-hospital'>
+                <div className='head'>Hospital</div>
+                <div className='done-col'>
                     {this.props.workers.filter((worker) => worker.location == this.props.type).map(worker => {
                     return (<Worker
                             key = {worker.key}
@@ -22,7 +21,6 @@ class Analytics extends React.Component {
                 </div>
             </div>
         );
-    }
-}
-
-export default Analytics;
+    }
+}  
+export default Hospital;

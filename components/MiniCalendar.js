@@ -1,5 +1,5 @@
 import React from 'react';
-import MiniDay from './MiniDay';
+import MiniSprint from './MiniSprint';
 
 class MiniCalendar extends React.Component {
 
@@ -19,15 +19,15 @@ class MiniCalendar extends React.Component {
 
         return (
             <div className='mini-calendar-wrapper'>
-                <div className='mini-calendar'>
-                <span className='letter-pressed'>Sprint #{this.props.currentSprint}&nbsp;&nbsp;</span>
-                    <div className='mini-days'>
-                        <MiniDay day={days[0]} currentDay={this.props.currentDay} />
-                        <MiniDay day={days[1]} currentDay={this.props.currentDay} />
-                        <MiniDay day={days[2]} currentDay={this.props.currentDay} />
-                        <MiniDay day={days[3]} currentDay={this.props.currentDay} />
-                        <MiniDay day={days[4]} currentDay={this.props.currentDay} />
-                    </div>
+                <div>
+                    <MiniSprint sprintNumber='1' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='2' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='3' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='4' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='5' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='6' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='7' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
+                    <MiniSprint sprintNumber='8' currentSprint={this.props.currentSprint} currentDay={this.props.currentDay} />
                 </div>
             </div>
         );

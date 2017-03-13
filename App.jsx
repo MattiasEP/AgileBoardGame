@@ -8,7 +8,8 @@ import Column from './components/Column';
 import Departments from './components/Departments';
 import Controls from './components/Controls';
 import Done from './components/Done';
-import Actions from './components/Actions';
+import Hospital from './components/Hospital';
+import CalendarMini from './components/CalendarMini';
 import ActionCardScreen from './components/ActionCardScreen';
 import NextDay from './components/NextDay';
 import ReleasePlan from './components/ReleasePlan';
@@ -34,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 12,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -576,7 +577,8 @@ class App extends React.Component {
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <div className='dubble-col'>
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
-                            <Actions />
+                            <Hospital workers={this.state.workers} />
+                            <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} />
                             </div>
                         </div>
 

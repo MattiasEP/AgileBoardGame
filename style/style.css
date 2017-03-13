@@ -96,7 +96,7 @@ a {
 }
 
 .col-half {
-    height: calc(50% - 7.5px);
+    height: calc(40% - 12.25px);
     border-radius: 5px;
     background: #eeeeee;
     border: 1px solid #dddddd;
@@ -106,9 +106,13 @@ a {
     box-sizing: border-box;
 }
 
+.col-hospital {
+    height: 20%;
+}
+
 .controls-col {
     overflow-y: hidden;
-    height: calc(100% - 76px);
+    height: calc(100% - 32px);
 }
 
 .col-content {
@@ -193,9 +197,9 @@ a {
 
 .hint-box {
     width: 100%;
-    font-size: 12px;
+    font-size: 1em;
     padding: 10px;
-    height: calc(16.66% - 5px);
+    height: calc(28.57% - 5px);
     margin-bottom: 5px;
     border: 1px dashed black;
     border-radius: 3px;
@@ -255,6 +259,10 @@ a {
     margin: 0 0 5px 0;
     padding: 0;
     text-shadow: #fff 0 1px 0;
+}
+
+.head.cal-head {
+    margin: 0;
 }
 
 .top {
@@ -514,7 +522,7 @@ a {
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: calc(16.66% - 5px);
+  height: calc(14.28% - 5px);
   min-width: 96px;
   line-height: 46px;
   padding: 0 24px;
@@ -717,6 +725,8 @@ a {
 .mini-days {
     display: flex;
     justify-content: space-around;
+    margin: auto;
+    width: 100%;
 }
 
 .mini-day {
@@ -727,11 +737,41 @@ a {
     background-color: white;
     vertical-align: bottom;
     margin-right: 5px;
-    margin-top: -1px;
+    margin-top: 0px;
 }
 
+.sprint-number {
+    font-size: 0.9em;
+    height: 22px;
+    width: 22px;
+    margin-right: 5px;
+    
+}
 
+.block {
+    display: block;
+    margin-bottom: 5px;
+}
 
+.col-cal {
+    height: calc(40% - 12.25px);
+    border-radius: 5px;
+    background: #eeeeee;
+    border: 1px solid #dddddd;
+    box-shadow: inset #dddddd 0 5px 20px;
+    padding: 5px;
+    margin: 5px 5px 10px 5px;
+    box-sizing: border-box;
+}
+
+.done-col-cal {
+    overflow-y: auto;
+    height: calc(100% - 15px);
+}
+
+.pos-rel {
+    position: relative;
+}
 
 /*----- MEDIA QUERIES -----*/
 
@@ -746,17 +786,17 @@ a {
 
 }
 
-/* Mac mellan */
-@media only screen and (min-device-width : 900px) and (max-device-width : 1440px)  { 
+ /*Mac mellan 
+/*@media only screen and (min-device-width : 900px) and (max-device-width : 1440px)  { 
     .mini-day {
         height: 18px;
         width: 18px;
         margin-right: 2px;
     }
-}
+}*/
 
 /* Mac liten */
-@media only screen and (min-device-width : 800px) and (max-device-width : 1280px)  { 
+/*@media only screen and (min-device-width : 800px) and (max-device-width : 1280px)  { 
 
     .container {
         width: 95%;
@@ -770,4 +810,4 @@ a {
         top: 10px;
     }
     
-}
+}*/

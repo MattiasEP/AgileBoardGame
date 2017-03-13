@@ -3,9 +3,6 @@ import RollDice from './RollDice';
 import NextDay from './NextDay';
 import AddCard from './AddCard';
 import HintBox from './HintBox';
-import MiniCalendar from './MiniCalendar';
-
-
 
 class Controls extends React.Component {
     render() {
@@ -20,7 +17,6 @@ class Controls extends React.Component {
                     <AddCard title='Add Defect'      type='defect'      addCard={this.props.addCard} />
                     <NextDay nextDay={this.props.nextDay} />
                 </div>
-                <MiniCalendar currentDay={this.props.currentDay} currentSprint={this.props.currentSprint} />
             </div>
         );
     }
