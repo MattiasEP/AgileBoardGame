@@ -50,7 +50,7 @@ class App extends React.Component {
             amountOfUS: 3,
             amountOfDefects: null,
             workDuringWeekend: false,
-            isSetWorkDuringWeekend: null,
+            isSetWorkDuringWeekend: false,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
@@ -264,13 +264,13 @@ class App extends React.Component {
     //Sätter newDay-statet till true
     nextDay() {
         if(!this.state.newDay) {
-            if (this.state.currentDay == 20 && this.state.isSetWorkDuringWeekend == null) {
-                this.setState({showActionScreen: true, isSetWorkDuringWeekend: true});
+            if (this.state.currentDay == 20 && this.state.isSetWorkDuringWeekend == false) {
+                this.setState({showActionScreen: true});
                 this.changeHint('nextDay');
                 this.clearDice();
                 this.setState({newDay: true, activeCards: this.state.activeCards})
             }
-            else if ((this.state.isSetWorkDuringWeekend == null || this.state.isSetWorkDuringWeekend == false) && !this.state.workDuringWeekend && this.state.currentDay != 20) {
+            else if (this.state.currentDay != 20) {
                 this.state.currentDay++;
                 this.state.activeCards.map((card) => { card.movable = true });
                 this.checkWorkers();
@@ -280,8 +280,13 @@ class App extends React.Component {
                 this.actions();
                 this.nextSprint();
             }
-            else if (this.state.workDuringWeekend == false) {
-                this.state.currentDay++;
+            else {
+                if(this.state.workDuringWeekend == true) {
+                    this.state.currentDay = 22;
+                }
+                else {
+                    this.state.currentDay++;
+                }
                 this.state.activeCards.map((card) => { card.movable = true });
                 this.checkWorkers();
                 this.changeHint('nextDay');
@@ -367,6 +372,7 @@ class App extends React.Component {
             case 16: this.setState({showActionScreen: true}); break;
             case 18: this.setState({showActionScreen: true}); break;
             case 21: this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); break;
+            case 22: if(this.state.workDuringWeekend == true) { this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); } break;
             case 26: this.checkMaintenanceCards(); break;
             case 24: this.setState({showActionScreen: true}); break;
             case 28: this.setState({showActionScreen: true}); break;
@@ -382,7 +388,6 @@ class App extends React.Component {
             this.state.sickDays = 3;
         }
         this.setState({showActionScreen: false, sickDays: this.state.sickDays});
-        
     }
 
     sickWorker(origin, workerNumber) {
@@ -584,8 +589,16 @@ class App extends React.Component {
 
     setWeekendWork(answer) {
         switch(answer) {
-            case 'yes': this.setState({workDuringWeekend: true}); break;
-            case 'no': this.setState({workDuringWeekend: false}); break;
+            case 'yes': this.setState({workDuringWeekend: true, isSetWorkDuringWeekend: true}); break;
+            case 'no':
+                this.state.currentDay++;
+                this.state.activeCards.map((card) => { card.movable = true });
+                this.checkWorkers();
+                this.changeHint('nextDay');
+                this.clearDice();
+                this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards, workDuringWeekend: false, isSetWorkDuringWeekend: true, showActionScreen: true})
+                this.actions();
+                this.nextSprint();
         }
     }
 
@@ -646,6 +659,7 @@ class App extends React.Component {
                             amountOfUS={this.state.amountOfUS} changeAmountOfUS={this.changeAmountOfUS.bind(this)}
                             amountOfDefects={this.state.amountOfDefects} getAmountOfDefects={this.getAmountOfDefects.bind(this)}
                             addAmountOfDefects={this.addAmountOfDefects.bind(this)} setWeekendWork={this.setWeekendWork.bind(this)}
+                            workDuringWeekend={this.state.workDuringWeekend} nextDay={this.nextDay.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>

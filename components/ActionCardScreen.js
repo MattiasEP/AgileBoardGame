@@ -43,8 +43,9 @@ class ActionCardScreen extends React.Component {
             case 24: actionCard = (<ActionCard_6 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
             case 28: actionCard = (<ActionCard_7 close={this.props.close} moveBuggedUS={this.props.moveBuggedUS} />); break;
             case 16: actionCard = (<ActionCard_8 close={this.props.close} amountOfUS={this.props.amountOfUS} changeAmountOfUS={this.props.changeAmountOfUS} />); break;
-            case 20: actionCard = (<ActionCard_9 close={this.props.close} setWeekendWork={this.props.setWeekendWork} />); break;
+            case 20: actionCard = (<ActionCard_9 close={this.props.close} setWeekendWork={this.props.setWeekendWork} nextDay={this.props.nextDay} />); break;
             case 21: actionCard = (<ActionCard_10 close={this.props.close} />); break;
+            case 22: if (this.props.workDuringWeekend) actionCard = (<ActionCard_10 close={this.props.close} />); break;
             case 32: actionCard = (<ActionCard_12 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} />); break;
             case 36: actionCard = (<ActionCard_13 close={this.props.close} amountOfDefects={this.props.amountOfDefects} getAmountOfDefects={this.props.getAmountOfDefects} addAmountOfDefects={this.props.addAmountOfDefects} />); break;
         }
