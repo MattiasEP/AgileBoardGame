@@ -42,7 +42,7 @@ class App extends React.Component {
             rewards: 0,
             hint: 'Distribute your workers. Roll the dice when you are done.',
             wastedPoints: 0,
-            showActionScreen: true,
+            showActionScreen: false,
             sickDays: null,
             workerReturnDay: null,
             workerNumber: null,
