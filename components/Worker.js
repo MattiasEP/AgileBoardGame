@@ -17,9 +17,14 @@ class Worker extends React.Component {
     }
 
     render() {
-        let diceClass;
+
+        let diceClass; 
+        let origin = 'worker-origin';
+        let position = 'worker-box';
         if(this.props.workerObj.location == 'hospital') {
             diceClass = 'hidden';
+            origin = 'hidden';
+            position = 'us-btn-txt';
         } 
         else if(this.props.workerObj.dice == null && this.props.workerObj.location != 'hospital') {
             diceClass = 'visibility';
@@ -48,7 +53,7 @@ class Worker extends React.Component {
         }
 
         return (
-            <div className='worker-box'>
+            <div className={position}>
                 <div className={diceClass}>
                     <Dice dice={this.props.workerObj.dice} />
                 </div>
@@ -57,7 +62,7 @@ class Worker extends React.Component {
                 </div>
                 <img className='worker-img' src={this.props.src} />
                 <div onClick={this.moveWorkerRight.bind(this)}>
-                    <span className='worker-origin'>{this.props.workerObj.letter}</span>
+                    <span className={origin}>{this.props.workerObj.letter}</span>
                     <FontAwesome name='caret-right' size='2x' className={rightArrow} />
                 </div>
             </div>

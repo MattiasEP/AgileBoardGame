@@ -4,6 +4,15 @@ import Worker from './Worker';
 class Analytics extends React.Component {
 
     render() {
+
+        this.props.workers.map((worker, i) => {
+            worker.src = './img/dudes/' + (i + 1) + '.png';
+        })
+
+        if(this.props.holiday) {
+            this.props.workers[1].src = './img/dudes/2_new.png';
+        }
+
         return (
             <div className='field'>
                 <p className='head'>{this.props.title}</p>

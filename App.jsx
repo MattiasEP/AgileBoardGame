@@ -35,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 19,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -51,12 +51,14 @@ class App extends React.Component {
             amountOfDefects: null,
             workDuringWeekend: false,
             isSetWorkDuringWeekend: false,
+            dubbleDice: false,
+            holiday: false,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
-        window.onbeforeunload = function() {
-        return "";
-        }
+        // window.onbeforeunload = function() {
+        // return "";
+        // }
     }
 
     componentDidMount() {
@@ -146,7 +148,7 @@ class App extends React.Component {
     //Flyttar kort när värdet är 0
     moveCard(card) {
         switch(card.location) {
-            case 'analysis'   : card.location = 'development'; break;
+            case 'analysis'   : card.develop == 0 ? card.location = 'testing' : card.location = 'development'; break;
             case 'development': card.location = 'testing'; break;
             case 'testing'    : card.location = 'done'; this.calcSum(); 
                                 if (this.state.currentSprint == 4 && card.type == 'userstory') { this.checkUSdone(1); this.checkUSdone(2) } 
@@ -183,8 +185,19 @@ class App extends React.Component {
         if(this.state.newDay) {
             let workers = this.state.workers;
             workers.map(worker => {
-                worker.dice = Math.floor(Math.random() * 6) + 1;
-                worker.originalDice = worker.dice;
+                if(this.state.currentDay == 31 && this.state.dubbleDice == true) {
+                    worker.dice = Math.floor(Math.random() * 12) + 1;
+                    worker.originalDice = worker.dice;
+                    this.setState({dubbleDice: false});
+                }
+                else if(this.state.currentDay == 30 && this.state.dubbleDice == true) {
+                    worker.dice = Math.floor(Math.random() * 5) + 1;
+                    worker.originalDice = worker.dice;
+                }
+                else {
+                    worker.dice = Math.floor(Math.random() * 6) + 1;
+                    worker.originalDice = worker.dice;
+                }
             })
             this.changeHint('rolledDice');
             this.setState({workers: workers, newDay: false});
@@ -272,11 +285,16 @@ class App extends React.Component {
             }
             else if (this.state.currentDay != 20) {
                 this.state.currentDay++;
-                this.state.activeCards.map((card) => { card.movable = true });
+                this.state.activeCards.map((card) => { 
+                    card.movable = true 
+                    card.analysisCap = card.analysis;
+                    card.developCap = card.develop;
+                    card.testCap = card.test;
+                });
                 this.checkWorkers();
                 this.changeHint('nextDay');
                 this.clearDice();
-                this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
+                this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards});
                 this.actions();
                 this.nextSprint();
             }
@@ -287,11 +305,16 @@ class App extends React.Component {
                 else {
                     this.state.currentDay++;
                 }
-                this.state.activeCards.map((card) => { card.movable = true });
+                this.state.activeCards.map((card) => { 
+                    card.movable = true 
+                    card.analysisCap = card.analysis;
+                    card.developCap = card.develop;
+                    card.testCap = card.test;
+                });
                 this.checkWorkers();
                 this.changeHint('nextDay');
                 this.clearDice();
-                this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards})
+                this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards});
                 this.actions();
                 this.nextSprint();
             }
@@ -299,6 +322,21 @@ class App extends React.Component {
         else {
             this.changeHint('notNewDay');
         }
+    }
+
+    setNewDay(day) {
+        this.state.activeCards.map((card) => { 
+            card.movable = true 
+            card.analysisCap = card.analysis;
+            card.developCap = card.develop;
+            card.testCap = card.test;
+        });
+        this.checkWorkers();
+        this.changeHint('nextDay');
+        this.clearDice();
+        this.setState({newDay: true, currentDay: day, activeCards: this.state.activeCards, showActionScreen: false});
+        this.actions();
+        this.nextSprint();
     }
 
     nextSprint() {
@@ -368,14 +406,16 @@ class App extends React.Component {
             case 3: this.setState({showActionScreen: true}); break;
             case 6: this.setState({showActionScreen: true}); break;
             case 11: this.setState({showActionScreen: true}); break;
+            case 12: this.setState({showActionScreen: true}); break;
             case 15: this.setState({showActionScreen: true}); break;
             case 16: this.setState({showActionScreen: true}); break;
             case 18: this.setState({showActionScreen: true}); break;
             case 21: this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); break;
             case 22: if(this.state.workDuringWeekend == true) { this.setState({showActionScreen: true}); this.removeValueFromHighPrioDefect(); } break;
-            case 26: this.checkMaintenanceCards(); break;
+            case 26: this.setState({showActionScreen: true}); this.checkMaintenanceCards(); break;
             case 24: this.setState({showActionScreen: true}); break;
             case 28: this.setState({showActionScreen: true}); break;
+            case 30: this.setState({showActionScreen: true}); break;
             case 32: this.setState({showActionScreen: true}); break;
             case 36: this.setState({showActionScreen: true}); break;
         }
@@ -393,7 +433,7 @@ class App extends React.Component {
     sickWorker(origin, workerNumber) {
         let days = Math.floor(Math.random() * 6) + 1;
         let returnDay = this.state.currentDay + days;
-        if(workerNumber == 3) {
+        if(workerNumber == 1) {
             returnDay = 36;
         }
         this.state.workers[workerNumber].location = 'hospital';
@@ -530,7 +570,9 @@ class App extends React.Component {
 
     discardActiveUSCards() {
         this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory').map((card) => {
-            card.location = 'discarded';
+            if(card.analysis != card.analysisCap || card.develop != card.developCap || card.test != card.testCap) {
+                card.location = 'discarded';
+            }
         })
     } 
 
@@ -602,6 +644,33 @@ class App extends React.Component {
         }
     }
 
+    addPointsToUS() {
+        this.state.usCards[0].develop = parseInt(this.state.usCards[0].develop) + 3;
+        this.state.usCards[0].developCap = parseInt(this.state.usCards[0].developCap) + 3;
+    }
+
+    reducePointsFromUS() {
+        this.state.usCards[0].develop = parseInt(this.state.usCards[0].develop) + 1;
+        this.state.usCards[0].developCap = parseInt(this.state.usCards[0].developCap) + 1;
+
+        if (this.state.usCards[1].develop > 3) {
+            this.state.usCards[1].develop = parseInt(this.state.usCards[1].develop) - 3;
+            this.state.usCards[1].developCap = parseInt(this.state.usCards[1].developCap) - 3;
+        }
+        else {
+            this.state.usCards[1].develop = 0;
+            this.state.usCards[1].developCap = 0;
+        }
+    }
+
+    setDubbleDice() {
+        this.setState({dubbleDice: true});
+    }
+
+    holiday() {
+        this.setState({holiday: true});
+    }
+
         /*Next 2 event handlers are for the form to continue to the game*/
     handleChange(event) {
          this.setState({value: event.target.value});
@@ -659,11 +728,13 @@ class App extends React.Component {
                             amountOfUS={this.state.amountOfUS} changeAmountOfUS={this.changeAmountOfUS.bind(this)}
                             amountOfDefects={this.state.amountOfDefects} getAmountOfDefects={this.getAmountOfDefects.bind(this)}
                             addAmountOfDefects={this.addAmountOfDefects.bind(this)} setWeekendWork={this.setWeekendWork.bind(this)}
-                            workDuringWeekend={this.state.workDuringWeekend} nextDay={this.nextDay.bind(this)}
+                            workDuringWeekend={this.state.workDuringWeekend} nextDay={this.nextDay.bind(this)} setNewDay={this.setNewDay.bind(this)}
+                            addPointsToUS={this.addPointsToUS.bind(this)} reducePointsFromUS={this.reducePointsFromUS.bind(this)}
+                            setDubbleDice={this.setDubbleDice.bind(this)} holiday={this.holiday.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>
-                            <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay}/>
+                            <Departments workers={this.state.workers} dice={this.state.dice} move={this.moveWorker.bind(this)} newDay={this.state.newDay} holiday={this.state.holiday}/>
                         </div>
                         <div className='container container-col'>
                             <Controls rollDice ={this.rollDice.bind(this)} addCard={this.addCard.bind(this)} nextDay={this.nextDay.bind(this)} hint={this.state.hint} wastedPoints={this.state.wastedPoints} currentDay={this.state.currentDay} currentSprint={this.state.currentSprint}/>
@@ -672,11 +743,10 @@ class App extends React.Component {
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <div className='dubble-col'>
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
-                            <Hospital workers={this.state.workers} />
+                            <Hospital workers={this.state.workers} sickDays={this.state.sickDays} actionScreen={this.state.showActionScreen} currentDay={this.state.currentDay} />
                             <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} returnDay={this.state.workerReturnDay}/>
                             </div>
                         </div>
-
                         <ReleasePlanButton text='Calendar' direction='down' />
                     </div>
                     </ScrollableAnchor>
