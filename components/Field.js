@@ -16,6 +16,8 @@ class Analytics extends React.Component {
         let icon;
         switch(this.props.type) {
             case 'analysis': icon = (<img className='icon analysis' src='../img/dudes/analysis.png' />); break;
+            case 'development': icon = (<img className='icon development' src='../img/dudes/development.png' />); break;
+            case 'testing': icon = (<img className='icon development' src='../img/dudes/testing.png' />); break;
             default: break;
         }
 

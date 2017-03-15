@@ -704,11 +704,10 @@ class App extends React.Component {
     render() {
         return (
                 <div>
-                    {/*<div className='panel'>
+                    <div className='panel'>
                         <StartScreen />
-                        <ReleasePlanButton text="Continue" direction= 'cont'/>
                     </div>
-                    <ScrollableAnchor id={'picture'}>
+                    {/*<ScrollableAnchor id={'picture'}>
                     <div className='panel'>
                         <center>
                         <img src="./welcome/blend2.png" id="slide" width="1000px" height="600" />
@@ -716,7 +715,7 @@ class App extends React.Component {
                         </center>
 
                     </div>
-                    </ScrollableAnchor>
+                    </ScrollableAnchor>*/}
                     <ScrollableAnchor id={'start'}>
                     <div className='panel'>
                         <center>
@@ -734,7 +733,7 @@ class App extends React.Component {
                         </div>
                         </center>
                     </div>
-                    </ScrollableAnchor>*/}
+                    </ScrollableAnchor>
 
                     
                     <ScrollableAnchor id={'scrumboard'}>
@@ -767,15 +766,15 @@ class App extends React.Component {
                             <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} returnDay={this.state.workerReturnDay}/>
                             </div>
                         </div>
-                        <ReleasePlanButton text='Calendar' direction='down' />
+                        {/*<ReleasePlanButton text='Calendar' direction='down' />*/}
                     </div>
                     </ScrollableAnchor>
-                    <ScrollableAnchor id={'releaseplan'}>
+                    {/*<ScrollableAnchor id={'releaseplan'}>
                         <div className='panel'>
                             <TutorialButton />
                             <ReleasePlan currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} workerReturnDay={this.state.workerReturnDay} />
                         </div>
-                    </ScrollableAnchor>
+                    </ScrollableAnchor>*/}
                     <ScrollableAnchor id={'tutorial'}>
                         <div className='panel'>
                             <Tutorial />

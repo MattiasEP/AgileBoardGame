@@ -8,6 +8,7 @@ class Done extends React.Component {
         return (
             <div className='col-half'>
                 <div className='head'>Done</div>
+                <img className='icon profit' src='../img/dudes/profit.png' />
                 <div className='done-col'>{
                     this.props.cards.filter((card) => card.location == 'done').reverse().map(card => {
                         return (<Card
