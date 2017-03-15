@@ -35,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 31,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -76,11 +76,15 @@ class App extends React.Component {
                     if (card.type == 'defect') { card.name = 'D' + defect; defect++ }
                     if (card.type == 'maintenance') { card.name = 'M' + maintenance; maintenance++ }
                     card.analysisCap = card.analysis;
+                    card.analysisOriginal = card.analysis;
                     card.developCap  = card.develop;
+                    card.developOriginal = card.develop;
                     card.testCap     = card.test;
+                    card.testOriginal = card.test;
                     card.movable     = true;
                     card.doneSprint  = null;
                     card.addedSprint = null;
+                    card.touched = false;
                     if(card.type === 'userstory')   { this.state.usCards.push(card); }
                     else if(card.type === 'defect') { this.state.defectCards.push(card); }
                     else                            { this.state.maintenanceCards.push(card); }
@@ -242,14 +246,17 @@ class App extends React.Component {
                 switch(card.location) {
                     case 'analysis':
                     activeCards[cardIndex].analysis--;
+                    activeCards[cardIndex].touched = true;
                     if (activeCards[cardIndex].analysis == 0) { this.moveCard(card); card.movable = false; }
                     break;
                     case 'development':
                     activeCards[cardIndex].develop--;
+                    activeCards[cardIndex].touched = true;
                     if (activeCards[cardIndex].develop == 0) { this.moveCard(card); card.movable = false; }
                     break;
                     case 'testing':
                     activeCards[cardIndex].test--;
+                    activeCards[cardIndex].touched = true;
                     if (activeCards[cardIndex].test == 0) { this.moveCard(card); card.movable = false; card.doneSprint = this.state.currentSprint }
                     break;
                 }
@@ -562,12 +569,12 @@ class App extends React.Component {
         let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.location != 'discarded' && card.type == 'userstory' && card.addedSprint == this.state.currentSprint);
         let cardToMove = doneCards[0];
         cardToMove.location = 'analysis';
-        cardToMove.analysisCap = parseInt(cardToMove.analysisCap) + 2;
-        cardToMove.analysis = parseInt(cardToMove.analysisCap);
-        cardToMove.developCap = parseInt(cardToMove.developCap) + 4;
-        cardToMove.develop = parseInt(cardToMove.developCap);
-        cardToMove.testCap = parseInt(cardToMove.testCap) + 2;
-        cardToMove.test = parseInt(cardToMove.testCap); 
+        cardToMove.analysisCap = parseInt(cardToMove.analysisOriginal) + 2;
+        cardToMove.analysis = parseInt(cardToMove.analysisOriginal) + 2;
+        cardToMove.developCap = parseInt(cardToMove.developOriginal) + 4;
+        cardToMove.develop = parseInt(cardToMove.developOriginal) + 4;
+        cardToMove.testCap = parseInt(cardToMove.testOriginal) + 2;
+        cardToMove.test = parseInt(cardToMove.testOriginal) + 2;
     }
 
     checkMaintenanceCards() {
@@ -581,8 +588,8 @@ class App extends React.Component {
     }
 
     discardActiveUSCards() {
-        this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory').map((card) => {
-            if(card.analysis != card.analysisCap || card.develop != card.developCap || card.test != card.testCap) {
+        this.state.activeCards.filter((card) => card.location != 'done' && card.type == 'userstory' && card.touched).map((card) => {
+            if(card.analysis != card.analysisOriginal || card.develop != card.developOriginal || card.test != card.testOriginal) {
                 card.location = 'discarded';
             }
         })
