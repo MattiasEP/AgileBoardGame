@@ -127,6 +127,11 @@ a {
     top: 4px;
 }
 
+.analysis {
+    top: 4px;
+    right: 4px;
+}
+
 .controls-col {
     overflow-y: hidden;
     height: calc(100% - 32px);
@@ -326,6 +331,7 @@ a {
     padding: 5px;
     margin: 5px;
     box-sizing: border-box;
+    position: relative;
 }
 
 /*----- WORKER COMPONENT -----*/

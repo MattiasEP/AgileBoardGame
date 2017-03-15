@@ -13,9 +13,16 @@ class Analytics extends React.Component {
             this.props.workers[1].src = './img/dudes/2_new.png';
         }
 
+        let icon;
+        switch(this.props.type) {
+            case 'analysis': icon = (<img className='icon analysis' src='../img/dudes/analysis.png' />); break;
+            default: break;
+        }
+
         return (
             <div className='field'>
                 <p className='head'>{this.props.title}</p>
+                {icon}
                 <div className='workers'>
                     {this.props.workers.filter((worker) => worker.location == this.props.type).map(worker => {
                     return (<Worker
