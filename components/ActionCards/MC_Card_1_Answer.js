@@ -3,6 +3,12 @@ import React from 'react';
 class MC_Card_1_Answer extends React.Component {
 
     close(answer) {
+        if(answer == 'prio') {
+            this.props.setNewDay(13);
+        } 
+        else {
+            this.props.setNewDay(14);
+        }
         this.props.close();
         this.props.destroyEleven();
     }
@@ -10,7 +16,7 @@ class MC_Card_1_Answer extends React.Component {
     render() {
         
         let title, answer, button;
-        if(this.props.mc2answer == 'yes') {
+        if(this.props.mc1answer == 'prio') {
             title = 'Correct answer!'
             answer = 'The team loses an entire day but since IT prioritizes this the team can start working again tomorrow.';
             button = (<div className='button button-green action-button' onClick={() => this.close('prio')}>Go to next day!</div>);

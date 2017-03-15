@@ -24,20 +24,24 @@ class Hospital extends React.Component {
             hospitalClass2 = 'position-relative hospital-box';
             hospitalClass = 'hospital-box';
         }
-        else if (this.props.currentDay != 3) {
-            hospitalClass2 = 'position-relative hospital-box';
-
+        else if (this.props.currentDay == 3 && this.props.actionScreen) {
+            hospitalClass = 'hidden';
+            hospitalClass2 = 'hospital-visibility';
         }
-        else if (this.props.currentDay != 24) {
-            hospitalClass2 = 'position-relative hospital-box';
-
+        else if (this.props.currentDay == 24 && this.props.actionScreen) {
+            hospitalClass = 'hidden';
+            hospitalClass2 = 'hospital-visibility';
         }
-        else if (this.props.currenDay != 32) {
-            hospitalClass2 = 'position-relative hospital-box';
-
+        else if (this.props.currenDay == 32 && this.props.actionScreen) {
+            hospitalClass = 'hidden';
+            hospitalClass2 = 'hospital-visibility';
         }
         else {
-            hospitalClass2 = 'hospital-visibility';
+            hospitalClass2 = 'position-relative hospital-box';
+            hospitalClass = 'hospital-box';
+        }
+
+        if (this.props.sickDays == null || this.props.sickDays < 0) {
             hospitalClass = 'hidden';
         }
 
@@ -46,21 +50,15 @@ class Hospital extends React.Component {
                 <div className='head'>Hospital</div>
                 <div className='done-col hospital-col'>
                     <div className={hospitalClass2}>
-                    {this.props.workers.filter((worker) => worker.location == 'hospital').map(worker => {
-                        {/*if(worker.location == 'hospital' && !this.props.actionScreen) {
-                            hospitalClass = 'hospital-box';
-                        }
-                        else {
-                            hospitalClass = 'hidden';
-                        }                    */}
-                    return (<Worker
-                            key = {worker.key}
-                            workerObj = {worker}
-                            src = {worker.src}
-                            location = {worker.location}
-                            newDay = {this.props.newDay}
-                            />);
-                    })}
+                        {this.props.workers.filter((worker) => worker.location == 'hospital').map(worker => {
+                            return (<Worker
+                                    key = {worker.key}
+                                    workerObj = {worker}
+                                    src = {worker.src}
+                                    location = {worker.location}
+                                    newDay = {this.props.newDay}
+                                    />);
+                        })}
                     </div>
                     <div className={hospitalClass}>
                         <span className='hospital-txt hospital-block upper'>Returns in</span>
