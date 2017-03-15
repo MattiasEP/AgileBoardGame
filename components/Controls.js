@@ -9,6 +9,7 @@ class Controls extends React.Component {
         return (
             <div className='col'>
                 <div className='head'>Controls</div>
+                <img className='icon joystick' src='../img/dudes/joystick.png' />
                 <div className='controls-col'>
                     <HintBox tips={this.props.hint}/>
                     <RollDice rollDice={this.props.rollDice} />
