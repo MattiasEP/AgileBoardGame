@@ -35,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 29,
+            currentDay: 31,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -54,6 +54,7 @@ class App extends React.Component {
             dubbleDice: false,
             holiday: false,
             acDice: false,
+            hospitalName: 'Hospital',
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
@@ -461,7 +462,7 @@ class App extends React.Component {
                 case 'developer': this.state.workers[this.state.workerNumber].location = 'development'; break;
                 case 'tester': this.state.workers[this.state.workerNumber].location = 'testing'; break;
             }
-            this.setState({sickDays: null});
+            this.setState({sickDays: null, hospitalName: 'Hospital'});
         }
     }
 
@@ -680,6 +681,7 @@ class App extends React.Component {
 
     holiday() {
         this.setState({holiday: true});
+        this.setState({hospitalName: 'Hawaii'})
     }
 
         /*Next 2 event handlers are for the form to continue to the game*/
@@ -754,7 +756,7 @@ class App extends React.Component {
                             <Column type='testing'     title='Testing'     cards={this.state.activeCards} increasePoint={this.increasePoint.bind(this)} decreasePoint={this.decreasePoint.bind(this)} moveCard={this.moveCard.bind(this)} dice={this.state.dice} />
                             <div className='dubble-col'>
                             <Done cards={this.state.activeCards} moveCard={this.moveCard.bind(this)} earnings={this.state.earnings} />
-                            <Hospital workers={this.state.workers} sickDays={this.state.sickDays} actionScreen={this.state.showActionScreen} currentDay={this.state.currentDay} />
+                            <Hospital workers={this.state.workers} sickDays={this.state.sickDays} actionScreen={this.state.showActionScreen} currentDay={this.state.currentDay} hospitalName={this.state.hospitalName} />
                             <CalendarMini currentDay={this.state.currentDay} currentSprint={this.state.currentSprint} returnDay={this.state.workerReturnDay}/>
                             </div>
                         </div>

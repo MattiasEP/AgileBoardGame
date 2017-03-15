@@ -47,7 +47,7 @@ class Hospital extends React.Component {
 
         return (
             <div className='col-half col-hospital'>
-                <div className='head'>Hospital</div>
+                <div className='head'>{this.props.hospitalName}</div>
                 <div className='done-col hospital-col'>
                     <div className={hospitalClass2}>
                         {this.props.workers.filter((worker) => worker.location == 'hospital').map(worker => {
