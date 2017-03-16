@@ -94,6 +94,8 @@ class ActionCardScreen extends React.Component {
         return (
             <div className={actionClass}>
                 {actionCard}
+                <div className=''bubbles></div>
+                <img className='master' src='../img/dudes/master.gif' />
             </div>
         );
     }

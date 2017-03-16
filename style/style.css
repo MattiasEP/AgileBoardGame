@@ -14,12 +14,12 @@ body {
     overflow: hidden;
 }
 .team_input{
-  width:80%;
-  text-align:center;
-  font-size:2em;
-  padding:2.2%;
-  margin-bottom:2%;
-  border-radius:3px;
+    width:80%;
+    text-align:center;
+    font-size:2em;
+    padding:2.2%;
+    margin-bottom:2%;
+    border-radius:3px;
 }
 
 a {
@@ -28,7 +28,7 @@ a {
 }
 
 .start-screen {
-    width: 50%;
+    width: 80%;
     text-align: center;
     /*border-radius: 5px;
     background: #eee;
@@ -37,6 +37,11 @@ a {
     margin: 5px;
     box-sizing: border-box;*/
     padding: 50px !important;
+}
+
+.header {
+    padding: 50px;
+    text-align: center;
 }
 
 .intro-head {
@@ -333,10 +338,6 @@ a {
     margin: 0 0 5px 0;
 }
 
-.float-left {
-    float: left;
-}
-
 .field {
     flex-grow: 1;
     border-radius: 5px;
@@ -347,6 +348,12 @@ a {
     margin: 5px;
     box-sizing: border-box;
     position: relative;
+}
+
+.master {
+    position: absolute;
+    left: 100px;
+    bottom: 100px;
 }
 
 /*----- WORKER COMPONENT -----*/
