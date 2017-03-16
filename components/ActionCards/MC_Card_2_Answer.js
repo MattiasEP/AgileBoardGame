@@ -18,7 +18,7 @@ class MC_Card_2_Answer extends React.Component {
         let title, answer, button;
         if(this.props.mc2answer == 'yes') {
             title = 'Correct answer!'
-            answer = 'One development point will be added to the next user story that you pick. However, the user story after that will have three development points reduced from it.';
+            answer = 'One development point will be added to the next user story you pick. However, the user story after that will have three development points reduced from it, thanks to the refactoring of code.';
             button = (<div className='button button-green action-button' onClick={() => this.close('yes')}>OK!</div>);
         }
         else {

@@ -12,7 +12,7 @@ class ActionCard_11 extends React.Component {
         return (
             <div className='us-btn-txt action-card'>
                 <h1 className='action-title'>Action Card #11</h1>
-                <p>Oh no! The competition went public with the same thing we are developing, so business decided to pull the plug on all current development and start fresh with something new. All user stories in test, development and analysis that the team has started working on will be removed.</p>
+                <p>Oh no! The competition went public with the same thing we are developing, so business decided to pull the plug on all current development and start fresh with something new. All user stories in Analysis, Development and Testing that the team has started working on will be removed.</p>
                 <div className='button button-green action-button' onClick={() => this.close()}>
                     <p className='us-btn-txt'>OK!</p>
                 </div>

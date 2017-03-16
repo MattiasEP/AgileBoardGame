@@ -11,8 +11,8 @@ class ActionCard_8 extends React.Component {
         return (
             <div className='us-btn-txt action-card'>
                     <h1 className='action-title'>Action Card #8</h1>
-                    <p>The management wants the team to work with a sprint commitment. Decide together how many user stories the team can make before the sprint is over. The team gets 200$ extra if they succeed.</p>
-                    <p>Enter the amount of user stories <strong>(between 3 and 30)</strong> that you think you will complete during this sprint:</p>
+                    <p>The management wants the team to work with a sprint commitment. Decide together how many user stories the team can make before the sprint is over. The team gets $200 extra if they fulfill the goal.</p>
+                    <p>Enter the amount of user stories <strong>(between 3 and 30)</strong> that you think you can complete during this sprint:</p>
                     <div className='action-card-wrapper'>
                         <div className='plusminus'>
                             <FontAwesome name='minus-circle' size='3x' className='us-btn-txt' onClick={() => this.props.changeAmountOfUS('-')} />

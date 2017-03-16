@@ -15,7 +15,7 @@ class MC_Card_3_Answer extends React.Component {
         let title, answer, button;
         if(this.props.mc3answer == 'yes') {
             title = 'Excellent choice!'
-            answer = 'One of the team members comes up with a brilliant idea that saves time for the next day. Team gets double points for each dice throw for one day.';
+            answer = 'One of the team members comes up with a brilliant idea that saves time on the current project. For the next day, the team gets double points for each dice throw.';
             button = (<div className='button button-green action-button' onClick={() => this.close('yes')}>OK!</div>);
         }
         else {

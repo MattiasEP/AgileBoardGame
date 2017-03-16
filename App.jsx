@@ -386,7 +386,7 @@ class App extends React.Component {
             wastedPoints = wastedPoints + parseInt(this.state.workers[i].dice);
         }
         if (wastedPoints > 0) {
-            this.setState({hint: `Du vaskade ${wastedPoints} poäng. Planera dina dagar bättre!`})
+            this.setState({hint: `You wasted ${wastedPoints} points. Pay closer attention to the tasks at hand and plan your days accordingly!`})
         }
     }
 

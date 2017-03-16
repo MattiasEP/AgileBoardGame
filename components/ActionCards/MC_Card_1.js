@@ -14,7 +14,7 @@ class MC_Card_1 extends React.Component {
                 <p>The Citrix environment goes down for the entire team. What do you do?</p>
                 <div>
                     <div className='button action-button' onClick={() => this.close('prio')}>Make sure that the IT-support prioritizes this</div>
-                    <div className='button action-button' onClick={() => this.close('rest')}>Go home and rest for tomorrow</div>
+                    <div className='button action-button' onClick={() => this.close('rest')}>Go home and rest for tomorrow, while trusting IT to do their job</div>
                 </div>
             </div>
         );
