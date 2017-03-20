@@ -10,6 +10,7 @@ class ActionCard_3 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+            <img className='icon fever' src='../../img/dudes/AC3.png' />
                 <h1 className='action-title'>Action Card #3</h1>
                 <p>The customer fires the new test manager. Testing effort is back to normal.</p>
                 <div className='button button-green action-button' onClick={() => this.close()}>

@@ -15,6 +15,7 @@ class ActionCard_9 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon overtime' src='../../img/dudes/AC9.png' />
                 <h1 className='action-title'>Action Card #9</h1>
                 <p>How does the commitment go? The team can decide to work overtime and get an extra dice throw this day. However they will lose one day of the next sprint. It is up to the team to decide.</p>
                 <p>Should the team work overtime?</p>

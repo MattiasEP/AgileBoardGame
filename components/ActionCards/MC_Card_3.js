@@ -10,6 +10,7 @@ class MC_Card_3 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon coffea' src='../../img/dudes/MC3.png' />
                 <h1 className='action-title'>Multiple Choice Card #3</h1>
                 <p>Last day of sprint. Team chooses whether to spend extra time on a longer retrospective, resulting in the loss of one point for each person on the team for the rest of the day.</p>
                 <p>Do you spend extra time on a longer retrospective?</p>

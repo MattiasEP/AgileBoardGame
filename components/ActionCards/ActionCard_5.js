@@ -10,6 +10,7 @@ class ActionCard_5 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon' src='../../img/dudes/AC5.png' />
                 <h1 className='action-title'>Action Card #5</h1>
                 <p> 
                     A critical defect! Set the defect with highest priority that has not been started yet.

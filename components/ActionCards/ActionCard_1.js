@@ -11,6 +11,7 @@ class ActionCard_1 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                    <img className='icon fever' src='../../img/dudes/AC1.png' />
                     <h1 className='action-title'>Action Card #1</h1>
                     <p>One of the developers gets a fever and will be away for one dice throw of days.</p>
                     <div className='action-wrapper'>

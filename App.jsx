@@ -34,7 +34,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 25,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -650,7 +650,11 @@ class App extends React.Component {
 
     setWeekendWork(answer) {
         switch(answer) {
-            case 'yes': this.setState({workDuringWeekend: true, isSetWorkDuringWeekend: true}); break;
+            case 'yes': 
+                this.setState({workDuringWeekend: true, isSetWorkDuringWeekend: true}); 
+                this.state.activeCards.map((card) => { card.movable = true });
+                break;
+
             case 'no':
                 this.state.currentDay++;
                 this.state.activeCards.map((card) => { card.movable = true });
@@ -660,6 +664,7 @@ class App extends React.Component {
                 this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards, workDuringWeekend: false, isSetWorkDuringWeekend: true, showActionScreen: true})
                 this.actions();
                 this.nextSprint();
+                break;
         }
     }
 

@@ -10,6 +10,7 @@ class ActionCard_4 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon' src='../../img/dudes/AC4.png' />
                 <h1 className='action-title'>Action Card #4</h1>
                 <p>If Maintenance task 1 is not completed, the system goes down. According to the contract this means that the downtime will be subtracted from your pay for the sprint. Please subtract $200 from the total and set the M1 with highest priority.</p>
                 <div className='button button-green action-button' onClick={() => this.close()}>

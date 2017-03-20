@@ -11,6 +11,7 @@ class ActionCard_12 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                    <img className='icon hawaii' src='../../img/dudes/hawaii.png' />
                     <h1 className='action-title'>Action Card #12</h1>
                     <p>So... One of the developers spontaneously booked a trip to Hawaii and will be gone for the rest of the week.</p>
                     <div className='button button-green action-button' onClick={() => this.close()}>

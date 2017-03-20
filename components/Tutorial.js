@@ -38,6 +38,10 @@ class Tutorial extends React.Component {
                 Once your team don't have any hours/points left, you can click the "Next day"-button.
                 This will allow you to once again distribute the team members and roll the dice.
                 </p>
+
+                <h3>Action- and Multiple choice cards</h3>
+                <p>During the game, you will encounter "action cards" and "multiple choice cards". The action cards as
+                </p>
             </div>
         );
     }
