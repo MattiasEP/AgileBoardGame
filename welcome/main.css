@@ -1,8 +1,8 @@
-body {
+/*body {
   margin: 0;
   padding: 0;
   background: #005E51;
-}
+}*/
 
 
 .wrapper {
@@ -92,7 +92,7 @@ body {
   font-weight: bold;
 }
 
-form {
+/*form {
     max-width: 350px;
     margin:0 auto;
     text-align: center;
@@ -112,13 +112,13 @@ form {
     box-sizing: border-box;
     outline: 0;
     z-index: 1;
-}
+}*/
 
 .feedback-input:focus {
     border: 2px solid #dddddd;
 }
 
-[type="submit"] {
+/*[type="submit"] {
     font-family: 'Montserrat', Arial, Helvetica, sans-serif;
     width: 80%;
     background: #cd3333;
@@ -132,8 +132,8 @@ form {
     transition: all 0.3s;
     margin-top: -4px;
     font-weight: 700;
-}
+}*/
 
-[type="submit"]:hover {
+/*[type="submit"]:hover {
     background: #D46A6A;
-}
+}*/

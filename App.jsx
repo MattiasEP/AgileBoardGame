@@ -21,8 +21,7 @@ import teamName from './components/teamName';
 class App extends React.Component {
 
     constructor() {
-        super();/*3 first rows are for submit handler*/
-            this.state = {value: ''};
+        super();/*2 first rows are for submit handler*/
             this.handleChange = this.handleChange.bind(this);
             this.handleSubmit = this.handleSubmit.bind(this);
            
@@ -55,6 +54,7 @@ class App extends React.Component {
             holiday: false,
             acDice: false,
             hospitalName: 'Hospital',
+            playerName: null,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
@@ -693,7 +693,7 @@ class App extends React.Component {
 
         /*Next 2 event handlers are for the form to continue to the game*/
     handleChange(event) {
-         this.setState({value: event.target.value});
+         this.setState({playerName: event.target.value});
     }
 
     handleSubmit(event) {
@@ -705,7 +705,7 @@ class App extends React.Component {
         return (
                 <div>
                     <div className='panel'>
-                        <StartScreen />
+                        <StartScreen handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)} />
                     </div>
                     {/*<ScrollableAnchor id={'start'}>
                     <div className='panel'>

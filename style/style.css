@@ -39,9 +39,28 @@ a {
     padding: 50px !important;
 }
 
-.header {
-    padding: 50px;
+.start-input {
+    border-radius: 4px;
+    height: 55px;
+    width: 100%;
+    font-size: 3em;
     text-align: center;
+    margin-bottom: 10px;
+    border: 1px solid black;
+}
+
+.start-input:focus {
+    outline: none;
+}
+
+.start-submit {
+    font-family: 'Raleway';
+    font-size: 1.5em;
+}
+
+.header {
+    text-align: center;
+    padding-top: 70px;
 }
 
 .intro-head {
@@ -49,8 +68,18 @@ a {
 }
 
 .txt-box {
-    width: 30%;
+    margin: auto;
     text-align: justify;
+}
+
+.txt-bubble {
+    width: 45%;
+    position: absolute;
+    z-index: 10;
+    top: 47%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
 }
 
 .panel {
@@ -351,8 +380,10 @@ a {
     position: relative;
 }
 
-.txt-bubble {
-    margin-left: 400px;
+.start-display {
+    position: absolute;
+    left: 25%;
+    z-index: -1;
 }
 
 .master {
@@ -411,6 +442,10 @@ a {
     border-radius: 50%;
     width: 80px;
     height: 80px;
+}
+
+.start {
+    left: 220px;
 }
 
 /*----- WORKER COMPONENT -----*/
@@ -781,7 +816,6 @@ a {
     background-color: white;
     opacity: 1;
     color: black;
-    /*height: 50%;*/
     width: 30%;
     z-index: 2000;
     border-radius: 5px;

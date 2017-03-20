@@ -7,7 +7,7 @@ class StartScreen extends React.Component {
         return (
             <div className='position-relative panel'>
                 <div className='header'>
-                    <h1 className='letter-pressed intro-head'>AGILE BOARD GAME</h1>
+                    <img className='' src='../img/dudes/logo.png' />
                 </div>
                     <div className='txt-bubble'>
                         <div className='txt-box'>
@@ -23,8 +23,16 @@ class StartScreen extends React.Component {
                             It is your responsibility to handle whatever comes in the way of your team, from traffic accidents to defects hampering your performance. 
                             The game combines learning agile practices with real-life examples of what happens when you’re working in a team.</p>
                         </div>
+                        <div className='txt-box'>
+                            <p>Enter your team name and press "START" to begin!</p>
+                            <form onSubmit={this.props.handleSubmit}>
+                                <input className='start-input' type='text' placeholder='Team name' onChange={this.props.handleChange} required />
+                                <input type='submit' className='button button-green start-submit' value='Start' />
+                            </form>
+                        </div>
                     </div>
                 <img className='master master-start' src='../img/dudes/master.gif' />
+                <img className='us-btn-txt' src='../img/dudes/start.png' />
             </div>
         );
     }
