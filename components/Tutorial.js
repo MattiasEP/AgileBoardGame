@@ -12,7 +12,8 @@ class Tutorial extends React.Component {
                 Start each day by distributing the team members on the board by pressing the left/right-button by their sides. 
                 Någon smart text om hur gubbarna kan flytta...
                 Each team member gets their own die which represents how many hours they will work on that day. 
-                Roll the dice when you are done distributing the team members to assign them their die value.
+                Roll the dice when you are done distributing the team members to assign them their die value. 
+                Once you have rolled the dice, you can no longer move the team members until next day.
                 </p>
 
                 <h3>Stories</h3>
@@ -25,7 +26,17 @@ class Tutorial extends React.Component {
                     <li>Maintenance</li>
                     <li>Defects</li>
                 </ul>
-                Every story has points for "Analysis", "Development" and "Testing". One point equals one hour of work. 
+                Every story has points for "Analysis", "Development" and "Testing". One point equals one hour of work.
+                You can decrease points form stories by clicking "-" but only if your team members have points to spend. 
+                Once you hit 0, the story will move to the next column. Stories can only move one column a day.
+                You will get paid for each user story that gets to the done column.
+                It is up to you to decide if you want to spend time on Maintenance and Defects 
+                </p>
+
+                <h3>Next day</h3>
+                <p>
+                Once your team don't have any hours/points left, you can click the "Next day"-button.
+                This will allow you to once again distribute the team members and roll the dice.
                 </p>
             </div>
         );
