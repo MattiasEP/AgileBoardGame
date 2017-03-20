@@ -45,10 +45,18 @@ class Hospital extends React.Component {
             hospitalClass = 'hidden';
         }
 
+        let icon;
+        if(this.props.hospitalName != 'Hawaii') {
+            icon = (<img className='icon whambulance' src='../img/dudes/whambulance.png' />);
+        }
+        else {
+            icon = (<img className='icon hawaii' src='../img/dudes/hawaii.png' />);
+        }
+
         return (
             <div className='col-half col-hospital'>
                 <div className='head'>{this.props.hospitalName}</div>
-                <img className='icon whambulance' src='../img/dudes/whambulance.png' />
+                {icon}
                 <div className='done-col hospital-col'>
                     <div className={hospitalClass2}>
                         {this.props.workers.filter((worker) => worker.location == 'hospital').map(worker => {

@@ -46,15 +46,11 @@ a {
 
 .intro-head {
     font-size: 4em;
-    margin: auto;
 }
 
-.intro-box {
-    float: left;
-    width: calc(50% - 20px);
+.txt-box {
+    width: 30%;
     text-align: justify;
-    margin: 10px;
-    font-size: 1.2em;
 }
 
 .panel {
@@ -150,6 +146,11 @@ a {
 .calendar-icon {
     top: 2px;
     right: 5px;
+}
+
+.hawaii {
+    top: 0;
+    width: 35px; 
 }
 
 .controls-col {
@@ -350,10 +351,66 @@ a {
     position: relative;
 }
 
+.txt-bubble {
+    margin-left: 400px;
+}
+
 .master {
     position: absolute;
     left: 100px;
     bottom: 100px;
+}
+
+.master-start {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+}
+
+.bubbles-box {
+    position: absolute;
+    bottom: 550px;
+    left: 295px;
+    width: 290px;
+    height: 150px;
+    background-color: transparent;
+}
+
+.bubbles {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.bubble-1 {
+    position: absolute;
+    bottom: 0;
+    left: 40px;
+    background-color: #fff;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+
+}
+
+.bubble-2 {
+    position: absolute;
+    bottom: 50px;
+    left: 80px;
+    background-color:#fff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+}
+
+.bubble-3 {
+    position: absolute;
+    bottom: 50px;
+    left: 180px;
+    background-color:#fff;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
 }
 
 /*----- WORKER COMPONENT -----*/
