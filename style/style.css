@@ -2,10 +2,17 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: 'PixelOperator';
+  src: url('../font/PixelOperator.ttf');
+}
+
 body {
     margin: 0;
     padding-top: 10px;
-    font-family: 'Raleway', sans-serif;
+    /*font-family: 'Raleway', sans-serif;*/
+    font-family: 'PixelOperator';
+    font-size: 1.2em;
     min-width: 100vw;
     min-height: 100vh;
     background-color: #005E51;
@@ -195,6 +202,26 @@ a {
 .overtime {
     top: 5px;
     right: 5px;
+}
+
+.correct {
+    top: 10px;
+    right: 10px;
+}
+
+.wrong {
+    top: 10px;
+    right: -12px;
+}
+
+.pacman {
+    top: 5px;
+    right: 5px;
+}
+
+.checklist {
+    top: 10px;
+    right: 10px;
 }
 
 .controls-col {
@@ -463,6 +490,11 @@ a {
     left: 220px;
 }
 
+.nextday {
+    margin-left: 15px;
+    margin-bottom: -8px;
+}
+
 /*----- WORKER COMPONENT -----*/
 
 .worker-box {
@@ -492,7 +524,7 @@ a {
 
 .worker-origin {
     position: absolute;
-    right: -40%;
+    right: -65%;
     bottom: 40%;
 }
 
@@ -500,12 +532,14 @@ a {
     position: absolute;
     top: 55%;
     left: -45%;
+    font-size: 1.7em;
 }
 
 .arrow-right {
     position: absolute;
     top: 55%;
     right: -45%;
+    font-size: 1.7em;
 }
 
 .click-box {
@@ -661,7 +695,7 @@ a {
 
 .tutorial-btn {
     position: absolute;
-    top: 0;
+    top: 3px;
     right: 15px;
 }
 

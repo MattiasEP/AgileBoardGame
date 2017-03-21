@@ -52,6 +52,13 @@ class Worker extends React.Component {
             rightArrow = 'hidden';
         }
 
+        let letter;
+        switch(this.props.workerObj.letter) {
+            case 'A': letter = <img src='../../img/dudes/a.png' />; break;
+            case 'D': letter = <img src='../../img/dudes/d.png' />; break;
+            case 'T': letter = <img src='../../img/dudes/t.png' />; break;
+        }
+
         return (
             <div className={position}>
                 <div className={diceClass}>
@@ -62,7 +69,7 @@ class Worker extends React.Component {
                 </div>
                 <img className='worker-img' src={this.props.src} />
                 <div onClick={this.moveWorkerRight.bind(this)}>
-                    <span className={origin}>{this.props.workerObj.letter}</span>
+                    <span className={origin}>{letter}</span>
                     <FontAwesome name='caret-right' size='2x' className={rightArrow} />
                 </div>
             </div>

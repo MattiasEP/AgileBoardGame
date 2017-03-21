@@ -21,11 +21,13 @@ class Tutorial extends React.Component {
                 You can add stories to the scrum board by clicking one of the "add-buttons" in the control column. 
                 The story will then appear in the analysis column.
                 There are three kinds of stories: 
+                </p>
                 <ul>
                     <li>User stories</li>
                     <li>Maintenance</li>
                     <li>Defects</li>
                 </ul>
+                <p>
                 Every story has points for "Analysis", "Development" and "Testing". One point equals one hour of work.
                 You can decrease points form stories by clicking "-" but only if your team members have points to spend. 
                 Once you hit 0, the story will move to the next column. Stories can only move one column a day.

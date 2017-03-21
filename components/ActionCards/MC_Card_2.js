@@ -10,6 +10,7 @@ class MC_Card_2 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon correct' src='../../img/dudes/questionmark.png' />
                 <h1 className='action-title'>Multiple Choice Card #2</h1>
                 <p>The team discovers that the top story in development is in need of refactoring, resulting in  1 point of extra development. Do you spend the time now to sort the issue?</p>
                 <div className='action-wrapper-2'>

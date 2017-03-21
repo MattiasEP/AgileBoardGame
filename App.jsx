@@ -34,7 +34,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 25,
+            currentDay: 35,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -712,26 +712,6 @@ class App extends React.Component {
                     <div className='panel'>
                         <StartScreen handleSubmit={this.handleSubmit.bind(this)} handleChange={this.handleChange.bind(this)} />
                     </div>
-                    {/*<ScrollableAnchor id={'start'}>
-                    <div className='panel'>
-                        <center>
-                        <div id="wrapper2">
-                            <h1>AGILE <span id="B">B</span><span id="O">O</span><span id="A">A</span><span id="R">R</span><span id="D">D</span> GAME </h1>
-                            <img src="../img/dudes/1.png" alt /><img src="../img/dudes/2.png" alt /><img src="../img/dudes/3.png" alt />
-                            <img src="../img/dudes/4.png" alt /><img src="../img/dudes/5.png" alt /><img src="../img/dudes/6.png" alt />
-                            <form onSubmit={this.handleSubmit}>
-                                <input className='team_input' type="text" placeholder="Team name"value={this.state.value} onChange={this.handleChange} />
-                                <input type="submit" value="Start Game" />
-                            </form>
-
-
-
-                        </div>
-                        </center>
-                    </div>
-                    </ScrollableAnchor>*/}
-
-                    
                     <ScrollableAnchor id={'scrumboard'}>
                     <div className='panel'>
                         <ActionCardScreen 

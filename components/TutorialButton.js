@@ -6,7 +6,7 @@ class TutorialButton extends React.Component {
     render() {
         return (
             <div className='tutorial-btn'>
-                <a href='#tutorial'><FontAwesome name='question-circle' size='3x' /></a>
+                <a href='#tutorial'><img className='icon' src='../../img/dudes/questionmark.png' /></a>
             </div>
             
         );

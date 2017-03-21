@@ -10,6 +10,7 @@ class MC_Card_1 extends React.Component {
     render() {
         return (
             <div className='us-btn-txt action-card'>
+                <img className='icon' src='../../img/dudes/questionmark.png' />
                 <h1 className='action-title'>Multiple Choice Card #1</h1>
                 <p>The Citrix environment goes down for the entire team. What do you do?</p>
                 <div>
