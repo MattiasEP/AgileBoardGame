@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import querystring from 'querystring';
 import ScrollableAnchor from 'react-scrollable-anchor';
 import { configureAnchors } from 'react-scrollable-anchor';
 import StartScreen from './components/Startscreen';
@@ -34,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 35,
+            currentDay: 40,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -434,6 +435,7 @@ class App extends React.Component {
             case 30: this.setState({showActionScreen: true}); break;
             case 32: this.setState({showActionScreen: true}); break;
             case 36: this.setState({showActionScreen: true}); break;
+            case 41: this.endGame();
         }
     }
 
@@ -620,8 +622,10 @@ class App extends React.Component {
     }
 
     getAmountOfDefects() {
-        let amount = Math.floor(Math.random() * 6) + 1;
-        this.setState({amountOfDefects: amount});
+        if(!this.state.acDice) {
+            let amount = Math.floor(Math.random() * 6) + 1;
+            this.setState({amountOfDefects: amount, acDice: true});
+        }
     }
 
     addAmountOfDefects() {
@@ -630,7 +634,7 @@ class App extends React.Component {
                 this.addCard('defect');
             }
         }
-        this.setState({activeCards: this.state.activeCards});
+        this.setState({activeCards: this.state.activeCards, acDice: false});
     }
 
     checkDefectsDone(type) {
@@ -704,6 +708,13 @@ class App extends React.Component {
     handleSubmit(event) {
         window.location = 'http://localhost:3000/#scrumboard';
         event.preventDefault();
+    }
+
+    endGame() {
+        axios.post('http://localhost:80/AgileBoardGame/api/api.php', querystring.stringify({teamName: this.state.playerName, score: this.state.earnings}))
+        .then(response => {
+            console.log(response)
+        });
     }
 
     render() {

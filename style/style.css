@@ -935,7 +935,7 @@ a {
     position: relative;
     height: 22px;
     width: 22px;
-    border: 1px solid #666;
+    border: 1px solid black;
     border-radius: 4px;
     background-color: white;
     vertical-align: bottom;
