@@ -27,7 +27,7 @@ class StartScreen extends React.Component {
                             <p>Enter your team name and press "START" to begin!</p>
                             <form onSubmit={this.props.handleSubmit}>
                                 <input className='start-input' type='text' placeholder='Team name' onChange={this.props.handleChange} required />
-                                <input type='submit' className='button button-green start-submit' value='Start' />
+                                <input type='submit' className='button button-green start-submit' value='START' />
                             </form>
                         </div>
                     </div>

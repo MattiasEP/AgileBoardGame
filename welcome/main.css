@@ -21,7 +21,7 @@
 .wrapper .link{
   position: absolute;
   bottom: 56px;
-  font-family: 'Raleway', sans-serif;
+  /*font-family: 'Raleway', sans-serif;*/
   padding: 15px 32px;
   width: 140px;
   border-radius: 10px ;
@@ -57,7 +57,7 @@
 #wrapper2 h1 {
   text-align: center;
   padding-top: 50px;
-  font-family: 'Permanent Marker', cursive;
+  /*font-family: 'Permanent Marker', cursive;*/
   font-size: 3em;
   color: #000;
 }

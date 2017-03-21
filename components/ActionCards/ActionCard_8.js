@@ -16,13 +16,13 @@ class ActionCard_8 extends React.Component {
                     <p>Enter the amount of user stories <strong>(between 3 and 30)</strong> that you think you can complete during this sprint:</p>
                     <div className='action-card-wrapper'>
                         <div className='plusminus'>
-                            <FontAwesome name='minus-circle' size='3x' className='us-btn-txt' onClick={() => this.props.changeAmountOfUS('-')} />
+                            <img src='../../img/dudes/minus.png' className='us-btn-txt' onClick={() => this.props.changeAmountOfUS('-')} />
                         </div>
                         <div className='plusminus'>
                             <span className='us-btn-txt amount-of-us'>{this.props.amountOfUS}</span>
                         </div>
                         <div className='plusminus'>
-                            <FontAwesome name='plus-circle' size='3x' className='us-btn-txt' onClick={() => this.props.changeAmountOfUS('+')} />
+                            <img src='../../img/dudes/plus.png' className='us-btn-txt' onClick={() => this.props.changeAmountOfUS('+')} />
                         </div>
                     </div>
                     <div className='button button-green action-button' onClick={() => this.close()}>

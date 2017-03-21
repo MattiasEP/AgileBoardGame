@@ -47,10 +47,11 @@ a {
 }
 
 .start-input {
+    font-family: 'PixelOperator';
     border-radius: 4px;
     height: 55px;
     width: 100%;
-    font-size: 3em;
+    font-size: 2.5em;
     text-align: center;
     margin-bottom: 10px;
     border: 1px solid black;
@@ -61,7 +62,7 @@ a {
 }
 
 .start-submit {
-    font-family: 'Raleway';
+    font-family: 'PixelOperator';
     font-size: 1.5em;
 }
 
@@ -562,7 +563,7 @@ a {
 .dice-value {
     font-size: 20px;
     position: absolute;
-    top: 12%;
+    top: 13%;
     left: 50%;
     margin-right: -50%;
     transform: translate(-50%, -50%)
@@ -909,7 +910,7 @@ a {
     border-radius: 4px;
     border: 1px solid #666;
     font-size: 5em;
-    font-family: 'Montserrat';
+    font-family: 'PixelOperator';
 }
 
 .mini-calendar-wrapper {
@@ -990,7 +991,7 @@ a {
 }
 
 .hospital-no {
-    font-family: 'Montserrat';
+    font-family: 'PixelOperator';
     font-size: 3em;
 }
 
@@ -1030,8 +1031,9 @@ a {
 }
 
 .amount-of-us {
-    font-family: 'Montserrat';
+    font-family: 'PixelOperator';
     font-size: 5em;
+    margin-top: -5px;
 }
 
 .action-button {
