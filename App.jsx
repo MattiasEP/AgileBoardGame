@@ -773,6 +773,17 @@ class App extends React.Component {
                             <Tutorial />
                         </div>
                     </ScrollableAnchor>
+                    <ScrollableAnchor id={'endGame'}>
+                        <div className='panel'>
+                            <center>
+                            <h1>Game is now finished</h1>
+                            <h2>We hope you learned a thing or two about agile working</h2>
+                            <h2>Check below to see how well you made it and compare yourselves with others</h2>
+
+                            {this.state.highScore}
+                            </center> 
+                        </div>
+                    </ScrollableAnchor>
                 </div>
       );
    }
