@@ -7,6 +7,28 @@
   src: url('../font/PixelOperator.ttf');
 }
 
+.s{
+    display:inline-block;
+    float:right;
+    margin-right:4%;
+    margin-bottom:4%;
+}
+.p{
+    display:inline-block;
+    margin-left:4%;
+    margin-bottom:4%;
+}
+.hscore{
+    margin:0 auto;
+    width:40%;
+    border:3px solid white;
+    border-radius:12px;
+    box-shadow: 15px 20px 15px;
+    font-size:3em;
+}
+.title{
+    font-size:4.5em;
+}
 body {
     margin: 0;
     padding-top: 10px;

@@ -779,18 +779,23 @@ class App extends React.Component {
                                 <h1>Game is now finished</h1>
                                 <h2>We hope you learned a thing or two about agile working</h2>
                                 <h2>Check below to see how well you made it and compare yourselves with others</h2>
-
-                                {
+                                <h1 className='title'>H I G H S C O R E </h1>
+                                <img src="img/trophy.png" width="200px" height="150px"/>
+                                </center> 
+                                <div className="hscore">
+                                {   
                                     this.state.highScore.map((player) => {
                                         return (
                                             <div>
-                                                <span>{player.teamName}</span>
-                                                <span>{player.score}</span>
+                                                <span className='p'>{player.teamName}</span>
+                                                <span className='s'>{player.score}</span>
                                             </div>
                                         )
                                     })
+                                    
                                 }
-                            </center> 
+                                </div>
+                            
                         </div>
                     </ScrollableAnchor>
                 </div>
