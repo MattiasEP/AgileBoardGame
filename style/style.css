@@ -1040,6 +1040,58 @@ a {
     height: 50px;
 }
 
+.tutorial-box {
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+    background-color: #eee;
+    padding: 20px;
+    margin: 10px;
+    width: calc(25% - 20px);
+    height: 100%;
+    border-radius: 4px;
+}
+
+.team-box {
+    float: right;
+    padding: 20px 10px 10px 0;
+}
+
+.dude {
+    margin-right: 5px;
+}
+
+.userstory {
+    position: absolute;
+    width: 160px;
+    right: 40px;
+    top: 178px;
+}
+
+.margin-bottom {
+    margin-bottom: 30px;
+}
+
+.margin-top {
+    margin-top: 30px;
+}
+
+.tutorial-nextday {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.exclamation {
+    float: left;
+    padding: 0;
+    margin-right: 10px;
+    /*margin:  -15px 10px 0 10px;*/
+}
+
+.tutorial-wrapper {
+    height: 624px;
+}
+
 
 /*----- MEDIA QUERIES -----*/
 

@@ -35,7 +35,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 40,
+            currentDay: 2,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -56,6 +56,7 @@ class App extends React.Component {
             acDice: false,
             hospitalName: 'Hospital',
             playerName: null,
+            highScore: [],
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
@@ -103,6 +104,9 @@ class App extends React.Component {
             {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
             {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing',     letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}
         ]})
+
+        this.getHighscore();
+
     }
 
     //Lägger till ett kort beroende på korttyp
@@ -715,6 +719,15 @@ class App extends React.Component {
         .then(response => {
             console.log(response)
         });
+    }
+
+    getHighscore() {
+        let highScore;
+        axios.get('http://localhost/AgileBoardGame/api/getHighscore.php').then(
+                (response) => {
+                    this.setState({highScore: response.data});
+                }
+            );
     }
 
     render() {

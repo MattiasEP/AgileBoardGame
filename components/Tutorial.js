@@ -5,45 +5,91 @@ class Tutorial extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className='panel'>
                 <ReleasePlanButton text='Back to game' direction='up' />
-                <h3>The Team</h3>
-                <p>Your team consists of 1 analysist, 4 developers and 1 tester. 
-                Start each day by distributing the team members on the board by pressing the left/right-button by their sides. 
-                Någon smart text om hur gubbarna kan flytta...
-                Each team member gets their own die which represents how many hours they will work on that day. 
-                Roll the dice when you are done distributing the team members to assign them their die value. 
-                Once you have rolled the dice, you can no longer move the team members until next day.
-                </p>
+                <div className="tutorial-wrapper">
+                    <div className='tutorial-box'>
+                        <div className="team-box">
+                            <img className='dude' src='../img/dudes/1.png' />
+                            <img className='dude' src='../img/dudes/2.png' />
+                            <img className='dude' src='../img/dudes/3.png' />
+                            <img className='dude' src='../img/dudes/4.png' />
+                            <img className='dude' src='../img/dudes/5.png' />
+                            <img className='dude' src='../img/dudes/6.png' />
+                        </div>
+                        <h1>The Team</h1>
+                        <p>
+                            Your team consists of one analyst, four developers and one tester.
+                        </p>
+                        <p>
+                            Start each day by distributing the team members on the board by pressing the left/right-button by their sides.
+                            There are some restrictions regarding the task each team member might undertake;
+                            The analyst and tester may only undertake tasks in the Analysis- and Testing Field on the board.
+                            Your developers can however undertake any task, so you can place them in either Analysis, Developing or Testing.
+                        </p>
+                        <p>
+                            Each team member gets their own die which represents how many story points of work they can finish during that day.
+                            Roll the dice when you are done distributing the team members to assign them their dice value. 
+                            Once you have rolled the dice, you can no longer move the team members for the rest of the day.
+                        </p>
+                    </div>
 
-                <h3>Stories</h3>
-                <p>
-                You can add stories to the scrum board by clicking one of the "add-buttons" in the control column. 
-                The story will then appear in the analysis column.
-                There are three kinds of stories: 
-                </p>
-                <ul>
-                    <li>User stories</li>
-                    <li>Maintenance</li>
-                    <li>Defects</li>
-                </ul>
-                <p>
-                Every story has points for "Analysis", "Development" and "Testing". One point equals one hour of work.
-                You can decrease points form stories by clicking "-" but only if your team members have points to spend. 
-                Once you hit 0, the story will move to the next column. Stories can only move one column a day.
-                You will get paid for each user story that gets to the done column.
-                It is up to you to decide if you want to spend time on Maintenance and Defects 
-                </p>
+                    <div className='tutorial-box'>
+                    <h1>Stories</h1>
+                        <p className='margin-bottom'>
+                            You can add stories to the scrum board by clicking one of the "add-buttons" in the Control-column.
+                            The story will then appear in the analysis column.
+                            There are three kinds of stories;
+                        </p>
+                        <img className='userstory team-box' src='../img/dudes/stories.png' />
+                        <ul className='stories'>
+                            <li>User stories</li>
+                            <li>Maintenance</li>
+                            <li>Defects</li>
+                        </ul>
+                        <p className='margin-top'>
+                            Every story has points for "Analysis", "Development" and "Testing". One point equals one story point of work.
+                            You can decrease points from stories by clicking the minus-button but only if any of your team members in the same column have points to spend.
+                            Once you hit 0, the story will move to the next column. Stories can only move one column a day.
+                            You will get paid for each user story that gets to the Done-column. Your total earnings are displayed as “Profits” under the Done-column.
+                        </p>
+                        <p>
+                            It is up to you to decide if and when you want to spend time on Maintenance and Defects.
+                        </p>
+                    </div>
 
-                <h3>Next day</h3>
-                <p>
-                Once your team don't have any hours/points left, you can click the "Next day"-button.
-                This will allow you to once again distribute the team members and roll the dice.
-                </p>
+                    <div className="tutorial-box">
+                        <h1>Action- and Multiple choice cards</h1>
+                            <p>
+                                During the game, you will encounter "Action Cards" and "Multiple Choice Cards", which represents the challenges and events you might encounter in your daily routine.
+                            </p>
+                            <p>
+                                Action Cards will immediately affect the game (for example, one of your developers might call in sick, and will remain at home for a few days, resulting in one developer-die less as you roll against the values on the User Stories-, Maintenance- and Defect cards.
+                            </p>
+                            <p>
+                                Multiple Choice Cards will present you with a certain event, where you choose how to proceed. Think careful about the choices you make - both might have different results which affect your team (both in a positive and negative way).
+                            </p>
+                            <img src="../img/dudes/exclamation.png" className="team-box exclamation"/>
+                            <p>
+                                Both Action Cards and Multiple Choice Cards are revealed at the start of the day. However, you will not know when these cards might show up, so always try to plan ahead and be prepared for anything!
+                            </p>
+                    </div>
 
-                <h3>Action- and Multiple choice cards</h3>
-                <p>During the game, you will encounter "action cards" and "multiple choice cards". The action cards as
-                </p>
+                    <div className="tutorial-box">
+                        <img src="../img/dudes/dice.png" className="team-box"/>
+                        <h1>Course of the game</h1>
+                        <p>
+                            Each turn in the game represents one day at the office (you end your current turn by pressing the Next Day-button, located in the Control-column).
+                            Each sprint last for five days (you can quickly glance at your lower right corner to see which sprint and day you are currently on).
+                            The game lasts for a total of eight sprints.
+                            Once the last day of the final sprint has ended, your total score will be displayed and the game will be over.
+                        </p>
+                            <img className='tutorial-nextday' src="../img/dudes/nextday.png" />
+                        <p>
+                            Best of luck, and hope you will have fun!
+                        </p>
+                    </div>
+                </div>
             </div>
         );
     }
