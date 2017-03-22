@@ -90,7 +90,7 @@ class Tutorial extends React.Component {
                         </p>
                     </div>
                 </div>
-                <img src="../img/dudes/footer.png" alt="" className="footer"/>
+                <img src="../img/dudes/footer1.png" alt="" className="footer"/>
             </div>
         );
     }
