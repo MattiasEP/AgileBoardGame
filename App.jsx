@@ -36,7 +36,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 40,
+            currentDay: 25,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -210,7 +210,7 @@ class App extends React.Component {
                     this.setState({dubbleDice: false});
                 }
                 else if(this.state.currentDay == 30 && this.state.dubbleDice == true) {
-                    worker.dice = Math.floor(Math.random() * 5) + 1;
+                    worker.dice = Math.floor(Math.random() * 6);
                     worker.originalDice = worker.dice;
                 }
                 else {
@@ -582,8 +582,11 @@ class App extends React.Component {
         });
     }
 
+
+    //  && card.addedSprint == this.state.currentSprint
+
     moveBuggedUS() {
-        let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.location != 'discarded' && card.type == 'userstory' && card.addedSprint == this.state.currentSprint);
+        let doneCards = this.state.activeCards.filter((card) => card.location != 'done' && card.location != 'discarded' && card.type == 'userstory');
         let cardToMove = doneCards[0];
         cardToMove.location = 'analysis';
         cardToMove.analysisCap = parseInt(cardToMove.analysisOriginal) + 2;
