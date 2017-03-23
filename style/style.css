@@ -32,7 +32,7 @@ body {
     background-color: #005E51;
     box-shadow: inset 0px 0px 80px -10px rgba(0,0,0,0.75);
     user-select: none;
-    /*overflow: hidden;*/
+    overflow: hidden;
 }
 .team_input{
     width:80%;
