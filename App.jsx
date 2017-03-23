@@ -36,7 +36,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 25,
+            currentDay: 17,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -171,7 +171,7 @@ class App extends React.Component {
             case 'development': card.location = 'testing'; break;
             case 'testing'    : card.location = 'done'; this.calcSum(); 
                                 if (this.state.currentSprint == 4 && card.type == 'userstory') { this.checkUSdone(1); this.checkUSdone(2) } 
-                                else if (this.state.currentSprint == 8 && card.type == 'defect') { this.checkDefectsDone(1); this.checkDefectsDone(2); }
+                                // else if (this.state.currentSprint == 8 && card.type == 'defect') { this.checkDefectsDone(1); this.checkDefectsDone(2); }
                                 break;
             default: break;
         }
@@ -238,7 +238,6 @@ class App extends React.Component {
             fee = parseInt(this.state.fees);
             value -= fee;
         }
-        value += parseInt(this.state.rewards);
         this.setState({earnings: value});
     }
 
@@ -398,11 +397,12 @@ class App extends React.Component {
 
     wastedPoints() {
         let wastedPoints = this.state.wastedPoints;
-        for (let i = 0; i < this.state.workers.length; i++) {
-            if(this.state.workers[i].location != 'hospital') {
-            wastedPoints = wastedPoints + parseInt(this.state.workers[i].dice);
+        let workers = this.state.workers.filter((worker) => worker.location != 'hospital')
+
+        for (let i = 0; i < workers.length; i++) {
+            wastedPoints = wastedPoints + parseInt(workers[i].dice);
             }
-        }
+        
         this.setState({wastedPoints: wastedPoints});
     }
 
@@ -487,6 +487,7 @@ class App extends React.Component {
                 case 'developer': this.state.workers[this.state.workerNumber].location = 'development'; break;
                 case 'tester': this.state.workers[this.state.workerNumber].location = 'testing'; break;
             }
+            this.state.workers[this.state.workerNumber].dice = 0;
             this.setState({sickDays: null, hospitalName: 'Hospital'});
         }
     }
@@ -601,7 +602,7 @@ class App extends React.Component {
         let fee;
         let doneMCards = this.state.activeCards.filter((card) => card.location == 'done' && card.type == 'maintenance');
         if(doneMCards.length < 5) {
-            fee = this.state.fee + 800;
+            fee = this.state.fees + 800;
             this.setState({fees: fee});
             this.calcSum(800);
         }
@@ -646,29 +647,43 @@ class App extends React.Component {
         }
     }
 
+    getReward() {
+        let doneDefects = this.state.activeCards.filter((card) => card.location == 'done' && card.type != 'userstory').filter((card) => card.type != 'maintenance');
+        let filteredDoneDefects = this.state.activeCards.filter((card) => card.location == 'done' && card.type == 'defect' && card.value != 400);
+        console.log(filteredDoneDefects);
+        console.log(doneDefects.length);
+        if (doneDefects.length == 7) {
+            let cardWithReward = this.state.activeCards.indexOf(filteredDoneDefects[0]);
+            console.log(cardWithReward);
+            this.state.activeCards[cardWithReward].value = 400;
+        }
+        this.setState({earnings: this.state.earnings, activeCards: this.state.activeCards});
+        this.calcSum();
+    }
+
     addAmountOfDefects() {
         for(let i = 0; i < this.state.amountOfDefects; i++) {
             if (this.state.defectCards != 0) {
                 this.addCard('defect');
             }
         }
-        this.setState({activeCards: this.state.activeCards, acDice: false});
+        this.setState({activeCards: this.state.activeCards, acDice: false});        
     }
 
-    checkDefectsDone(type) {
-        switch(type) {
-            case 1:
-                this.state.amountOfDefects--;
-                this.setState({amountOfDefects: this.state.amountOfDefects});
-                break;
-            case 2:
-                if (this.state.amountOfDefects <= 0 && this.state.currentSprint == 8) {
-                    this.state.rewards += 400;
-                    this.setState({rewards: this.state.rewards});
-                    this.calcSum();
-                }
-        }
-    }
+    // checkDefectsDone(type) {
+    //     switch(type) {
+    //         case 1:
+    //             this.state.amountOfDefects--;
+    //             this.setState({amountOfDefects: this.state.amountOfDefects});
+    //             break;
+    //         case 2:
+    //             if (this.state.amountOfDefects <= 0 && this.state.currentSprint == 8) {
+    //                 this.state.rewards += 400;
+    //                 this.setState({rewards: this.state.rewards});
+    //                 this.calcSum();
+    //             }
+    //     }
+    // }
 
     setWeekendWork(answer) {
         switch(answer) {
@@ -767,6 +782,7 @@ class App extends React.Component {
                             addPointsToUS={this.addPointsToUS.bind(this)} reducePointsFromUS={this.reducePointsFromUS.bind(this)}
                             setDubbleDice={this.setDubbleDice.bind(this)} holiday={this.holiday.bind(this)} wastedPoints={this.state.wastedPoints}
                             getHighscore={this.getHighscore} cardsDone={this.state.cardsDone} profit={this.state.earnings} endGame={this.endGame.bind(this)}
+                            getReward={this.getReward.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>

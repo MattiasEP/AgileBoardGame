@@ -4,6 +4,7 @@ class ActionCard_13 extends React.Component {
 
     close() {
         if(this.props.amountOfDefects != null) {
+            this.props.getReward();
             this.props.addAmountOfDefects();
             this.props.close();
         }
