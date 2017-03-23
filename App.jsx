@@ -36,7 +36,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 1,
+            currentDay: 40,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -731,7 +731,7 @@ class App extends React.Component {
 
         if(this.state.playerName != null) {
             let cardsDone = this.state.activeCards.filter((card) => card.location == 'done')
-            this.state.highScore.push({teamName: this.state.playerName, score: this.state.earnings, wastedPoints: this.state.wastedPoints, cardsDone: cardsDone.length});
+            this.state.highScore.push({teamName: this.state.playerName, score: this.state.earnings, wastedPoints: this.state.wastedPoints, cardsDone: cardsDone.length, currentPlayer: true});
             this.setState({highScore: this.state.highScore, cardsDone: cardsDone.length});
             axios.post('http://localhost:80/AgileBoardGame/api/api.php', querystring.stringify({teamName: this.state.playerName, score: this.state.earnings, wastedPoints: this.state.wastedPoints, cardsDone: cardsDone.length}))
         }

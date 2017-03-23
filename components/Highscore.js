@@ -29,8 +29,13 @@ class Highscore extends React.Component {
                                 
                         {   
                             this.props.highScore.sort(function(a, b) {return b.score - a.score}).map((player, i) => {
+                                
+                                let trClass = '';
+                                if(player.currentPlayer) {
+                                    trClass = 'current-player'
+                                }
                                 return (
-                                    <tr>
+                                    <tr className={trClass}>
                                         <td>{i + 1}. {player.teamName}</td>
                                         <td>{player.cardsDone}</td>
                                         <td>{player.wastedPoints}</td>

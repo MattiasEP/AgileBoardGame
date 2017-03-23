@@ -1126,6 +1126,7 @@ a {
 
 .highscore-head {
     display: block;
+    padding-top: 50px;
 }
 
 .dstar {
@@ -1166,6 +1167,10 @@ tbody {
 .overflow {
     height: 440px;
     overflow-y: auto;
+}
+
+.current-player {
+    background-color: #51A35F;
 }
 
 /*----- MEDIA QUERIES -----*/
