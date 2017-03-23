@@ -114,9 +114,7 @@ class App extends React.Component {
             {key: 4, src:'./img/dudes/5.png', origin: 'developer', location: 'development', letter: 'D', dice: this.state.dice[4], originalDice: this.state.dice[4]},
             {key: 5, src:'./img/dudes/6.png', origin: 'tester',    location: 'testing',     letter: 'T', dice: this.state.dice[5], originalDice: this.state.dice[5]}
         ]})
-
         this.getHighscore();
-
     }
 
     //Lägger till ett kort beroende på korttyp
@@ -800,8 +798,3 @@ class App extends React.Component {
 }
 
 export default App;
-
-{/*<table>
-        <thead></thead>
-        <tbody></tbody>
-</table>*/}

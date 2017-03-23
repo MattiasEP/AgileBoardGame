@@ -35,7 +35,7 @@ class Highscore extends React.Component {
                                     trClass = 'current-player'
                                 }
                                 return (
-                                    <tr className={trClass}>
+                                    <tr id={trClass}>
                                         <td>{i + 1}. {player.teamName}</td>
                                         <td>{player.cardsDone}</td>
                                         <td>{player.wastedPoints}</td>

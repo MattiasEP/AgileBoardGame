@@ -1169,7 +1169,7 @@ tbody {
     overflow-y: auto;
 }
 
-.current-player {
+#current-player {
     background-color: #51A35F;
 }
 
