@@ -18,11 +18,13 @@ while($item = mysqli_fetch_assoc($result)) {
 echo json_encode($return);
 
 
-if(isset($_POST['teamName']) && isset($_POST['score'])) {
+if(isset($_POST['teamName']) && isset($_POST['score']) && isset($_POST['wastedPoints']) && isset($_POST['cardsDone'])) {
     $teamName = mysqli_real_escape_string($db, $_POST['teamName']); 
     $score = mysqli_real_escape_string($db, $_POST['score']);
+    $wastedPoints = mysqli_real_escape_string($db, $_POST['wastedPoints']);
+    $cardsDone = mysqli_real_escape_string($db, $_POST['cardsDone']);
 
-    $query = "INSERT INTO highscore (teamName, score) VALUES ('$teamName', $score)";
+    $query = "INSERT INTO highscore (teamName, score, wastedPoints, cardsDone) VALUES ('$teamName', $score, $wastedPoints, $cardsDone)";
     if(!mysqli_query($db, $query)) {
         echo mysqli_error($db);
     }

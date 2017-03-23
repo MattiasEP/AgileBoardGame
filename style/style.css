@@ -7,24 +7,16 @@
   src: url('../font/PixelOperator.ttf');
 }
 
-.s{
-    display:inline-block;
-    float:right;
-    margin-right:4%;
-    margin-bottom:4%;
-}
-.p{
-    display:inline-block;
-    margin-left:4%;
-    margin-bottom:4%;
-}
 .hscore{
-    margin:0 auto;
-    width:40%;
-    border:3px solid white;
-    border-radius:12px;
+    background-color: #eee;
+    margin: 0 auto;
+    width: 80%;
+    border-radius: 4px;
     box-shadow: 15px 20px 15px;
-    font-size:3em;
+    font-size: 2em;
+    padding: 50px;
+    height: 540px;
+    /*overflow: hidden;*/
 }
 .title{
     font-size:4.5em;
@@ -1104,6 +1096,7 @@ a {
     margin-right: auto;
 }
 .exclamation {
+    padding-top: 20px;
     float: left;
     padding: 0;
     margin-right: 10px;
@@ -1114,9 +1107,65 @@ a {
     height: 624px;
 }
 
-.footer {
+.col1 {
     position: absolute;
     bottom: 0;
+    width: 100%;
+    left: 0;
+}
+
+.footer {
+    position: absolute;
+    bottom: 9px;
+}
+
+.header-pic {
+    position: absolute;
+    top: -25px;
+}
+
+.highscore-head {
+    display: block;
+}
+
+.dstar {
+    display: block;
+    margin: auto;
+}
+
+.highscore-table-wrapper {
+    width: 100%;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.table {
+    padding: 20px;
+    text-align: left;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+th, td {
+    width: 25%;
+    padding-left: 100px;
+}
+
+thead {
+}
+
+tbody {
+    height: 400px;
+    overflow: auto;
+}
+
+.overflow {
+    height: 440px;
+    overflow-y: auto;
 }
 
 /*----- MEDIA QUERIES -----*/

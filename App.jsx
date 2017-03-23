@@ -18,6 +18,7 @@ import ReleasePlanButton from './components/ReleasePlanButton';
 import Tutorial from './components/Tutorial';
 import TutorialButton from './components/TutorialButton';
 import teamName from './components/teamName';
+import Highscore from './components/Highscore';
 
 class App extends React.Component {
 
@@ -35,7 +36,7 @@ class App extends React.Component {
             dice: [],
             workers: [],
             newDay: true,
-            currentDay: 2,
+            currentDay: 1,
             currentSprint: 1,
             earnings: 0,
             fees: 0,
@@ -57,12 +58,21 @@ class App extends React.Component {
             hospitalName: 'Hospital',
             playerName: null,
             highScore: [],
+            cardsDone: 0,
         }
         configureAnchors({offset: -10, scrollDuration: 500})
         //Prompts the user if they try to leave or refresh the site, preventing a loss of game by accident
         // window.onbeforeunload = function() {
         // return "";
         // }
+    }
+
+    componentWillMount() {
+        axios.get('http://localhost/AgileBoardGame/api/getHighscore.php').then(
+                (response) => {
+                    this.setState({highScore: response.data});
+                }
+            );
     }
 
     componentDidMount() {
@@ -301,6 +311,7 @@ class App extends React.Component {
             if (this.state.currentDay == 20 && this.state.isSetWorkDuringWeekend == false) {
                 this.setState({showActionScreen: true});
                 this.changeHint('nextDay');
+                this.wastedPoints();
                 this.clearDice();
                 this.setState({newDay: true, activeCards: this.state.activeCards, acDice: false})
             }
@@ -313,6 +324,7 @@ class App extends React.Component {
                     card.testCap = card.test;
                 });
                 this.checkWorkers();
+                this.wastedPoints();
                 this.changeHint('nextDay');
                 this.clearDice();
                 this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards, acDice: false});
@@ -334,6 +346,7 @@ class App extends React.Component {
                 });
                 this.checkWorkers();
                 this.changeHint('nextDay');
+                this.wastedPoints();
                 this.clearDice();
                 this.setState({newDay: true, currentDay: this.state.currentDay, activeCards: this.state.activeCards, acDice: false});
                 this.actions();
@@ -386,13 +399,13 @@ class App extends React.Component {
     }
 
     wastedPoints() {
-        let wastedPoints = 0;
+        let wastedPoints = this.state.wastedPoints;
         for (let i = 0; i < this.state.workers.length; i++) {
+            if(this.state.workers[i].location != 'hospital') {
             wastedPoints = wastedPoints + parseInt(this.state.workers[i].dice);
+            }
         }
-        if (wastedPoints > 0) {
-            this.setState({hint: `You wasted ${wastedPoints} points. Pay closer attention to the tasks at hand and plan your days accordingly!`})
-        }
+        this.setState({wastedPoints: wastedPoints});
     }
 
     changeHint(message) {
@@ -439,7 +452,8 @@ class App extends React.Component {
             case 30: this.setState({showActionScreen: true}); break;
             case 32: this.setState({showActionScreen: true}); break;
             case 36: this.setState({showActionScreen: true}); break;
-            case 41: this.endGame();
+            case 41: this.setState({showActionScreen: true}); break;
+            default: break;
         }
     }
 
@@ -542,7 +556,6 @@ class App extends React.Component {
         }
         else {
             defectCard = this.state.activeCards.filter((card) => card.type == 'defect');
-            console.log(defectCard);
             if (defectCard[defectCard.length - 1].location != 'done') {
                 defectCard[defectCard.length - 1].value = 400;
                 defectCard[defectCard.length - 1].type = 'highpriodefect';
@@ -710,19 +723,21 @@ class App extends React.Component {
     }
 
     handleSubmit(event) {
-        window.location = 'http://localhost:3000/#scrumboard';
+        window.location = '#scrumboard';
         event.preventDefault();
     }
 
     endGame() {
-        axios.post('http://localhost:80/AgileBoardGame/api/api.php', querystring.stringify({teamName: this.state.playerName, score: this.state.earnings}))
-        .then(response => {
-            console.log(response)
-        });
+
+        if(this.state.playerName != null) {
+            let cardsDone = this.state.activeCards.filter((card) => card.location == 'done')
+            this.state.highScore.push({teamName: this.state.playerName, score: this.state.earnings, wastedPoints: this.state.wastedPoints, cardsDone: cardsDone.length});
+            this.setState({highScore: this.state.highScore, cardsDone: cardsDone.length});
+            axios.post('http://localhost:80/AgileBoardGame/api/api.php', querystring.stringify({teamName: this.state.playerName, score: this.state.earnings, wastedPoints: this.state.wastedPoints, cardsDone: cardsDone.length}))
+        }
     }
 
     getHighscore() {
-        let highScore;
         axios.get('http://localhost/AgileBoardGame/api/getHighscore.php').then(
                 (response) => {
                     this.setState({highScore: response.data});
@@ -749,7 +764,8 @@ class App extends React.Component {
                             addAmountOfDefects={this.addAmountOfDefects.bind(this)} setWeekendWork={this.setWeekendWork.bind(this)}
                             workDuringWeekend={this.state.workDuringWeekend} nextDay={this.nextDay.bind(this)} setNewDay={this.setNewDay.bind(this)}
                             addPointsToUS={this.addPointsToUS.bind(this)} reducePointsFromUS={this.reducePointsFromUS.bind(this)}
-                            setDubbleDice={this.setDubbleDice.bind(this)} holiday={this.holiday.bind(this)}
+                            setDubbleDice={this.setDubbleDice.bind(this)} holiday={this.holiday.bind(this)} wastedPoints={this.state.wastedPoints}
+                            getHighscore={this.getHighscore} cardsDone={this.state.cardsDone} profit={this.state.earnings} endGame={this.endGame.bind(this)}
                         />
                         <TutorialButton />
                         <div className='container top'>
@@ -773,29 +789,9 @@ class App extends React.Component {
                             <Tutorial />
                         </div>
                     </ScrollableAnchor>
-                    <ScrollableAnchor id={'endGame'}>
+                    <ScrollableAnchor id={'highscore'}>
                         <div className='panel'>
-                            <center>
-                                <h1>Game is now finished</h1>
-                                <h2>We hope you learned a thing or two about agile working</h2>
-                                <h2>Check below to see how well you made it and compare yourselves with others</h2>
-                                <h1 className='title'>H I G H S C O R E </h1>
-                                <img src="img/pxl.png" width="200px" height="150px"/>
-                                </center> 
-                                <div className="hscore">
-                                {   
-                                    this.state.highScore.map((player) => {
-                                        return (
-                                            <div>
-                                                <span className='p'>{player.teamName}</span>
-                                                <span className='s'>{player.score}</span>
-                                            </div>
-                                        )
-                                    })
-                                    
-                                }
-                                </div>
-                            
+                            <Highscore highScore={this.state.highScore} />
                         </div>
                     </ScrollableAnchor>
                 </div>
@@ -804,3 +800,8 @@ class App extends React.Component {
 }
 
 export default App;
+
+{/*<table>
+        <thead></thead>
+        <tbody></tbody>
+</table>*/}

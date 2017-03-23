@@ -18,6 +18,7 @@ import MC_Card_2 from './ActionCards/MC_Card_2';
 import MC_Card_2_Answer from './ActionCards/MC_Card_2_Answer';
 import MC_Card_3 from './ActionCards/MC_Card_3';
 import MC_Card_3_Answer from './ActionCards/MC_Card_3_Answer';
+import EndGame from './ActionCards/EndGame';
 
 class ActionCardScreen extends React.Component {
 
@@ -70,6 +71,7 @@ class ActionCardScreen extends React.Component {
             case 30: actionCard = (<MC_Card_3 nextMessage={this.nextMessage.bind(this)} checkMC3answer={this.checkMC3answer.bind(this)} />); break;
             case 32: actionCard = (<ActionCard_12 close={this.props.close} sickDays={this.props.sickDays} sickWorker={this.props.sickWorker} holiday={this.props.holiday}/>); break;
             case 36: actionCard = (<ActionCard_13 close={this.props.close} amountOfDefects={this.props.amountOfDefects} getAmountOfDefects={this.props.getAmountOfDefects} addAmountOfDefects={this.props.addAmountOfDefects} />); break;
+            case 41: actionCard = (<EndGame close={this.props.close} wastedPoints={this.props.wastedPoints} getHighscore={this.props.getHighscore} cardsDone={this.props.cardsDone} profit={this.props.profit} endGame={this.props.endGame} />); break;
             default: break;
         }
 

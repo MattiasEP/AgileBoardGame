@@ -27,6 +27,7 @@ class Tutorial extends React.Component {
                             The analyst and tester may only undertake tasks in the Analysis- and Testing Field on the board.
                             Your developers can however undertake any task, so you can place them in either Analysis, Developing or Testing.
                         </p>
+                        <img className='dstar' src='../img/dudes/dstar.png' />
                         <p>
                             Each team member gets their own die which represents how many story points of work they can finish during that day.
                             Roll the dice when you are done distributing the team members to assign them their dice value. 
@@ -64,12 +65,12 @@ class Tutorial extends React.Component {
                                 During the game, you will encounter "Action Cards" and "Multiple Choice Cards", which represents the challenges and events you might encounter in your daily routine.
                             </p>
                             <p>
-                                Action Cards will immediately affect the game (for example, one of your developers might call in sick, and will remain at home for a few days, resulting in one developer-die less as you roll against the values on the User Stories-, Maintenance- and Defect cards.
+                                Action Cards will immediately affect the game. For example, one of your developers might call in sick, and will remain at home for a few days, resulting in one developer-die less as you roll against the values on the User Stories-, Maintenance- and Defect cards.
                             </p>
                             <p>
                                 Multiple Choice Cards will present you with a certain event, where you choose how to proceed. Think careful about the choices you make - both might have different results which affect your team (both in a positive and negative way).
                             </p>
-                            <img src="../img/dudes/exclamation.png" className="team-box exclamation"/>
+                            <img src="../img/dudes/exclamation.png" className="exclamation"/>
                             <p>
                                 Both Action Cards and Multiple Choice Cards are revealed at the start of the day. However, you will not know when these cards might show up, so always try to plan ahead and be prepared for anything!
                             </p>
@@ -84,10 +85,10 @@ class Tutorial extends React.Component {
                             The game lasts for a total of eight sprints.
                             Once the last day of the final sprint has ended, your total score will be displayed and the game will be over.
                         </p>
-                            <img className='tutorial-nextday' src="../img/dudes/nextday.png" />
                         <p>
                             Best of luck, and hope you will have fun!
                         </p>
+                        <img src='../img/dudes/col1.png' className='col1'/>
                     </div>
                 </div>
                 <img src="../img/dudes/footer1.png" alt="" className="footer"/>
