@@ -1,0 +1,89 @@
+<!--
+	Den här filen användet JS för att koppla upp till vårt API och visa att det fungerar
+-->
+<!doctype html>
+<html>
+<head>
+	<style>
+		body{
+			font-family:arial;
+			border-radius:10px;
+			border:1px solid black;
+			box-shadow: 5px 10px 5px;
+			width:50%;
+			margin:0% auto;
+			margin-top:5%;
+		}
+		.pick{
+			width:40%;
+			margin:0% auto;
+			margin-bottom:200px;
+		}
+		.delshow, .pickshow{
+			text-align:left;
+			font-size:2em;
+			margin-top:2%;
+
+		}
+		.delete{
+			width:40%;
+			margin:0% auto;
+			margin-bottom:2%;
+		}
+		input{
+			padding:3%;
+			font-size:2em;
+			border-radius:5px;
+			margin-top:5%;
+			margin-bottom:5%;
+		}
+
+	</style>
+	<script src='http://code.jquery.com/jquery-latest.min.js'></script>
+	<script>
+		$(function(){
+
+			$("#user_id").on('change', function(e){
+				$.ajax({
+					url: "./?/user/"+e.target.value,
+					data: "",
+					type: "GET",
+					dataType: 'json',
+					success: function(data){
+						console.log(data)
+						$(".pickshow").html("Type: " +data.type+ "<br>Value: "+data.value+"<br>Analysis: "
+							+data.analysis+"<br>Develop: "+data.develop+"<br>Test: "+data.test);
+
+					}
+				});
+			});
+
+			$("#user_delete").on('change', function(e){
+				$.ajax({
+					url: "./?/user/"+e.target.value,
+					data: "",
+					type: "DELETE",
+					dataType: 'json',
+					success: function(data){
+						console.log(data);
+						$(".delshow").html("Done!");
+					}
+				});
+			});
+
+		});
+	</script>
+</head>
+<body>
+<div class="pick">
+	<input type='text' id='user_id' placeholder="Pick a card ">
+	<div class='pickshow'></div>
+
+</div>
+<div class="delete">
+	<input type='text' id='user_delete' placeholder="DELETE CARD">
+	<div class="delshow""></div>
+</div>
+
+</body>
+</html>
